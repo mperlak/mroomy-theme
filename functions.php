@@ -182,6 +182,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
  */
 require get_template_directory() . '/inc/class-mroomy-nav-walker.php';
 require get_template_directory() . '/inc/class-mroomy-mega-walker.php';
+require get_template_directory() . '/inc/class-mroomy-mobile-walker.php';
 
 /**
  * Enqueue scripts and styles with Vite
@@ -220,3 +221,15 @@ function add_body_classes($classes) {
     return $classes;
 }
 add_filter('body_class', 'add_body_classes');
+
+/**
+ * Mobile menu fallback
+ */
+function mroomy_s_mobile_menu_fallback() {
+    echo '<ul class="space-y-1 px-6">';
+    echo '<li><a href="' . esc_url( home_url( '/' ) ) . '" class="block py-3 px-4 subtitle-1 text-neutral-text hover:text-primary transition-colors">Strona główna</a></li>';
+    echo '<li><a href="' . esc_url( home_url( '/o-nas' ) ) . '" class="block py-3 px-4 subtitle-1 text-neutral-text hover:text-primary transition-colors">O nas</a></li>';
+    echo '<li><a href="' . esc_url( home_url( '/produkty' ) ) . '" class="block py-3 px-4 subtitle-1 text-neutral-text hover:text-primary transition-colors">Produkty</a></li>';
+    echo '<li><a href="' . esc_url( home_url( '/kontakt' ) ) . '" class="block py-3 px-4 subtitle-1 text-neutral-text hover:text-primary transition-colors">Kontakt</a></li>';
+    echo '</ul>';
+}

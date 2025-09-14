@@ -61,7 +61,7 @@
 					<?php endif; ?>
 
 					<!-- Mobile menu toggle -->
-					<button class="icon-link size-6 shrink-0" aria-label="Menu" id="mobile-menu-toggle">
+					<button class="icon-link size-6 shrink-0 mobile-menu-toggle" aria-label="Menu" id="mobile-menu-toggle">
 						<?php include get_template_directory() . '/assets/icons/menu-hamburger.svg'; ?>
 					</button>
 				</div>
@@ -131,3 +131,40 @@
 			</div>
 		</div>
 	</header><!-- #masthead -->
+
+	<!-- Mobile Menu Offcanvas -->
+	<div id="mobile-menu" class="fixed left-0 right-0 bottom-0 z-50 hidden lg:hidden" style="top:0;height:100dvh;">
+		<!-- Overlay -->
+		<div class="absolute inset-0 bg-black bg-opacity-50" id="mobile-menu-overlay"></div>
+		
+		<!-- Menu Panel -->
+		<div class="relative flex flex-col h-full bg-white w-full shadow-2xl" id="mobile-menu-panel">
+			<!-- Panel bez nagłówka – nagłówek strony pozostaje na miejscu -->
+			
+			<!-- Navigation -->
+			<nav class="py-6" aria-label="Mobile navigation">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'menu-1',
+						'container' => false,
+						'menu_class' => 'space-y-6 px-6',
+						'depth' => 1,
+						'fallback_cb' => 'mroomy_s_mobile_menu_fallback',
+						'walker' => new Mroomy_Mobile_Walker(),
+					)
+				);
+				?>
+			</nav>
+			<!-- Language Row (Figma spec) -->
+			<div class="px-6 py-6">
+				<div class="flex items-center gap-2 cursor-pointer w-fit">
+					<span class="subtitle-1 text-neutral-text">PL</span>
+					<div class="w-4 h-4 flex items-center justify-center">
+						<?php include get_template_directory() . '/assets/icons/chevron-down.svg'; ?>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</div>
