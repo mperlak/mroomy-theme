@@ -69,7 +69,7 @@
 		</div>
 
 		<!-- Desktop header -->
-		<div class="hidden lg:flex h-[88px]">
+		<div class="hidden lg:flex h-[88px] relative">
 			<div class="container max-w-[1440px] mx-auto px-8 lg:px-[106px] h-full">
 				<div class="flex items-center justify-between h-full">
 					<!-- Logo -->
@@ -82,7 +82,7 @@
 					</div>
 
 					<!-- Navigation -->
-					<nav class="flex flex-1 items-center justify-start gap-10 ml-16">
+					<nav class="flex flex-1 items-center justify-start gap-10 ml-16 static">
 						<?php
 						wp_nav_menu(
 							array(
@@ -90,7 +90,7 @@
 								'container' => false,
 								'menu_class' => 'flex items-center gap-10 list-none',
 								'fallback_cb' => false,
-								'walker' => new Mroomy_Nav_Walker(),
+								'walker' => new Mroomy_Mega_Walker(),
 							)
 						);
 						?>

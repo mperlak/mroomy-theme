@@ -22,20 +22,34 @@ module.exports = {
     'font-regular', 'font-semibold', 'font-bold', 'font-extrabold',
     // Colors
     'text-neutral-text', 'text-primary', 'hover:text-primary',
+    'text-neutral-text-subtle', 'text-neutral-text-subtlest',
     'bg-primary', 'text-white',
     // Layout classes for header
     'lg:hidden', 'lg:flex', 'lg:block',
     'hidden',
     // Spacing classes
-    'px-6', 'px-8', 'pt-5', 'pb-5', 'py-5',
+    'px-6', 'px-8', 'pt-5', 'pb-5', 'py-5', 'py-8',
     'pt-[22px]', 'pb-5', 'lg:px-[106px]',
+    'gap-4', 'gap-10', 'gap-16', 'mb-4', 'mt-[32px]',
     // Sizing
     'size-6', 'h-6', 'w-6', 'h-4', 'w-4',
     'h-[23.648px]', 'w-[127px]', 'h-[27px]', 'h-[88px]',
     'min-w-4', 'min-w-[16px]',
+    'w-screen', 'max-w-[1440px]',
     // Colors
     'bg-[#B30A62]', 'bg-[#E0E0E0]',
-    'border-[#E0E0E0]',
+    'border-[#E0E0E0]', 'border-neutral-container-border',
+    // Mega menu classes
+    'mega-dropdown', 'mega-menu-column',
+    'invisible', 'opacity-0', 'visible', 'opacity-100',
+    'group-hover:visible', 'group-hover:opacity-100', 'group-hover:rotate-180',
+    'transition-all', 'transition-transform', 'duration-200',
+    'grid', 'grid-cols-3', 'flex',
+    'absolute', 'relative', 'static', 'fixed',
+    'top-full', 'top-[88px]', 'top-[89px]', 'left-0', 'right-0', 'w-full', 'w-screen',
+    '-translate-x-1/2', 'left-1/2',
+    'shadow-lg', 'border-t',
+    'z-50', 'z-40',
   ],
   theme: {
     extend: {

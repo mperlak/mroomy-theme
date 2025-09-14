@@ -178,9 +178,10 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 }
 
 /**
- * Load custom navigation walker.
+ * Load custom navigation walkers.
  */
 require get_template_directory() . '/inc/class-mroomy-nav-walker.php';
+require get_template_directory() . '/inc/class-mroomy-mega-walker.php';
 
 /**
  * Enqueue scripts and styles with Vite
