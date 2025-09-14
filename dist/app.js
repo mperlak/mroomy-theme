@@ -1,0 +1,1 @@
+/* empty css    */document.addEventListener("DOMContentLoaded",function(){console.log("Theme loaded!");const e=document.querySelector(".mobile-menu-toggle"),o=document.querySelector(".mobile-menu");e&&o&&e.addEventListener("click",function(){o.classList.toggle("hidden")})});

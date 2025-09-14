@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Nunito+Sans:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Reset link colors to inherit from text color classes */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Ensure links don't get browser default styles */
+  a:link,
+  a:visited {
+    color: inherit;
+  }
+}
+
+/* Typography Components */
+@layer components {
+  /* Headlines - Nunito */
+  .headline-1 {
+    @apply font-nunito text-headline-1;
+  }
+  .headline-2 {
+    @apply font-nunito text-headline-2;
+  }
+  .headline-small-1 {
+    @apply font-nunito text-headline-small-1;
+  }
+  .headline-small-2 {
+    @apply font-nunito text-headline-small-2;
+  }
+
+  /* Titles - Nunito */
+  .title-1 {
+    @apply font-nunito text-title-1;
+  }
+  .title-2 {
+    @apply font-nunito text-title-2;
+  }
+  .title-small-1 {
+    @apply font-nunito text-title-small-1;
+  }
+  .title-small-2 {
+    @apply font-nunito text-title-small-2;
+  }
+
+  /* Subtitles - Nunito */
+  .subtitle-1 {
+    @apply font-nunito text-subtitle-1;
+  }
+  .subtitle-2 {
+    @apply font-nunito text-subtitle-2;
+  }
+
+  /* Body Text - Nunito */
+  .body-1 {
+    @apply font-nunito text-body-1;
+  }
+  .body-2 {
+    @apply font-nunito text-body-2;
+  }
+  .body-small-1 {
+    @apply font-nunito text-body-small-1;
+  }
+  .body-small-2 {
+    @apply font-nunito text-body-small-2;
+  }
+  .body-super-small-1 {
+    @apply font-nunito text-body-super-small-1;
+  }
+  .body-super-small-2 {
+    @apply font-nunito text-body-super-small-2;
+  }
+
+  /* Paragraphs - Nunito Sans */
+  .paragraph-20 {
+    @apply font-nunito-sans text-paragraph-20-1;
+  }
+  .paragraph-20-bold {
+    @apply font-nunito-sans text-paragraph-20-2;
+  }
+  .paragraph-16 {
+    @apply font-nunito-sans text-paragraph-16-1;
+  }
+  .paragraph-16-bold {
+    @apply font-nunito-sans text-paragraph-16-2;
+  }
+  .paragraph-14 {
+    @apply font-nunito-sans text-paragraph-14-1;
+  }
+  .paragraph-14-bold {
+    @apply font-nunito-sans text-paragraph-14-2;
+  }
+  .paragraph-12 {
+    @apply font-nunito-sans text-paragraph-12-1;
+  }
+  .paragraph-12-bold {
+    @apply font-nunito-sans text-paragraph-12-2;
+  }
+
+  /* Captions - Nunito Sans */
+  .caption-14 {
+    @apply font-nunito-sans text-caption-14-1;
+  }
+  .caption-14-bold {
+    @apply font-nunito-sans text-caption-14-2;
+  }
+  .caption-12 {
+    @apply font-nunito-sans text-caption-12-1;
+  }
+  .caption-12-bold {
+    @apply font-nunito-sans text-caption-12-2;
+  }
+  .caption-10 {
+    @apply font-nunito-sans text-caption-10-1;
+  }
+  .caption-10-bold {
+    @apply font-nunito-sans text-caption-10-2;
+  }
+
+  /* Buttons */
+  .btn {
+    @apply px-4 py-2 rounded-md font-medium transition-colors cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-primary-on-default hover:bg-primary-hover active:bg-primary-pressed body-1;
+  }
+
+  .btn-secondary {
+    @apply bg-neutral-container-bg text-neutral-text hover:bg-neutral-hover active:bg-neutral-pressed body-1;
+  }
+
+  .btn-info {
+    @apply bg-info text-info-on-default hover:bg-info-hover active:bg-info-pressed body-1;
+  }
+
+  .btn-success {
+    @apply bg-success text-white hover:bg-success/90 body-1;
+  }
+
+  .btn-warning {
+    @apply bg-warning text-white hover:bg-warning/90 body-1;
+  }
+
+  .btn-danger {
+    @apply bg-danger text-danger-on-default hover:bg-danger/90 body-1;
+  }
+
+  /* Cards and Containers */
+  .card {
+    @apply bg-neutral-card border border-neutral-container-border rounded-lg p-4;
+  }
+
+  .card-primary {
+    @apply bg-primary-container-bg border border-primary-container-border rounded-lg p-4;
+  }
+
+  .card-info {
+    @apply bg-info-container-bg border border-info-container-border rounded-lg p-4;
+  }
+
+  /* Form Fields */
+  .field {
+    @apply bg-neutral-field-bg border border-neutral-field-border rounded px-3 py-2 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20;
+  }
+
+  /* Badges */
+  .badge {
+    @apply inline-flex items-center px-2 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-primary {
+    @apply bg-primary-container-bg text-primary-text-subtle border border-primary-container-border;
+  }
+
+  .badge-info {
+    @apply bg-info-container-bg text-info-text-subtle border border-info-container-border;
+  }
+
+  .badge-success {
+    @apply bg-success/10 text-success border border-success/20;
+  }
+
+  .badge-warning {
+    @apply bg-warning/10 text-warning border border-warning/20;
+  }
+
+  .badge-danger {
+    @apply bg-danger/10 text-danger border border-danger/20;
+  }
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+}
+
+/* Custom styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Icon link reset - override WooCommerce button styles */
+.icon-link,
+a.icon-link,
+button.icon-link {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+}
+
+.icon-link svg {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
