@@ -17,6 +17,7 @@ class Mroomy_Mega_Walker extends Walker_Nav_Menu {
 	private $current_column = null;
 	private $column_count = 0;
 	private $view_all_link = null;
+	private $is_projects_menu = false;
 
 	/**
 	 * Start Level - begins a new level of menu
@@ -25,20 +26,25 @@ class Mroomy_Mega_Walker extends Walker_Nav_Menu {
 		$indent = str_repeat( "\t", $depth );
 
 		if ( $depth === 0 ) {
-			// Start mega menu container for first level dropdown - full width
-			$output .= "\n$indent<div class=\"mega-dropdown fixed left-0 right-0 top-[89px] w-full bg-white shadow-lg invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50\">\n";
-			$output .= "$indent\t<div class=\"container max-w-[1440px] mx-auto px-[106px] py-8\">\n";
+			// Start mega menu container anchored to the trigger item, with single full-width background & shadow
+			$output .= "\n$indent<div class=\"mega-dropdown absolute top-full mt-6 left-[-100vw] w-[200vw] bg-white shadow-lg invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50\">\n";
+			$output .= "$indent\t<div class=\"relative left-[100vw] px-0 py-8\">\n";
 
 			// Content wrapper
 			$output .= "$indent\t\t<div class=\"\">\n";
 
-			// Add "Zobacz wszystkie projekty" link at the top
-			$output .= "$indent\t\t\t<div class=\"mb-[48px]\">\n";
-			$output .= "$indent\t\t\t\t<a href=\"/projekty\" class=\"font-nunito font-extrabold text-body-2 text-neutral-text hover:text-primary transition-colors inline-flex items-center gap-1\">\n";
-			$output .= "$indent\t\t\t\t\tZobacz wszystkie projekty\n";
-			$output .= "$indent\t\t\t\t\t<svg class=\"w-4 h-4\" viewBox=\"0 0 16 16\" fill=\"none\"><path d=\"M6 3L11 8L6 13\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg>\n";
-			$output .= "$indent\t\t\t\t</a>\n";
-			$output .= "$indent\t\t\t</div>\n";
+			// Add the top link only for "Nasze projekty"
+			if ( $this->is_projects_menu ) {
+				$output .= "$indent\t\t\t<div class=\"mb-[48px]\">\n";
+				$output .= "$indent\t\t\t\t<a href=\"/projekty\" class=\"font-nunito text-body-2 text-neutral-text hover:text-primary transition-colors inline-flex items-center gap-1\">\n";
+				$output .= "$indent\t\t\t\t\tZobacz wszystkie projekty\n";
+				ob_start();
+				include get_template_directory() . '/assets/icons/chevron-right.svg';
+				$chevron_right_svg = ob_get_clean();
+				$output .= "$indent\t\t\t\t\t<span class=\"w-4 h-4 inline-flex items-center justify-center\">$chevron_right_svg</span>\n";
+				$output .= "$indent\t\t\t\t</a>\n";
+				$output .= "$indent\t\t\t</div>\n";
+			}
 
 			// Categories container
 			$output .= "$indent\t\t\t<div class=\"flex gap-[64px]\">\n";
@@ -46,7 +52,7 @@ class Mroomy_Mega_Walker extends Walker_Nav_Menu {
 			$this->column_count = 0;
 		} elseif ( $depth === 1 && $this->is_mega_active ) {
 			// Start a list within a column
-			$output .= "\n$indent<ul class=\"flex flex-col gap-4\">\n";
+			$output .= "\n$indent<ul class=\"flex flex-col gap-2\">\n";
 		} else {
 			// Regular nested menu
 			$output .= "\n$indent<ul class=\"sub-menu\">\n";
@@ -97,7 +103,7 @@ class Mroomy_Mega_Walker extends Walker_Nav_Menu {
 
 			$atts = array(
 				'href'  => ! empty( $item->url ) ? $item->url : '',
-				'class' => 'flex items-center gap-1 text-subtitle-1 font-nunito text-neutral-text hover:text-primary transition-colors',
+				'class' => 'flex items-center gap-1 text-subtitle-1 font-nunito font-semibold text-neutral-text hover:text-primary transition-colors',
 			);
 
 			$output .= '<a ' . $this->build_attributes( $atts ) . '>';
@@ -111,6 +117,10 @@ class Mroomy_Mega_Walker extends Walker_Nav_Menu {
 			}
 
 			$output .= '</a>';
+
+			// Flag this root item as the Projects mega menu if title matches or has a specific class
+			$title_lower = strtolower( trim( $item->title ) );
+			$this->is_projects_menu = ( strpos( $title_lower, 'nasze projekty' ) !== false ) || in_array( 'projects-mega', $classes );
 		}
 		// Level 1 - Category headers in mega menu
 		elseif ( $depth === 1 && $this->is_mega_active ) {
@@ -124,10 +134,10 @@ class Mroomy_Mega_Walker extends Walker_Nav_Menu {
 
 				// Start new column
 				$output .= "\t\t\t\t<div class=\"flex flex-col\">\n";
-				$output .= "\t\t\t\t\t<h3 class=\"font-nunito-sans font-bold text-caption-14-2 text-primary uppercase mb-4\">";
+				$output .= "\t\t\t\t\t<div class=\"font-nunito-sans font-bold text-caption-12-2 text-primary uppercase mb-4\">";
 				$output .= esc_html( $item->title );
-				$output .= "</h3>\n";
-				$output .= "\t\t\t\t\t<ul class=\"flex flex-col gap-4\">\n";
+				$output .= "</div>\n";
+				$output .= "\t\t\t\t\t<ul class=\"flex flex-col gap-2\">\n";
 
 				$this->current_column = $item->ID;
 				$this->column_count++;
@@ -139,7 +149,7 @@ class Mroomy_Mega_Walker extends Walker_Nav_Menu {
 					$output .= $indent . '<li>';
 					$atts = array(
 						'href'  => ! empty( $item->url ) ? $item->url : '',
-						'class' => 'font-nunito font-extrabold text-body-2 text-neutral-text-subtle hover:text-primary transition-colors',
+						'class' => 'font-nunito text-paragraph-16-1 text-neutral-text-subtle hover:text-primary transition-colors',
 					);
 					$output .= '<a ' . $this->build_attributes( $atts ) . '>';
 					$output .= esc_html( $item->title );
@@ -159,17 +169,20 @@ class Mroomy_Mega_Walker extends Walker_Nav_Menu {
 				// Special styling for "Zobacz wszystkie" link
 				$atts = array(
 					'href'  => ! empty( $item->url ) ? $item->url : '',
-					'class' => 'font-nunito font-bold text-body-2 text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-2',
+					'class' => 'font-nunito text-paragraph-16-1 font-semibold text-primary hover:text-primary-hover transition-colors inline-flex items-center gap-2',
 				);
 				$output .= '<a ' . $this->build_attributes( $atts ) . '>';
 				$output .= esc_html( $item->title );
-				$output .= '<svg class="w-4 h-4" viewBox="0 0 16 16" fill="none"><path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+				ob_start();
+				include get_template_directory() . '/assets/icons/chevron-right.svg';
+				$chevron_right_svg = ob_get_clean();
+				$output .= '<span class="w-4 h-4 inline-flex items-center justify-center">' . $chevron_right_svg . '</span>';
 				$output .= '</a>';
 			} else {
 				// Regular link styling
 				$atts = array(
 					'href'  => ! empty( $item->url ) ? $item->url : '',
-					'class' => 'font-nunito font-extrabold text-body-2 text-neutral-text-subtle hover:text-primary transition-colors',
+					'class' => 'font-nunito text-paragraph-16-1 text-neutral-text-subtle hover:text-primary transition-colors',
 				);
 				$output .= '<a ' . $this->build_attributes( $atts ) . '>';
 				$output .= esc_html( $item->title );

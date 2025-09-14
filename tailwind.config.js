@@ -31,7 +31,7 @@ module.exports = {
     // Spacing classes
     'px-6', 'px-8', 'pt-5', 'pt-6', 'pb-5', 'py-5', 'py-8',
     'pt-[22px]', 'pt-[30px]', 'pb-5', 'lg:px-[106px]',
-    'gap-4', 'gap-10', 'gap-16', 'gap-[64px]', 'gap-[201px]',
+    'gap-2', 'gap-4', 'gap-10', 'gap-16', 'gap-[64px]', 'gap-[201px]',
     'mb-4', 'mb-6', 'mb-8', 'mb-[48px]', 'mt-[32px]', 'ml-auto', 'ml-[315px]',
     'justify-between', 'items-center', 'items-start',
     // Sizing
@@ -53,6 +53,10 @@ module.exports = {
     '-translate-x-1/2', 'left-1/2',
     'shadow-lg', 'border-t',
     'z-50', 'z-40',
+    // Arbitrary/fallback utilities used in PHP strings
+    'text-[16px]', 'leading-6', 'text-[12px]', 'leading-4',
+    // Font weights used explicitly
+    'font-normal', 'font-semibold',
   ],
   theme: {
     extend: {
