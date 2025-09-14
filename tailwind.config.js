@@ -21,16 +21,19 @@ module.exports = {
     // Font weights
     'font-regular', 'font-semibold', 'font-bold', 'font-extrabold',
     // Colors
-    'text-neutral-text', 'text-primary', 'hover:text-primary',
+    'text-neutral-text', 'text-primary', 'hover:text-primary', 'hover:text-primary-hover',
     'text-neutral-text-subtle', 'text-neutral-text-subtlest',
+    'inline-flex', 'gap-2',
     'bg-primary', 'text-white',
     // Layout classes for header
     'lg:hidden', 'lg:flex', 'lg:block',
     'hidden',
     // Spacing classes
-    'px-6', 'px-8', 'pt-5', 'pb-5', 'py-5', 'py-8',
-    'pt-[22px]', 'pb-5', 'lg:px-[106px]',
-    'gap-4', 'gap-10', 'gap-16', 'mb-4', 'mt-[32px]',
+    'px-6', 'px-8', 'pt-5', 'pt-6', 'pb-5', 'py-5', 'py-8',
+    'pt-[22px]', 'pt-[30px]', 'pb-5', 'lg:px-[106px]',
+    'gap-4', 'gap-10', 'gap-16', 'gap-[64px]', 'gap-[201px]',
+    'mb-4', 'mb-6', 'mb-8', 'mb-[48px]', 'mt-[32px]', 'ml-auto', 'ml-[315px]',
+    'justify-between', 'items-center', 'items-start',
     // Sizing
     'size-6', 'h-6', 'w-6', 'h-4', 'w-4',
     'h-[23.648px]', 'w-[127px]', 'h-[27px]', 'h-[88px]',
