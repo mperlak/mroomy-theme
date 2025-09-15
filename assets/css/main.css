@@ -394,3 +394,8 @@ button.icon-link {
 #mobile-menu nav::-webkit-scrollbar-thumb:hover {
   background-color: #C0C0C0;
 }
+
+/* Submenu view spacing tweaks to match Figma */
+#mobile-submenu-view .mobile-submenu-header { margin-top: 8px; }
+#mobile-submenu-view ul.mobile-submenu { margin-top: 8px; }
+#mobile-submenu-view .mobile-submenu-viewall { margin-top: 8px; }

@@ -133,7 +133,7 @@
 	</header><!-- #masthead -->
 
 	<!-- Mobile Menu Offcanvas -->
-	<div id="mobile-menu" class="fixed left-0 right-0 bottom-0 z-50 hidden lg:hidden" style="top:0;height:100dvh;">
+	<div id="mobile-menu" class="fixed left-0 right-0 bottom-0 z-50 hidden lg:hidden" style="top:0;height:100dvh;" data-theme-uri="<?php echo esc_attr( get_template_directory_uri() ); ?>">
 		<!-- Overlay -->
 		<div class="absolute inset-0 bg-black bg-opacity-50" id="mobile-menu-overlay"></div>
 		
@@ -149,7 +149,7 @@
 						'theme_location' => 'menu-1',
 						'container' => false,
 						'menu_class' => 'space-y-6 px-6',
-						'depth' => 1,
+						'depth' => 3,
 						'fallback_cb' => 'mroomy_s_mobile_menu_fallback',
 						'walker' => new Mroomy_Mobile_Walker(),
 					)
