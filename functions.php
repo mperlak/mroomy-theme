@@ -183,6 +183,7 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 require get_template_directory() . '/inc/class-mroomy-nav-walker.php';
 require get_template_directory() . '/inc/class-mroomy-mega-walker.php';
 require get_template_directory() . '/inc/class-mroomy-mobile-walker.php';
+require_once get_template_directory() . '/inc/components/button.php';
 
 /**
  * Enqueue scripts and styles with Vite
@@ -221,6 +222,49 @@ function add_body_classes($classes) {
     return $classes;
 }
 add_filter('body_class', 'add_body_classes');
+
+/**
+ * Enqueue theme styles in block editor for visual parity
+ */
+function mroomy_s_editor_assets() {
+    if (file_exists(get_template_directory() . '/dist/main.css')) {
+        wp_enqueue_style(
+            'theme-style-editor',
+            get_template_directory_uri() . '/dist/main.css',
+            array(),
+            filemtime(get_template_directory() . '/dist/main.css')
+        );
+    }
+}
+add_action('enqueue_block_editor_assets', 'mroomy_s_editor_assets');
+
+/**
+ * Register Gutenberg blocks from theme
+ */
+function mroomy_s_register_blocks() {
+    $blocks_base = get_template_directory() . '/blocks';
+    if (!file_exists($blocks_base)) {
+        return;
+    }
+
+    // Register top-section block if present
+    $top_section = $blocks_base . '/top-section/block.json';
+    if (file_exists($top_section)) {
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log('[mroomy/top-section] registering block from ' . $top_section);
+        }
+        $render_file = $blocks_base . '/top-section/render.php';
+        $render_cb = file_exists($render_file) ? include $render_file : null;
+        if (is_callable($render_cb)) {
+            register_block_type($top_section, array(
+                'render_callback' => $render_cb,
+            ));
+        } else {
+            register_block_type($top_section);
+        }
+    }
+}
+add_action('init', 'mroomy_s_register_blocks');
 
 /**
  * Mobile menu fallback

@@ -1,0 +1,36 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mroomy/top-section",
+  "title": "Top Section (Hero)",
+  "description": "Sekcja hero: obraz tła, nagłówek, treść, przycisk.",
+  "category": "design",
+  "icon": "cover-image",
+  "textdomain": "mroomy_s",
+  "supports": {
+    "html": false,
+    "align": ["full"],
+    "spacing": {
+      "padding": true,
+      "margin": ["top", "bottom"]
+    }
+  },
+  "attributes": {
+    "imageId": { "type": "number" },
+    "imageUrl": { "type": "string" },
+    "imageAlt": { "type": "string" },
+    "backgroundPosition": { "type": "string", "default": "center" },
+    "backgroundSize": { "type": "string", "default": "cover" },
+    "title": { "type": "string" },
+    "content": { "type": "string" },
+    "buttonText": { "type": "string" },
+    "buttonUrl": { "type": "string" },
+    "buttonTarget": { "type": "string", "default": "_self" },
+    "boxBgOpacity": { "type": "number", "default": 0.9 },
+    "boxRadius": { "type": "number", "default": 32 }
+  },
+  "editorScript": "file:./editor.js",
+  "render": "file:./render.php"
+}
+
+
