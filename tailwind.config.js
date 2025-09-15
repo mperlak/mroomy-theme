@@ -68,13 +68,13 @@ module.exports = {
     'text-[16px]', 'leading-6', 'text-[12px]', 'leading-4',
     // Font weights used explicitly
     'font-normal', 'font-semibold',
-    // Top stats block classes
-    'w-[340px]', 'gap-[81px]', 'items-start',
-    'text-[56px]', 'leading-[1.1]', 'text-[#222222]',
-    'text-[24px]', 'text-[#3c3c3b]',
-    'mt-[13px]', 'mt-[20px]', 'mt-[30px]',
-    'max-h-[32px]', 'w-auto', 'mx-auto',
-    'flex-col', 'text-center',
+    // Top stats block classes - grid version
+    'grid', 'grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3', 'gap-10', 'w-full',
+    'text-4xl', 'sm:text-[56px]', 'leading-none', 'text-[#222222]',
+    'text-[18px]', 'sm:text-[24px]', 'leading-[26px]', 'sm:leading-[30px]', 'text-[#3c3c3b]',
+    'mt-3', 'sm:mt-[13px]', 'mt-5', 'sm:mt-[20px]', 'mt-[2px]',
+    'h-6', 'sm:h-[30px]', 'w-auto', 'mx-auto',
+    'flex-col', 'text-center', 'flex-wrap', 'list-none', 'p-0', 'm-0',
   ],
   theme: {
     extend: {

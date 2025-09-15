@@ -1,9 +1,9 @@
 (function (wp) {
 	const { __ } = wp.i18n;
 	const { registerBlockType } = wp.blocks;
-	const { InspectorControls, MediaUpload, MediaUploadCheck, RichText, URLInputButton } = wp.blockEditor;
+	const { InspectorControls, MediaUpload, MediaUploadCheck, URLInput } = wp.blockEditor;
 	const { PanelBody, Button, TextControl, TextareaControl } = wp.components;
-	const { Fragment, useState } = wp.element;
+	const { Fragment } = wp.element;
 
 	registerBlockType('mroomy/top-stats', {
 		edit: function (props) {
@@ -41,14 +41,14 @@
 			return (
 				<Fragment>
 					<InspectorControls>
-						<PanelBody title={__('Stats Settings', 'mroomy')}>
-							<p>{__('Edit each statistic in the block editor.', 'mroomy')}</p>
+						<PanelBody title={__('Stats Settings', 'mroomy_s')}>
+							<p>{__('Edit each statistic in the block editor.', 'mroomy_s')}</p>
 							{stats.length < 3 && (
 								<Button
 									variant="primary"
 									onClick={addStat}
 								>
-									{__('Add Statistic', 'mroomy')}
+									{__('Add Statistic', 'mroomy_s')}
 								</Button>
 							)}
 						</PanelBody>
@@ -65,7 +65,7 @@
 											onClick={() => removeStat(index)}
 											className="remove-stat"
 										>
-											{__('Remove', 'mroomy')}
+											{__('Remove', 'mroomy_s')}
 										</Button>
 									</div>
 
@@ -74,18 +74,18 @@
 											tagName="div"
 											value={stat.number}
 											onChange={(value) => updateStat(index, 'number', value)}
-											placeholder={__('1500+', 'mroomy')}
+											placeholder={__('1500+', 'mroomy_s')}
 											className="stat-number-input"
 										/>
 									</div>
 
 									<div className="stat-description">
 										<TextareaControl
-											label={__('Description', 'mroomy')}
+											label={__('Description', 'mroomy_s')}
 											value={stat.description}
 											onChange={(value) => updateStat(index, 'description', value)}
-											placeholder={__('zadowolonych klientów', 'mroomy')}
-											help={__('Use new line for multi-line text', 'mroomy')}
+											placeholder={__('zadowolonych klientów', 'mroomy_s')}
+											help={__('Use new line for multi-line text', 'mroomy_s')}
 										/>
 									</div>
 
@@ -121,7 +121,7 @@
 																		setAttributes({ stats: newStats });
 																	}}
 																>
-																	{__('Remove Image', 'mroomy')}
+																	{__('Remove Image', 'mroomy_s')}
 																</Button>
 															</div>
 														) : (
@@ -129,7 +129,7 @@
 																variant="secondary"
 																onClick={open}
 															>
-																{__('Add Image/Icon', 'mroomy')}
+																{__('Add Image/Icon', 'mroomy_s')}
 															</Button>
 														)}
 													</div>
@@ -140,19 +140,20 @@
 
 									<div className="stat-button">
 										<TextControl
-											label={__('Button Text', 'mroomy')}
+											label={__('Button Text', 'mroomy_s')}
 											value={stat.buttonText}
 											onChange={(value) => updateStat(index, 'buttonText', value)}
-											placeholder={__('Zobacz film', 'mroomy')}
+											placeholder={__('Zobacz film', 'mroomy_s')}
 										/>
 										{stat.buttonText && (
-											<TextControl
-												label={__('Button URL', 'mroomy')}
-												value={stat.buttonUrl}
-												onChange={(value) => updateStat(index, 'buttonUrl', value)}
-												placeholder={__('https://...', 'mroomy')}
-												type="url"
-											/>
+											<div className="components-base-control">
+												<label className="components-base-control__label">{__('Button URL', 'mroomy_s')}</label>
+												<URLInput
+													value={stat.buttonUrl}
+													onChange={(value) => updateStat(index, 'buttonUrl', value)}
+													placeholder={__('https://...', 'mroomy_s')}
+												/>
+											</div>
 										)}
 									</div>
 								</div>
@@ -165,7 +166,7 @@
 									variant="primary"
 									onClick={addStat}
 								>
-									{__('Add Statistic', 'mroomy')}
+									{__('Add Statistic', 'mroomy_s')}
 								</Button>
 							</div>
 						)}

@@ -7,10 +7,45 @@
 	"category": "design",
 	"icon": "chart-bar",
 	"description": "Display statistics with numbers, descriptions, images and optional buttons.",
-	"example": {},
+	"example": {
+		"attributes": {
+			"stats": [
+				{
+					"number": "1500+",
+					"description": "zadowolonych klientów",
+					"imageUrl": "",
+					"imageId": 0,
+					"buttonText": "",
+					"buttonUrl": ""
+				},
+				{
+					"number": "6000+",
+					"description": "stworzonych wizualizacji",
+					"imageUrl": "",
+					"imageId": 0,
+					"buttonText": "",
+					"buttonUrl": ""
+				},
+				{
+					"number": "1",
+					"description": "miejsce w konkursie",
+					"imageUrl": "",
+					"imageId": 0,
+					"buttonText": "Zobacz film",
+					"buttonUrl": "#"
+				}
+			]
+		}
+	},
 	"supports": {
 		"html": false,
-		"align": ["wide", "full"]
+		"align": ["wide", "full"],
+		"spacing": {
+			"padding": true,
+			"margin": true
+		},
+		"anchor": true,
+		"className": true
 	},
 	"attributes": {
 		"stats": {
@@ -43,7 +78,7 @@
 			]
 		}
 	},
-	"textdomain": "mroomy",
-	"editorScript": "file:../../dist/blocks/top-stats-editor.js",
+	"textdomain": "mroomy_s",
+	"editorScript": "file:./editor.js",
 	"render": "file:./render.php"
 }
