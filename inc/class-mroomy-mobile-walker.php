@@ -74,8 +74,8 @@ class Mroomy_Mobile_Walker extends Walker_Nav_Menu {
             $this->current_parent_title = $item->title;
             $this->current_parent_url = ! empty( $item->url ) ? $item->url : '';
 
-            // Figma: Subtitle-2 (20/26) ExtraBold dla głównych pozycji
-            $extra_classes = 'font-nunito font-extrabold text-[20px] leading-[26px] text-neutral-text';
+            // Użyj presetów Tailwind zamiast wartości pikselowych (Subtitle-2 20/26, 800)
+            $extra_classes = 'font-nunito text-subtitle-2 text-neutral-text';
             $item_output = isset($args->before) ? $args->before : '';
             $item_output .= '<a' . $attributes . ' class="inline-flex items-center gap-2 py-0 px-0 ' . $extra_classes . ' hover:text-primary transition-colors">';
             $item_output .= ( isset($args->link_before) ? $args->link_before : '' ) . apply_filters( 'the_title', $item->title, $item->ID ) . ( isset($args->link_after) ? $args->link_after : '' );
