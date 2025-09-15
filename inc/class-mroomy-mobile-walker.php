@@ -25,11 +25,11 @@ class Mroomy_Mobile_Walker extends Walker_Nav_Menu {
         if ( $depth === 0 ) {
             $parent_title_attr = esc_attr( $this->current_parent_title );
             $parent_url_attr = esc_url( $this->current_parent_url );
-            $output .= "\n{$indent}<ul class=\"mobile-submenu hidden space-y-6\" data-parent-title=\"{$parent_title_attr}\" data-parent-url=\"{$parent_url_attr}\">\n";
+            $output .= "\n{$indent}<ul class=\"mobile-submenu hidden space-y-6 pl-0\" data-parent-title=\"{$parent_title_attr}\" data-parent-url=\"{$parent_url_attr}\">\n";
         }
         // Depth 1 -> list under a section header
         elseif ( $depth === 1 ) {
-            $output .= "\n{$indent}<ul class=\"flex flex-col gap-6\">\n";
+            $output .= "\n{$indent}<ul class=\"flex flex-col gap-4 pl-0\">\n";
         }
         else {
             $output .= "\n{$indent}<ul>\n"; // default fallback
@@ -92,11 +92,31 @@ class Mroomy_Mobile_Walker extends Walker_Nav_Menu {
         }
         // Depth 1: section headers or direct links inside submenu
         elseif ( $depth === 1 ) {
-            if ( $has_children ) {
-                $output .= '<div class="font-nunito-sans font-bold text-caption-12-2 text-primary uppercase mb-4">' . esc_html( $item->title ) . '</div>';
+            $is_view_all = in_array( 'view-all', (array) $item->classes, true );
+
+            if ( $is_view_all ) {
+                // Special "Zobacz wszystkie ..." link per Figma
+                $output .= '<div class="mobile-submenu-viewall mb-8">';
+                $chevron_right_svg = '';
+                if ( file_exists( get_template_directory() . '/assets/icons/chevron-right.svg' ) ) {
+                    ob_start();
+                    include get_template_directory() . '/assets/icons/chevron-right.svg';
+                    $chevron_right_svg = ob_get_clean();
+                }
+                // Match main-level chevron layout: chevron inside container with slight baseline alignment
+                $output .= '<a' . $attributes . ' class="font-nunito text-body-2 text-neutral-text hover:text-primary inline-flex items-center gap-1 align-middle">';
+                $output .= apply_filters( 'the_title', $item->title, $item->ID );
+                $output .= '<span class="w-4 h-4 inline-flex items-center justify-center">' . $chevron_right_svg . '</span>';
+                $output .= '</a>';
+                $output .= '</div>';
+            }
+            elseif ( $has_children ) {
+                // Section header (uppercase, pink), with top margin 32px between sections
+                $output .= '<div class="mt-8 font-nunito-sans font-bold text-caption-12-2 text-primary uppercase mb-4">' . esc_html( $item->title ) . '</div>';
                 // The children list will be printed by start_lvl at depth 1
             } else {
-                $link_classes = 'font-nunito text-paragraph-16-1 text-neutral-text hover:text-primary transition-colors';
+                // Sub-item using Tailwind preset: body-2 (16/20, 800)
+                $link_classes = 'font-nunito text-body-2 text-neutral-text hover:text-primary transition-colors m-0 p-0';
                 $item_output = '<a' . $attributes . ' class="' . $link_classes . '">';
                 $item_output .= apply_filters( 'the_title', $item->title, $item->ID );
                 $item_output .= '</a>';
@@ -105,7 +125,8 @@ class Mroomy_Mobile_Walker extends Walker_Nav_Menu {
         }
         // Depth 2: simple links
         else {
-            $link_classes = 'font-nunito text-paragraph-16-1 text-neutral-text hover:text-primary transition-colors';
+            // Depth 2 items should use the same preset
+            $link_classes = 'font-nunito text-body-2 text-neutral-text hover:text-primary transition-colors m-0 p-0';
             $item_output = '<a' . $attributes . ' class="' . $link_classes . '">';
             $item_output .= apply_filters( 'the_title', $item->title, $item->ID );
             $item_output .= '</a>';

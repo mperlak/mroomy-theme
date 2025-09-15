@@ -213,27 +213,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (headerTitleSpan) headerTitleSpan.textContent = parentTitle;
 
         // Add "Zobacz wszystkie ..." link under the heading
-        if (parentUrl) {
-            const viewAll = document.createElement('div');
-            viewAll.className = 'mobile-submenu-viewall';
-            const anchor = document.createElement('a');
-            anchor.href = parentUrl;
-            anchor.className = 'font-nunito text-body-2 text-neutral-text hover:text-primary inline-flex items-center gap-1';
-            anchor.textContent = `Zobacz wszystkie projekty`;
-            // add chevron-right icon
-            const themeUri = mobileMenu?.getAttribute('data-theme-uri') || '';
-            const icon = document.createElement('img');
-            icon.src = `${themeUri}/assets/icons/chevron-right.svg`;
-            icon.alt = '';
-            icon.className = 'w-4 h-4';
-            anchor.appendChild(icon);
-            viewAll.appendChild(anchor);
-            submenuView.appendChild(viewAll);
-        }
+        // View-all link jest renderowany z menu (pozycja z klasą "view-all") przez walker
 
         // Move submenu into the view and show
         submenu.classList.remove('hidden');
         submenu.__ownerLi = li; // remember owner to move back on exit
+        // Append submenu at the end so order: header, view-all, sections
         submenuView.appendChild(submenu);
         rootMenu.classList.add('hidden');
         submenuView.classList.remove('hidden');

@@ -399,3 +399,18 @@ button.icon-link {
 #mobile-submenu-view .mobile-submenu-header { margin-top: 8px; }
 #mobile-submenu-view ul.mobile-submenu { margin-top: 8px; }
 #mobile-submenu-view .mobile-submenu-viewall { margin-top: 8px; }
+
+/* Submenu lists: reset bullets and padding for precise alignment */
+#mobile-submenu-view ul,
+#mobile-submenu-view li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Submenu links: block and no extra padding, inherit color */
+#mobile-submenu-view ul.mobile-submenu li > a {
+  display: block;
+  padding: 0;
+  text-decoration: none;
+}
