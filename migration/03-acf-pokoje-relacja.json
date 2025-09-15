@@ -1,0 +1,57 @@
+[
+  {
+    "key": "group_pokoje_relacja",
+    "title": "Relacje",
+    "fields": [
+      {
+        "key": "field_pokoje_powiazane_inspiracje",
+        "label": "Powiązane inspiracje",
+        "name": "powiazane_inspiracje",
+        "type": "relationship",
+        "instructions": "Inspiracje powiązane z tym pokojem",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "post_type": [
+          "inspiracja"
+        ],
+        "taxonomy": "",
+        "filters": [
+          "search",
+          "post_type"
+        ],
+        "elements": [
+          "featured_image"
+        ],
+        "min": "",
+        "max": "",
+        "return_format": "object",
+        "bidirectional": 1,
+        "bidirectional_target": [
+          "field_inspiracje_powiazane_pokoje"
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "pokoje-dla-dzieci"
+        }
+      ]
+    ],
+    "menu_order": 10,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Relacje dla CPT Pokoje - migracja z Toolset"
+  }
+]

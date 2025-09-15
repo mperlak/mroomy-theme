@@ -1,0 +1,364 @@
+[
+  {
+    "key": "group_pokoje_dla_dzieci",
+    "title": "Pola projektu pokoju",
+    "fields": [
+      {
+        "key": "field_pokoje_sku",
+        "label": "SKU projektu",
+        "name": "sku",
+        "type": "text",
+        "instructions": "Numer projektu",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_pokoje_header",
+        "label": "Nagłówek",
+        "name": "header",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        }
+      },
+      {
+        "key": "field_pokoje_krotki_opis",
+        "label": "Krótki opis",
+        "name": "krotki_opis",
+        "type": "wysiwyg",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_pokoje_dlugi_opis",
+        "label": "Długi opis",
+        "name": "dlugi_opis",
+        "type": "wysiwyg",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_pokoje_opis",
+        "label": "Opis projektu",
+        "name": "opis",
+        "type": "wysiwyg",
+        "instructions": "Opis projektu",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_pokoje_krotki",
+        "label": "Krótki opis alternatywny",
+        "name": "krotki",
+        "type": "wysiwyg",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_pokoje_wizualizacje",
+        "label": "Wizualizacje",
+        "name": "wizualizacje",
+        "type": "gallery",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "min": "",
+        "max": "",
+        "insert": "append",
+        "library": "all",
+        "min_width": "",
+        "min_height": "",
+        "min_size": "",
+        "max_width": "",
+        "max_height": "",
+        "max_size": "",
+        "mime_types": "",
+        "return_format": "array",
+        "preview_size": "medium"
+      },
+      {
+        "key": "field_pokoje_zdjecia",
+        "label": "Zdjęcia",
+        "name": "zdjecia",
+        "type": "gallery",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "min": "",
+        "max": "",
+        "insert": "append",
+        "library": "all",
+        "min_width": "",
+        "min_height": "",
+        "min_size": "",
+        "max_width": "",
+        "max_height": "",
+        "max_size": "",
+        "mime_types": "",
+        "return_format": "array",
+        "preview_size": "medium"
+      },
+      {
+        "key": "field_pokoje_header_picture",
+        "label": "Zdjęcie w nagłówku",
+        "name": "header_picture",
+        "type": "image",
+        "instructions": "Zdjęcie w nagłówku",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all",
+        "min_width": "",
+        "min_height": "",
+        "min_size": "",
+        "max_width": "",
+        "max_height": "",
+        "max_size": "",
+        "mime_types": ""
+      },
+      {
+        "key": "field_pokoje_header_text",
+        "label": "Tekst w nagłówku",
+        "name": "header_text",
+        "type": "wysiwyg",
+        "instructions": "Tekst w nagłówku",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_pokoje_subheader_text",
+        "label": "Tekst pod nagłówkiem",
+        "name": "subheader_text",
+        "type": "wysiwyg",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1,
+        "delay": 0
+      },
+      {
+        "key": "field_pokoje_wymiary",
+        "label": "Wymiary",
+        "name": "wymiary",
+        "type": "textarea",
+        "instructions": "Wymiary produktu",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": 4,
+        "new_lines": ""
+      },
+      {
+        "key": "field_pokoje_kolor",
+        "label": "Kolor",
+        "name": "kolor",
+        "type": "textarea",
+        "instructions": "Kolor produktu",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": 4,
+        "new_lines": ""
+      },
+      {
+        "key": "field_pokoje_material",
+        "label": "Materiał",
+        "name": "material",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "34",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": 4,
+        "new_lines": ""
+      },
+      {
+        "key": "field_pokoje_dodatkowe_informacje",
+        "label": "Dodatkowe informacje",
+        "name": "dodatkowe_informacje",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": 4,
+        "new_lines": ""
+      },
+      {
+        "key": "field_pokoje_czas_dostawy",
+        "label": "Czas dostawy",
+        "name": "czas_dostawy",
+        "type": "textarea",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": 4,
+        "new_lines": ""
+      },
+      {
+        "key": "field_pokoje_na_zamowienie",
+        "label": "Na zamówienie",
+        "name": "na_zamowienie",
+        "type": "true_false",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "message": "Produkt dostępny na zamówienie",
+        "default_value": 0,
+        "ui": 1,
+        "ui_on_text": "Tak",
+        "ui_off_text": "Nie"
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "pokoje-dla-dzieci"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Grupa pól dla CPT Pokoje dla dzieci - migracja z Toolset"
+  }
+]

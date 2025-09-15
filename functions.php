@@ -184,6 +184,7 @@ require get_template_directory() . '/inc/class-mroomy-nav-walker.php';
 require get_template_directory() . '/inc/class-mroomy-mega-walker.php';
 require get_template_directory() . '/inc/class-mroomy-mobile-walker.php';
 require_once get_template_directory() . '/inc/components/button.php';
+require_once get_template_directory() . '/inc/components/carousel.php';
 
 /**
  * Enqueue scripts and styles with Vite
@@ -191,23 +192,34 @@ require_once get_template_directory() . '/inc/components/button.php';
 function moj_theme_scripts() {
     // Remove default styles
     wp_dequeue_style('wp-block-library');
-    
+
     // Enqueue our built assets
     if (file_exists(get_template_directory() . '/dist/main.css')) {
         wp_enqueue_style(
-            'theme-style', 
+            'theme-style',
             get_template_directory_uri() . '/dist/main.css',
             array(),
             filemtime(get_template_directory() . '/dist/main.css')
         );
     }
-    
+
     if (file_exists(get_template_directory() . '/dist/app.js')) {
         wp_enqueue_script(
-            'theme-script', 
+            'theme-script',
             get_template_directory_uri() . '/dist/app.js',
             array(),
             filemtime(get_template_directory() . '/dist/app.js'),
+            true
+        );
+    }
+
+    // Enqueue top stats carousel script
+    if (file_exists(get_template_directory() . '/assets/js/top-stats-carousel.js')) {
+        wp_enqueue_script(
+            'top-stats-carousel',
+            get_template_directory_uri() . '/assets/js/top-stats-carousel.js',
+            array(),
+            filemtime(get_template_directory() . '/assets/js/top-stats-carousel.js'),
             true
         );
     }
@@ -340,3 +352,279 @@ function mroomy_s_mobile_menu_fallback() {
     echo '<li><a href="' . esc_url( home_url( '/kontakt' ) ) . '" class="block py-3 px-4 subtitle-1 text-neutral-text hover:text-primary transition-colors">Kontakt</a></li>';
     echo '</ul>';
 }
+
+/**
+ * Rejestracja Custom Post Types dla migracji z Toolset do ACF
+ * KROK 1: Rejestracja CPT
+ */
+
+/**
+ * Rejestracja CPT "pokoje-dla-dzieci"
+ */
+function mroomy_register_pokoje_cpt() {
+    $labels = array(
+        'name'                  => 'Pokoje',
+        'singular_name'         => 'Pokój',
+        'menu_name'             => 'Pokoje dla dzieci',
+        'name_admin_bar'        => 'Pokój',
+        'add_new'               => 'Dodaj nowy',
+        'add_new_item'          => 'Dodaj nowy pokój',
+        'new_item'              => 'Nowy pokój',
+        'edit_item'             => 'Edytuj pokój',
+        'view_item'             => 'Zobacz pokój',
+        'all_items'             => 'Wszystkie pokoje',
+        'search_items'          => 'Szukaj pokoi',
+        'parent_item_colon'     => 'Pokój nadrzędny:',
+        'not_found'             => 'Nie znaleziono pokoi.',
+        'not_found_in_trash'    => 'Nie znaleziono pokoi w koszu.',
+        'featured_image'        => 'Obrazek wyróżniający pokoju',
+        'set_featured_image'    => 'Ustaw obrazek wyróżniający',
+        'remove_featured_image' => 'Usuń obrazek wyróżniający',
+        'use_featured_image'    => 'Użyj jako obrazek wyróżniający',
+        'archives'              => 'Archiwum pokoi',
+        'insert_into_item'      => 'Wstaw do pokoju',
+        'uploaded_to_this_item' => 'Przesłano do tego pokoju',
+        'filter_items_list'     => 'Filtruj listę pokoi',
+        'items_list_navigation' => 'Nawigacja listy pokoi',
+        'items_list'            => 'Lista pokoi',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'pokoje-dla-dzieci' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => true, // Ważne: hierarchiczny jak w Toolset
+        'menu_position'      => 5,
+        'menu_icon'          => 'dashicons-admin-home',
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes', 'custom-fields' ),
+        'show_in_rest'       => true, // Wsparcie dla edytora Gutenberg
+    );
+
+    register_post_type( 'pokoje-dla-dzieci', $args );
+}
+add_action( 'init', 'mroomy_register_pokoje_cpt', 0 );
+
+/**
+ * Rejestracja CPT "inspiracja"
+ */
+function mroomy_register_inspiracja_cpt() {
+    $labels = array(
+        'name'                  => 'Inspiracje',
+        'singular_name'         => 'Inspiracja',
+        'menu_name'             => 'Inspiracje',
+        'name_admin_bar'        => 'Inspiracja',
+        'add_new'               => 'Dodaj nową',
+        'add_new_item'          => 'Dodaj nową inspirację',
+        'new_item'              => 'Nowa inspiracja',
+        'edit_item'             => 'Edytuj inspirację',
+        'view_item'             => 'Zobacz inspirację',
+        'all_items'             => 'Wszystkie inspiracje',
+        'search_items'          => 'Szukaj inspiracji',
+        'parent_item_colon'     => 'Inspiracja nadrzędna:',
+        'not_found'             => 'Nie znaleziono inspiracji.',
+        'not_found_in_trash'    => 'Nie znaleziono inspiracji w koszu.',
+        'featured_image'        => 'Obrazek wyróżniający inspiracji',
+        'set_featured_image'    => 'Ustaw obrazek wyróżniający',
+        'remove_featured_image' => 'Usuń obrazek wyróżniający',
+        'use_featured_image'    => 'Użyj jako obrazek wyróżniający',
+        'archives'              => 'Archiwum inspiracji',
+        'insert_into_item'      => 'Wstaw do inspiracji',
+        'uploaded_to_this_item' => 'Przesłano do tej inspiracji',
+        'filter_items_list'     => 'Filtruj listę inspiracji',
+        'items_list_navigation' => 'Nawigacja listy inspiracji',
+        'items_list'            => 'Lista inspiracji',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array( 'slug' => 'inspiracja' ),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => true, // Ważne: hierarchiczny jak w Toolset
+        'menu_position'      => 6,
+        'menu_icon'          => 'dashicons-lightbulb',
+        'supports'           => array( 'title', 'editor', 'thumbnail', 'excerpt', 'page-attributes', 'custom-fields' ),
+        'show_in_rest'       => true, // Wsparcie dla edytora Gutenberg
+    );
+
+    register_post_type( 'inspiracja', $args );
+}
+add_action( 'init', 'mroomy_register_inspiracja_cpt', 0 );
+
+/**
+ * KROK 2: Rejestracja taksonomii
+ */
+
+/**
+ * Rejestracja taksonomii "kategoria-pokoi"
+ */
+function mroomy_register_kategoria_pokoi_taxonomy() {
+    $labels = array(
+        'name'              => 'Kategorie pokoi',
+        'singular_name'     => 'Kategoria pokoi',
+        'search_items'      => 'Szukaj kategorii',
+        'all_items'         => 'Wszystkie kategorie',
+        'parent_item'       => 'Kategoria nadrzędna',
+        'parent_item_colon' => 'Kategoria nadrzędna:',
+        'edit_item'         => 'Edytuj kategorię',
+        'update_item'       => 'Zaktualizuj kategorię',
+        'add_new_item'      => 'Dodaj nową kategorię',
+        'new_item_name'     => 'Nazwa nowej kategorii',
+        'menu_name'         => 'Kategorie pokoi',
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'kategoria-pokoi' ),
+        'show_in_rest'      => true,
+    );
+
+    register_taxonomy( 'kategoria-pokoi', array( 'inspiracja', 'pokoje-dla-dzieci', 'page' ), $args );
+}
+add_action( 'init', 'mroomy_register_kategoria_pokoi_taxonomy', 0 );
+
+/**
+ * Rejestracja taksonomii "przeznaczenie"
+ */
+function mroomy_register_przeznaczenie_taxonomy() {
+    $labels = array(
+        'name'              => 'Przeznaczenie',
+        'singular_name'     => 'Przeznaczenie',
+        'search_items'      => 'Szukaj przeznaczenia',
+        'all_items'         => 'Wszystkie przeznaczenia',
+        'parent_item'       => 'Przeznaczenie nadrzędne',
+        'parent_item_colon' => 'Przeznaczenie nadrzędne:',
+        'edit_item'         => 'Edytuj przeznaczenie',
+        'update_item'       => 'Zaktualizuj przeznaczenie',
+        'add_new_item'      => 'Dodaj nowe przeznaczenie',
+        'new_item_name'     => 'Nazwa nowego przeznaczenia',
+        'menu_name'         => 'Przeznaczenie',
+    );
+
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'przeznaczenie' ),
+        'show_in_rest'      => true,
+    );
+
+    register_taxonomy( 'przeznaczenie', array( 'pokoje-dla-dzieci', 'page' ), $args );
+}
+add_action( 'init', 'mroomy_register_przeznaczenie_taxonomy', 0 );
+
+/**
+ * Rejestracja taksonomii "pokoj-na-poddaszu"
+ */
+function mroomy_register_pokoj_na_poddaszu_taxonomy() {
+    $labels = array(
+        'name'              => 'Pokój na poddaszu',
+        'singular_name'     => 'Pokój na poddaszu',
+        'search_items'      => 'Szukaj tagów',
+        'all_items'         => 'Wszystkie tagi',
+        'edit_item'         => 'Edytuj tag',
+        'update_item'       => 'Zaktualizuj tag',
+        'add_new_item'      => 'Dodaj nowy tag',
+        'new_item_name'     => 'Nazwa nowego tagu',
+        'menu_name'         => 'Pokój na poddaszu',
+        'separate_items_with_commas' => 'Oddziel tagi przecinkami',
+        'add_or_remove_items' => 'Dodaj lub usuń tagi',
+        'choose_from_most_used' => 'Wybierz z najczęściej używanych',
+    );
+
+    $args = array(
+        'hierarchical'      => false, // Płaska taksonomia
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'pokoj-na-poddaszu' ),
+        'show_in_rest'      => true,
+    );
+
+    register_taxonomy( 'pokoj-na-poddaszu', array( 'pokoje-dla-dzieci' ), $args );
+}
+add_action( 'init', 'mroomy_register_pokoj_na_poddaszu_taxonomy', 0 );
+
+/**
+ * Rejestracja taksonomii "elementy-wyposazenia"
+ */
+function mroomy_register_elementy_wyposazenia_taxonomy() {
+    $labels = array(
+        'name'              => 'Elementy wyposażenia',
+        'singular_name'     => 'Element wyposażenia',
+        'search_items'      => 'Szukaj elementów',
+        'all_items'         => 'Wszystkie elementy',
+        'edit_item'         => 'Edytuj element',
+        'update_item'       => 'Zaktualizuj element',
+        'add_new_item'      => 'Dodaj nowy element',
+        'new_item_name'     => 'Nazwa nowego elementu',
+        'menu_name'         => 'Elementy wyposażenia',
+        'separate_items_with_commas' => 'Oddziel elementy przecinkami',
+        'add_or_remove_items' => 'Dodaj lub usuń elementy',
+        'choose_from_most_used' => 'Wybierz z najczęściej używanych',
+    );
+
+    $args = array(
+        'hierarchical'      => false, // Płaska taksonomia
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'elementy-wyposazenia' ),
+        'show_in_rest'      => true,
+    );
+
+    register_taxonomy( 'elementy-wyposazenia', array( 'pokoje-dla-dzieci' ), $args );
+}
+add_action( 'init', 'mroomy_register_elementy_wyposazenia_taxonomy', 0 );
+
+/**
+ * Rejestracja taksonomii "kolorowy-sufit"
+ */
+function mroomy_register_kolorowy_sufit_taxonomy() {
+    $labels = array(
+        'name'              => 'Kolorowe sufity',
+        'singular_name'     => 'Kolorowy sufit',
+        'search_items'      => 'Szukaj kolorów',
+        'all_items'         => 'Wszystkie kolory',
+        'edit_item'         => 'Edytuj kolor',
+        'update_item'       => 'Zaktualizuj kolor',
+        'add_new_item'      => 'Dodaj nowy kolor',
+        'new_item_name'     => 'Nazwa nowego koloru',
+        'menu_name'         => 'Kolorowe sufity',
+        'separate_items_with_commas' => 'Oddziel kolory przecinkami',
+        'add_or_remove_items' => 'Dodaj lub usuń kolory',
+        'choose_from_most_used' => 'Wybierz z najczęściej używanych',
+    );
+
+    $args = array(
+        'hierarchical'      => false, // Płaska taksonomia
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'kolorowy-sufit' ),
+        'show_in_rest'      => true,
+    );
+
+    register_taxonomy( 'kolorowy-sufit', array( 'pokoje-dla-dzieci', 'page' ), $args );
+}
+add_action( 'init', 'mroomy_register_kolorowy_sufit_taxonomy', 0 );

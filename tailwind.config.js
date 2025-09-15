@@ -68,13 +68,23 @@ module.exports = {
     'text-[16px]', 'leading-6', 'text-[12px]', 'leading-4',
     // Font weights used explicitly
     'font-normal', 'font-semibold',
-    // Top stats block classes - grid version
+    // Top stats block classes - responsive with mobile carousel
     'grid', 'grid-cols-1', 'sm:grid-cols-2', 'lg:grid-cols-3', 'gap-10', 'w-full',
-    'text-4xl', 'sm:text-[56px]', 'leading-none', 'text-[#222222]',
-    'text-[18px]', 'sm:text-[24px]', 'leading-[26px]', 'sm:leading-[30px]', 'text-[#3c3c3b]',
-    'mt-3', 'sm:mt-[13px]', 'mt-5', 'sm:mt-[20px]', 'mt-[2px]',
-    'h-6', 'sm:h-[30px]', 'w-auto', 'mx-auto',
+    'text-[40px]', 'sm:text-[56px]', 'leading-[1.25]', 'sm:leading-[1.1]', 'text-[#222222]',
+    'text-[20px]', 'sm:text-[24px]', 'leading-[26px]', 'sm:leading-[30px]', 'text-[#3c3c3b]',
+    'mt-[10px]', 'sm:mt-[13px]', 'mt-[4px]', 'sm:mt-[2px]', 'mt-5', 'sm:mt-[20px]', 'mt-6',
+    'h-[30px]', 'w-auto', 'mx-auto',
     'flex-col', 'text-center', 'flex-wrap', 'list-none', 'p-0', 'm-0',
+    // Carousel component classes
+    'carousel-container', 'carousel-track', 'carousel-slide', 'carousel-dots', 'carousel-dot',
+    'overflow-hidden', 'transition-transform', 'duration-300', 'ease-in-out',
+    'flex-shrink-0', 'w-full', 'gap-4', 'mt-4', 'mt-6',
+    'w-1', 'h-1', 'w-1.5', 'h-1.5', 'w-3', 'h-3', 'w-5', 'h-1.5', 'w-8', 'h-3',
+    'rounded-full', 'rounded-[2px]', 'rounded-[8px]', 'rounded-[16px]',
+    'bg-primary', 'bg-neutral-field-border',
+    'block', 'sm:hidden', 'hidden', 'sm:grid', 'sm:block', 'sm:gap-10',
+    'stats-wrapper', 'stat-item', 'mroomy-top-stats-container', 'carousel-initialized',
+    'opacity-0', 'opacity-1', 'visibility-hidden', 'visibility-visible',
   ],
   theme: {
     extend: {

@@ -494,6 +494,42 @@ button.icon-link {
   outline-offset: 2px;
 }
 
+/* ========================================
+   TOP STATS CAROUSEL MOBILE
+   ======================================== */
+
+/* Mobile carousel styles */
+@media (max-width: 639px) {
+  .mroomy-top-stats-container {
+    overflow: hidden;
+  }
+
+  /* Stats wrapper becomes carousel container */
+  .mroomy-top-stats-container .stats-wrapper {
+    position: relative;
+    min-height: 200px; /* Minimum height to prevent collapse */
+  }
+
+  /* Hide all items except first initially to prevent flash */
+  .mroomy-top-stats-container .stat-item:not(:first-child) {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* Once carousel is initialized, show all items */
+  .mroomy-top-stats-container.carousel-initialized .stat-item {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+/* Desktop grid styles */
+@media (min-width: 640px) {
+  .mroomy-top-stats-container .carousel-dots {
+    display: none !important;
+  }
+}
+
 /* Mobile Menu Scrollbar */
 #mobile-menu nav {
   scrollbar-width: thin;
