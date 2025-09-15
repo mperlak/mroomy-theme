@@ -40,7 +40,8 @@ return function( $attributes, $content, $block ) {
     ob_start();
     ?>
     <section class="relative w-full" role="region" aria-labelledby="<?php echo esc_attr($heading_id); ?>">
-        <div class="relative w-full" style="height:655.835px;<?php echo esc_attr($bg_style); ?>">
+        <!-- Desktop version -->
+        <div class="hidden md:block relative w-full" style="height:655.835px;<?php echo esc_attr($bg_style); ?>">
             <?php if ($image_url) : ?>
                 <?php if ($image_id) : ?>
                     <?php echo wp_get_attachment_image(
@@ -78,6 +79,65 @@ return function( $attributes, $content, $block ) {
                         'class' => 'btn-cta w-[240px] justify-center'
                     ]) . '</div>';
                 ?>
+            </div>
+        </div>
+
+        <!-- Mobile version -->
+        <div class="md:hidden relative w-full">
+            <!-- Image section with fixed height -->
+            <div class="relative h-[197px] w-full overflow-hidden">
+                <?php if ($image_url) : ?>
+                    <?php if ($image_id) : ?>
+                        <?php echo wp_get_attachment_image(
+                            $image_id,
+                            'full',
+                            false,
+                            array(
+                                'class' => 'absolute inset-0 w-full h-full object-cover object-[77.76%_10.26%]',
+                                'style' => 'transform: scale(1.4071); transform-origin: 77.76% 10.26%;',
+                                'loading' => 'eager',
+                                'fetchpriority' => 'high',
+                                'alt' => $image_alt,
+                            )
+                        ); ?>
+                    <?php else : ?>
+                        <img src="<?php echo esc_url($image_url); ?>"
+                             alt="<?php echo esc_attr($image_alt); ?>"
+                             loading="eager"
+                             fetchpriority="high"
+                             class="absolute inset-0 w-full h-full object-cover object-[77.76%_10.26%]"
+                             style="transform: scale(1.4071); transform-origin: 77.76% 10.26%;" />
+                    <?php endif; ?>
+                <?php endif; ?>
+            </div>
+
+            <!-- Text content section -->
+            <div class="bg-white/90 pl-4 pr-6 pt-6 pb-12 flex flex-col gap-6 items-start">
+                <?php if ($title_html) : ?>
+                    <h2 id="<?php echo esc_attr($heading_id); ?>-mobile" class="font-nunito text-title-small-2 text-neutral-text max-w-[338px]">
+                        <?php echo wp_kses_post($title_html); ?>
+                    </h2>
+                <?php endif; ?>
+                <?php if ($content_html) : ?>
+                    <div class="font-nunito text-subtitle-1 text-neutral-text-subtle w-full">
+                        <?php echo wp_kses_post($content_html); ?>
+                    </div>
+                <?php endif; ?>
+                <div>
+                    <?php
+                    $cta_text = $btn_text ?: __('Zobacz nasze projekty', 'mroomy_s');
+                    $cta_url  = $btn_url ?: '#';
+                    echo mroomy_button([
+                        'text' => $cta_text,
+                        'url' => $cta_url,
+                        'target' => $btn_target,
+                        'variant' => 'primary',
+                        'size' => 'lg',
+                        'chevron' => false,
+                        'class' => 'btn-cta'
+                    ]);
+                    ?>
+                </div>
             </div>
         </div>
     </section>

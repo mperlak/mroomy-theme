@@ -20,6 +20,10 @@ module.exports = {
     'font-nunito', 'font-nunito-sans',
     // Font weights
     'font-regular', 'font-semibold', 'font-bold', 'font-extrabold',
+    // Responsive utilities for mobile
+    'md:hidden', 'md:block', 'hidden',
+    // Button classes
+    'btn', 'btn-primary', 'btn-size-lg', 'btn-cta', 'text-white',
     // Colors
     'text-neutral-text', 'text-primary', 'hover:text-primary', 'hover:text-primary-hover',
     'text-neutral-text-subtle', 'text-neutral-text-subtlest',
