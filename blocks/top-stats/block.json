@@ -1,0 +1,49 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "mroomy/top-stats",
+	"version": "0.1.0",
+	"title": "Top Stats",
+	"category": "design",
+	"icon": "chart-bar",
+	"description": "Display statistics with numbers, descriptions, images and optional buttons.",
+	"example": {},
+	"supports": {
+		"html": false,
+		"align": ["wide", "full"]
+	},
+	"attributes": {
+		"stats": {
+			"type": "array",
+			"default": [
+				{
+					"number": "1500+",
+					"description": "zadowolonych klientów",
+					"imageUrl": "",
+					"imageId": 0,
+					"buttonText": "",
+					"buttonUrl": ""
+				},
+				{
+					"number": "6000+",
+					"description": "stworzonych wizualizacji",
+					"imageUrl": "",
+					"imageId": 0,
+					"buttonText": "",
+					"buttonUrl": ""
+				},
+				{
+					"number": "1",
+					"description": "miejsce w konkursie",
+					"imageUrl": "",
+					"imageId": 0,
+					"buttonText": "Zobacz film",
+					"buttonUrl": "#"
+				}
+			]
+		}
+	},
+	"textdomain": "mroomy",
+	"editorScript": "file:../../dist/blocks/top-stats-editor.js",
+	"render": "file:./render.php"
+}

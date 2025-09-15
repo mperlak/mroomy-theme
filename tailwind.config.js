@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./**/*.php",
+    "./blocks/**/*.php",
     "./assets/**/*.js",
     "./js/**/*.js",
   ],
@@ -28,7 +29,13 @@ module.exports = {
     'text-neutral-text', 'text-primary', 'hover:text-primary', 'hover:text-primary-hover',
     'text-neutral-text-subtle', 'text-neutral-text-subtlest',
     'inline-flex', 'gap-2',
-    'bg-primary', 'text-white',
+    'bg-primary', 'text-white', 'bg-beige-100',
+    'bg-primary-hover', 'group-hover:bg-primary-hover',
+    // Button Tertiary classes
+    'btn-tertiary', 'btn-tertiary-xs', 'btn-tertiary-sm', 'btn-tertiary-md', 'btn-tertiary-lg',
+    'btn-text', 'group', 'border-b', 'border-primary', 'border-primary-hover', 'pb-[1px]',
+    // Ghost button classes
+    'btn-ghost', 'btn-ghost-sm', 'btn-ghost-md', 'btn-ghost-lg',
     // Layout classes for header
     'lg:hidden', 'lg:flex', 'lg:block',
     'hidden',
@@ -61,6 +68,13 @@ module.exports = {
     'text-[16px]', 'leading-6', 'text-[12px]', 'leading-4',
     // Font weights used explicitly
     'font-normal', 'font-semibold',
+    // Top stats block classes
+    'w-[340px]', 'gap-[81px]', 'items-start',
+    'text-[56px]', 'leading-[1.1]', 'text-[#222222]',
+    'text-[24px]', 'text-[#3c3c3b]',
+    'mt-[13px]', 'mt-[20px]', 'mt-[30px]',
+    'max-h-[32px]', 'w-auto', 'mx-auto',
+    'flex-col', 'text-center',
   ],
   theme: {
     extend: {
@@ -151,6 +165,7 @@ module.exports = {
 
         // Additional colors
         beige: {
+          100: '#F8F4F1',
           500: '#C39F88',
         },
         transparent: 'transparent',

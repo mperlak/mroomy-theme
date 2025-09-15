@@ -263,8 +263,71 @@ function mroomy_s_register_blocks() {
             register_block_type($top_section);
         }
     }
+
+    // Register top-stats block if present
+    $top_stats = $blocks_base . '/top-stats/block.json';
+    if (file_exists($top_stats)) {
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log('[mroomy/top-stats] registering block from ' . $top_stats);
+        }
+        register_block_type($top_stats);
+    }
 }
 add_action('init', 'mroomy_s_register_blocks');
+
+/**
+ * Enable SVG uploads with security checks
+ */
+function mroomy_s_enable_svg_upload($mimes) {
+    // Only allow SVG uploads for administrators
+    if (current_user_can('administrator')) {
+        $mimes['svg'] = 'image/svg+xml';
+        $mimes['svgz'] = 'image/svg+xml';
+    }
+    return $mimes;
+}
+add_filter('upload_mimes', 'mroomy_s_enable_svg_upload');
+
+/**
+ * Fix SVG display in Media Library
+ */
+function mroomy_s_fix_svg_display() {
+    echo '<style>
+        .attachment-info .thumbnail img[src$=".svg"],
+        .wp-block-image img[src$=".svg"],
+        .media-modal img[src$=".svg"],
+        .thumbnail img[src$=".svg"] {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>';
+}
+add_action('admin_head', 'mroomy_s_fix_svg_display');
+
+/**
+ * Sanitize SVG uploads for security
+ */
+function mroomy_s_sanitize_svg($file) {
+    // Check if file is SVG
+    if ($file['type'] === 'image/svg+xml') {
+        $file_content = file_get_contents($file['tmp_name']);
+
+        // Basic security check - remove script tags
+        $patterns = array(
+            '/<script[\s\S]*?<\/script>/i',
+            '/on[a-z]+\s*=\s*["\'][^"\']*["\']/i',
+            '/<iframe[\s\S]*?<\/iframe>/i',
+        );
+
+        $clean_content = preg_replace($patterns, '', $file_content);
+
+        // Save sanitized content back to file
+        file_put_contents($file['tmp_name'], $clean_content);
+    }
+
+    return $file;
+}
+add_filter('wp_handle_upload_prefilter', 'mroomy_s_sanitize_svg');
 
 /**
  * Mobile menu fallback
