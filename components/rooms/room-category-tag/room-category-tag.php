@@ -57,21 +57,35 @@ function mroomy_room_category_tag( $args = array() ) {
     // Determine label to use
     $label = ! empty( $args['label'] ) ? $args['label'] : ( isset( $default_labels[ $slug ] ) ? $default_labels[ $slug ] : ucfirst( $args['category'] ) );
 
-    // Determine CSS class for styling
-    $type_class = '';
+    // Build CSS classes with Tailwind utilities based on category
+    $base_classes = array(
+        'inline-flex',
+        'items-center',
+        'px-3',
+        'py-1',
+        'rounded-full',
+        'text-label',
+        'font-nunito',
+        'font-semibold',
+        'backdrop-blur-sm'
+    );
+
+    // Add category-specific colors
     if ( in_array( $slug, array( 'pokoje-dla-chlopcow' ) ) ) {
-        $type_class = 'mroomy-room-category-tag--boy';
+        $base_classes[] = 'bg-blue-100/90';
+        $base_classes[] = 'text-blue-700';
     } elseif ( in_array( $slug, array( 'pokoje-dla-dziewczynek' ) ) ) {
-        $type_class = 'mroomy-room-category-tag--girl';
+        $base_classes[] = 'bg-pink-100/90';
+        $base_classes[] = 'text-pink-700';
     } elseif ( in_array( $slug, array( 'pokoje-dla-rodzenstwa' ) ) ) {
-        $type_class = 'mroomy-room-category-tag--siblings';
+        $base_classes[] = 'bg-purple-100/90';
+        $base_classes[] = 'text-purple-700';
+    } else {
+        $base_classes[] = 'bg-gray-100/90';
+        $base_classes[] = 'text-gray-700';
     }
 
-    // Build CSS classes
-    $css_classes = array(
-        'mroomy-room-category-tag',
-        $type_class
-    );
+    $css_classes = $base_classes;
 
     if ( ! empty( $args['class'] ) ) {
         $css_classes[] = $args['class'];
@@ -117,9 +131,11 @@ function mroomy_room_category_tags( $args = array() ) {
         return;
     }
 
-    // Build container CSS classes
+    // Build container CSS classes with Tailwind
     $css_classes = array(
-        'mroomy-room-category-tags'
+        'flex',
+        'gap-2',
+        'flex-wrap'
     );
 
     if ( ! empty( $args['class'] ) ) {

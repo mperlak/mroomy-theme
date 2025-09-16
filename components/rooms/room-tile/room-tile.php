@@ -71,18 +71,18 @@ function mroomy_room_tile( $args = array() ) {
     // Get button URL
     $button_url = ! empty( $args['button_url'] ) ? $args['button_url'] : get_permalink( $post_id );
 
-    // Determine size classes
-    $size_classes = array(
-        'large'  => 'mroomy-room-tile--large',
-        'medium' => 'mroomy-room-tile--medium',
-        'small'  => 'mroomy-room-tile--small'
-    );
-    $size_class = isset( $size_classes[ $args['size'] ] ) ? $size_classes[ $args['size'] ] : $size_classes['large'];
-
-    // Build CSS classes
+    // Build CSS classes with Tailwind utilities
     $css_classes = array(
-        'mroomy-room-tile',
-        $size_class
+        'bg-white',
+        'rounded-2xl',
+        'overflow-hidden',
+        'shadow-card',
+        'hover:shadow-lg',
+        'transition-shadow',
+        'duration-200',
+        'flex',
+        'flex-col',
+        'h-full'
     );
 
     if ( ! empty( $args['class'] ) ) {
@@ -112,7 +112,7 @@ function mroomy_room_tile( $args = array() ) {
     ?>
     <article class="<?php echo esc_attr( implode( ' ', array_filter( $css_classes ) ) ); ?>">
         <?php if ( $thumbnail_data ) : ?>
-            <div class="mroomy-room-tile__image">
+            <div class="relative">
                 <?php
                 mroomy_room_image( array(
                     'image_id'     => $thumbnail_data['id'],
@@ -123,11 +123,10 @@ function mroomy_room_tile( $args = array() ) {
                 ?>
 
                 <?php if ( $args['show_tags'] ) : ?>
-                    <div class="mroomy-room-tile__tags">
+                    <div class="absolute bottom-4 left-4 flex gap-2 flex-wrap">
                         <?php
                         mroomy_room_category_tags( array(
-                            'post_id' => $post_id,
-                            'class'   => 'mroomy-room-tile__category-tags'
+                            'post_id' => $post_id
                         ) );
                         ?>
                     </div>
@@ -135,31 +134,34 @@ function mroomy_room_tile( $args = array() ) {
             </div>
         <?php endif; ?>
 
-        <div class="mroomy-room-tile__content">
+        <div class="p-6 flex flex-col flex-grow">
             <?php if ( $args['show_title'] ) : ?>
-                <h3 class="mroomy-room-tile__title">
-                    <a href="<?php echo esc_url( $button_url ); ?>" class="mroomy-room-tile__title-link">
+                <h3 class="font-nunito font-bold text-headline-small text-neutral-text mb-2">
+                    <a href="<?php echo esc_url( $button_url ); ?>" class="hover:text-primary transition-colors duration-200">
                         <?php echo esc_html( $title_data['main'] ); ?>
                     </a>
                 </h3>
             <?php endif; ?>
 
             <?php if ( $args['show_excerpt'] && $excerpt ) : ?>
-                <div class="mroomy-room-tile__description">
+                <div class="text-body-2 text-neutral-text-secondary mb-3 line-clamp-2">
                     <?php echo esc_html( $excerpt ); ?>
                 </div>
             <?php endif; ?>
 
             <?php if ( $args['show_beneficiary'] && ! empty( $title_data['beneficiary'] ) ) : ?>
-                <div class="mroomy-room-tile__beneficiary">
+                <div class="text-body-2 text-primary font-semibold mb-4">
                     <?php echo esc_html( $title_data['beneficiary'] ); ?>
                 </div>
             <?php endif; ?>
 
             <?php if ( $args['show_actions'] ) : ?>
-                <div class="mroomy-room-tile__actions">
-                    <a href="<?php echo esc_url( $button_url ); ?>" class="mroomy-room-tile__button">
+                <div class="mt-auto">
+                    <a href="<?php echo esc_url( $button_url ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-bold text-body-1 transition-all duration-200 group">
                         <?php echo esc_html( $args['button_text'] ); ?>
+                        <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </a>
                 </div>
             <?php endif; ?>

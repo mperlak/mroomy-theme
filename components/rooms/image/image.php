@@ -68,22 +68,24 @@ function mroomy_room_image( $args = array() ) {
         return;
     }
 
-    // Mapowanie proporcji na CSS
-    $aspect_ratios = array(
-        '1:1'   => '1 / 1',
-        '5:4'   => '5 / 4',
-        '4:3'   => '4 / 3',
-        '3:2'   => '3 / 2',
-        '16:9'  => '16 / 9',
-        '2:1'   => '2 / 1'
+    // Mapowanie proporcji na Tailwind classes
+    $aspect_classes = array(
+        '1:1'   => 'aspect-square',
+        '5:4'   => 'aspect-[5/4]',
+        '4:3'   => 'aspect-[4/3]',
+        '3:2'   => 'aspect-[3/2]',
+        '16:9'  => 'aspect-video',
+        '2:1'   => 'aspect-[2/1]'
     );
 
-    $css_ratio = isset( $aspect_ratios[ $args['aspect_ratio'] ] ) ? $aspect_ratios[ $args['aspect_ratio'] ] : '16 / 9';
+    $aspect_class = isset( $aspect_classes[ $args['aspect_ratio'] ] ) ? $aspect_classes[ $args['aspect_ratio'] ] : 'aspect-video';
 
-    // Przygotuj klasy CSS
+    // Przygotuj klasy CSS z Tailwind
     $classes = array(
-        'mroomy-room-image',
-        'mroomy-room-image--' . sanitize_html_class( $args['size'] )
+        'relative',
+        'overflow-hidden',
+        'bg-neutral-container-bg',
+        $aspect_class
     );
 
     if ( ! empty( $args['class'] ) ) {
@@ -94,27 +96,25 @@ function mroomy_room_image( $args = array() ) {
 
     ?>
     <div class="<?php echo esc_attr( $class_string ); ?>">
-        <div class="mroomy-room-image__wrapper" style="aspect-ratio: <?php echo esc_attr( $css_ratio ); ?>;">
-            <?php if ( $args['image_id'] ) : ?>
-                <?php
-                // Użyj wp_get_attachment_image dla lepszego wsparcia srcset
-                echo wp_get_attachment_image(
-                    $args['image_id'],
-                    $wp_size,
-                    false,
-                    array(
-                        'class' => 'mroomy-room-image__img',
-                        'alt'   => esc_attr( $args['alt_text'] )
-                    )
-                );
-                ?>
-            <?php else : ?>
-                <img src="<?php echo esc_url( $args['image_url'] ); ?>"
-                     alt="<?php echo esc_attr( $args['alt_text'] ); ?>"
-                     class="mroomy-room-image__img"
-                     loading="lazy">
-            <?php endif; ?>
-        </div>
+        <?php if ( $args['image_id'] ) : ?>
+            <?php
+            // Użyj wp_get_attachment_image dla lepszego wsparcia srcset
+            echo wp_get_attachment_image(
+                $args['image_id'],
+                $wp_size,
+                false,
+                array(
+                    'class' => 'absolute inset-0 w-full h-full object-cover',
+                    'alt'   => esc_attr( $args['alt_text'] )
+                )
+            );
+            ?>
+        <?php else : ?>
+            <img src="<?php echo esc_url( $args['image_url'] ); ?>"
+                 alt="<?php echo esc_attr( $args['alt_text'] ); ?>"
+                 class="absolute inset-0 w-full h-full object-cover"
+                 loading="lazy">
+        <?php endif; ?>
     </div>
     <?php
 }
