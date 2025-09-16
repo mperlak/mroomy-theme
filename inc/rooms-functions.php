@@ -30,7 +30,7 @@ function mroomy_load_room_component( $component_name ) {
  */
 function mroomy_enqueue_room_styles() {
     // Check if we should load room styles
-    if ( is_singular( 'pokoje-dla-dzieci' ) || has_block( 'mroomy/rooms-showcase' ) || is_post_type_archive( 'pokoje-dla-dzieci' ) ) {
+    if ( is_singular( 'pokoje-dla-dzieci' ) || has_block( 'mroomy/rooms-showcase' ) || is_post_type_archive( 'pokoje-dla-dzieci' ) || is_page() ) {
 
         // Check if combined CSS file exists
         $combined_css = get_template_directory() . '/components/rooms/rooms-all.css';
@@ -173,3 +173,67 @@ function mroomy_register_rooms_showcase_block() {
     }
 }
 add_action( 'init', 'mroomy_register_rooms_showcase_block' );
+
+/**
+ * Load room components on init
+ */
+function mroomy_init_room_components() {
+    // Load all components
+    mroomy_load_room_component( 'image' );
+    mroomy_load_room_component( 'room-category-tag' );
+    mroomy_load_room_component( 'room-tile' );
+    mroomy_load_room_component( 'rooms-list' );
+}
+add_action( 'init', 'mroomy_init_room_components' );
+
+/**
+ * Enqueue Swiper assets
+ */
+function mroomy_enqueue_swiper_assets() {
+    // Check if we're on a page that needs Swiper
+    $needs_swiper = false;
+
+    // Check for specific conditions
+    if ( is_singular( 'pokoje-dla-dzieci' ) ||
+         has_block( 'mroomy/rooms-showcase' ) ||
+         is_post_type_archive( 'pokoje-dla-dzieci' ) ) {
+        $needs_swiper = true;
+    }
+
+    // Check for test pages
+    if ( is_page_template( 'test-rooms-list.php' ) ) {
+        $needs_swiper = true;
+    }
+
+    // Check if current page uses rooms list shortcode or function
+    global $post;
+    if ( $post && ( strpos( $post->post_content, 'mroomy_rooms_list' ) !== false ||
+                    strpos( $post->post_content, '[rooms_list' ) !== false ) ) {
+        $needs_swiper = true;
+    }
+
+    // Always load on pages for testing
+    if ( is_page() ) {
+        $needs_swiper = true;
+    }
+
+    if ( $needs_swiper ) {
+        // Enqueue Swiper CSS
+        wp_enqueue_style(
+            'swiper',
+            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+            array(),
+            '11.0.0'
+        );
+
+        // Enqueue Swiper JS
+        wp_enqueue_script(
+            'swiper',
+            'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+            array(),
+            '11.0.0',
+            true
+        );
+    }
+}
+add_action( 'wp_enqueue_scripts', 'mroomy_enqueue_swiper_assets' );
