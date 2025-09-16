@@ -4,4 +4,286 @@
  * @package Mroomy
  */
 
-/* Styles will be added in Issue #5 */
+/* Base section styles */
+.mroomy-rooms-list {
+    padding: 80px 0;
+    position: relative;
+}
+
+/* Header styles */
+.mroomy-rooms-list__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 48px;
+    padding: 0 24px;
+}
+
+/* Title */
+.mroomy-rooms-list__title {
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 56px;
+    color: #222222;
+    margin: 0;
+}
+
+/* Button */
+.mroomy-rooms-list__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background-color: transparent;
+    color: #e20c7b;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+    border-radius: 8px;
+}
+
+.mroomy-rooms-list__button:hover {
+    background-color: #fef2f8;
+    transform: translateX(4px);
+}
+
+.mroomy-rooms-list__button-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s ease;
+}
+
+.mroomy-rooms-list__button:hover .mroomy-rooms-list__button-icon {
+    transform: translateX(4px);
+}
+
+/* Container */
+.mroomy-rooms-list__container {
+    position: relative;
+    padding: 0 24px;
+}
+
+/* Swiper overrides */
+.mroomy-rooms-list .swiper {
+    overflow: hidden;
+    padding: 4px; /* Space for focus outline */
+}
+
+.mroomy-rooms-list .swiper-wrapper {
+    display: flex;
+}
+
+.mroomy-rooms-list .swiper-slide {
+    height: auto;
+    display: flex;
+}
+
+.mroomy-rooms-list .swiper-slide .mroomy-room-tile {
+    width: 100%;
+    height: 100%;
+}
+
+/* Navigation buttons */
+.mroomy-rooms-list__nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 10;
+    padding: 0 8px;
+}
+
+.mroomy-rooms-list__nav-prev,
+.mroomy-rooms-list__nav-next {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 2px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    pointer-events: all;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.mroomy-rooms-list__nav-prev:hover,
+.mroomy-rooms-list__nav-next:hover {
+    background-color: #e20c7b;
+    border-color: #e20c7b;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(226, 12, 123, 0.3);
+}
+
+.mroomy-rooms-list__nav-prev:hover svg,
+.mroomy-rooms-list__nav-next:hover svg {
+    stroke: #ffffff;
+}
+
+.mroomy-rooms-list__nav-prev:disabled,
+.mroomy-rooms-list__nav-next:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.mroomy-rooms-list__nav-prev:disabled:hover,
+.mroomy-rooms-list__nav-next:disabled:hover {
+    background-color: #ffffff;
+    border-color: #e0e0e0;
+    transform: none;
+}
+
+.mroomy-rooms-list__nav-prev {
+    left: 0;
+}
+
+.mroomy-rooms-list__nav-next {
+    right: 0;
+}
+
+/* Navigation SVG icons */
+.mroomy-rooms-list__nav-prev svg,
+.mroomy-rooms-list__nav-next svg {
+    stroke: #222222;
+    transition: stroke 0.2s ease;
+}
+
+/* Grid layout (when carousel is disabled) */
+.mroomy-rooms-list__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1280px) {
+    .mroomy-rooms-list__title {
+        font-size: 40px;
+        line-height: 48px;
+    }
+}
+
+@media (max-width: 768px) {
+    .mroomy-rooms-list {
+        padding: 60px 0;
+    }
+
+    .mroomy-rooms-list__header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 24px;
+        padding: 0 16px;
+    }
+
+    .mroomy-rooms-list__title {
+        font-size: 32px;
+        line-height: 40px;
+    }
+
+    .mroomy-rooms-list__container {
+        padding: 0 16px;
+    }
+
+    .mroomy-rooms-list__nav-prev,
+    .mroomy-rooms-list__nav-next {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mroomy-rooms-list__title {
+        font-size: 28px;
+        line-height: 36px;
+    }
+
+    .mroomy-rooms-list__button {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+
+    .mroomy-rooms-list__grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Loading state */
+.mroomy-rooms-list--loading .mroomy-rooms-list__container {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mroomy-rooms-list--loading::after {
+    content: '';
+    width: 48px;
+    height: 48px;
+    border: 4px solid #f0f0f0;
+    border-top-color: #e20c7b;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Print styles */
+@media print {
+    .mroomy-rooms-list__nav {
+        display: none;
+    }
+
+    .mroomy-rooms-list__button {
+        color: #e20c7b !important;
+        border: 1px solid #e20c7b !important;
+    }
+
+    .mroomy-rooms-list .swiper-wrapper {
+        flex-wrap: wrap;
+    }
+
+    .mroomy-rooms-list .swiper-slide {
+        width: 33.333% !important;
+        margin-bottom: 24px;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .mroomy-rooms-list__nav-prev,
+    .mroomy-rooms-list__nav-next {
+        border-width: 3px;
+    }
+
+    .mroomy-rooms-list__button {
+        border: 2px solid currentColor;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .mroomy-rooms-list__button,
+    .mroomy-rooms-list__button-icon,
+    .mroomy-rooms-list__nav-prev,
+    .mroomy-rooms-list__nav-next {
+        transition: none;
+    }
+
+    .mroomy-rooms-list--loading::after {
+        animation: none;
+    }
+}
