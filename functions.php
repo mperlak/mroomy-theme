@@ -362,5 +362,10 @@ function mroomy_s_mobile_menu_fallback() {
 // Panel migracji (tymczasowo - usuń po zakończeniu migracji na produkcji)
 require_once get_stylesheet_directory() . '/migration/run-migration-admin.php';
 
+/**
+ * Room components functionality
+ */
+require get_template_directory() . '/inc/rooms-functions.php';
+
 // Wrapper dla kompatybilności z Toolset (opcjonalne)
 // require_once get_stylesheet_directory() . '/migration/06-compatibility-wrapper.php';

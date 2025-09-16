@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "mroomy/rooms-showcase",
+    "version": "1.0.0",
+    "title": "Pokoje - Lista",
+    "category": "mroomy",
+    "icon": "admin-home",
+    "description": "Wyświetla listę pokoi dla dzieci w formie karuzeli",
+    "supports": {
+        "html": false
+    },
+    "attributes": {
+        "title": {
+            "type": "string",
+            "default": "Najlepsze projekty"
+        },
+        "buttonText": {
+            "type": "string",
+            "default": "Zobacz wszystkie Projekty"
+        },
+        "buttonUrl": {
+            "type": "string",
+            "default": "/pokoje-dla-dzieci/"
+        },
+        "selectionType": {
+            "type": "string",
+            "default": "latest",
+            "enum": ["latest", "manual", "category"]
+        },
+        "postsPerPage": {
+            "type": "number",
+            "default": 10
+        },
+        "selectedPosts": {
+            "type": "array",
+            "default": []
+        },
+        "selectedCategory": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "textdomain": "mroomy",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./editor.scss",
+    "render": "file:./render.php"
+}
