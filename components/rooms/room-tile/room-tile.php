@@ -74,10 +74,10 @@ function mroomy_room_tile( $args = array() ) {
     // Build CSS classes with Tailwind utilities
     $css_classes = array(
         'bg-white',
-        'rounded-2xl',
+        'rounded-lg',  // 16px from design tokens
         'overflow-hidden',
         'shadow-card',
-        'hover:shadow-lg',
+        'hover:shadow-card-hover',
         'transition-shadow',
         'duration-200',
         'flex',

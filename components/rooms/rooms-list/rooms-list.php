@@ -140,12 +140,12 @@ function mroomy_rooms_list( $args = array() ) {
 
                 <!-- Navigation buttons -->
                 <div class="absolute top-1/2 -translate-y-1/2 w-full flex justify-between pointer-events-none z-10 -mx-6">
-                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-md hover:shadow-lg hover:bg-primary hover:border-primary group -translate-x-1/2" id="<?php echo esc_attr( $carousel_id ); ?>-prev" aria-label="Previous slide">
+                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-button hover:shadow-button-hover hover:bg-primary hover:border-primary group -translate-x-1/2" id="<?php echo esc_attr( $carousel_id ); ?>-prev" aria-label="Previous slide">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-white transition-colors duration-200"/>
                         </svg>
                     </button>
-                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-md hover:shadow-lg hover:bg-primary hover:border-primary group translate-x-1/2" id="<?php echo esc_attr( $carousel_id ); ?>-next" aria-label="Next slide">
+                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-button hover:shadow-button-hover hover:bg-primary hover:border-primary group translate-x-1/2" id="<?php echo esc_attr( $carousel_id ); ?>-next" aria-label="Next slide">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-white transition-colors duration-200"/>
                         </svg>

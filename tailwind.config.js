@@ -85,6 +85,32 @@ module.exports = {
     'block', 'sm:hidden', 'hidden', 'sm:grid', 'sm:block', 'sm:gap-10',
     'stats-wrapper', 'stat-item', 'mroomy-top-stats-container', 'carousel-initialized',
     'opacity-0', 'opacity-1', 'visibility-hidden', 'visibility-visible',
+    // New shadow classes for cards and buttons
+    'shadow-card', 'shadow-card-hover', 'shadow-button', 'shadow-button-hover',
+    // New border radius classes
+    'rounded-sm', 'rounded-md', 'rounded-lg', 'rounded-xl', 'rounded-2xl',
+    // Backdrop blur classes
+    'backdrop-blur-xs', 'backdrop-blur-sm',
+    // Line clamp utilities
+    'line-clamp-1', 'line-clamp-2', 'line-clamp-3',
+    // Additional spacing
+    'gap-18', 'gap-22', 'gap-26', 'gap-30',
+    'p-18', 'p-22', 'p-26', 'p-30',
+    'mt-18', 'mt-22', 'mt-26', 'mt-30',
+    'mb-18', 'mb-22', 'mb-26', 'mb-30',
+    // Aspect ratios
+    'aspect-square', 'aspect-video', 'aspect-[4/3]', 'aspect-[3/2]', 'aspect-[5/4]', 'aspect-[2/1]',
+    // Position utilities for tags
+    'absolute', 'bottom-4', 'left-4', 'bottom-3', 'left-3',
+    // Colors for category tags
+    'bg-blue-100/90', 'text-blue-700',
+    'bg-pink-100/90', 'text-pink-700',
+    'bg-purple-100/90', 'text-purple-700',
+    'bg-gray-100/90', 'text-gray-700',
+    // Text colors
+    'text-neutral-text-secondary', 'text-primary-hover',
+    // Flex utilities
+    'flex-grow', 'flex-col',
   ],
   theme: {
     extend: {
@@ -232,6 +258,34 @@ module.exports = {
         'semibold': '600',
         'bold': '700',
         'extrabold': '800',
+      },
+      boxShadow: {
+        'card': '0px 4px 16px rgba(0, 0, 0, 0.08)',
+        'card-hover': '0px 8px 24px rgba(0, 0, 0, 0.12)',
+        'button': '0px 2px 8px rgba(0, 0, 0, 0.1)',
+        'button-hover': '0px 4px 12px rgba(0, 0, 0, 0.15)',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'md': '8px',
+        'lg': '16px',
+        'xl': '20px',
+        '2xl': '24px',
+      },
+      spacing: {
+        '18': '72px',
+        '22': '88px',
+        '26': '104px',
+        '30': '120px',
+      },
+      lineHeight: {
+        'headline': '1.25',
+        'body': '1.25',
+        'paragraph': '1.4',
+      },
+      backdropBlur: {
+        'xs': '2px',
+        'sm': '4px',
       },
     },
   },
