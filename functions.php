@@ -359,5 +359,8 @@ function mroomy_s_mobile_menu_fallback() {
  * Zachowano te same slugi dla kompatybilności z istniejącymi linkami
  */
 
+// Panel migracji (tymczasowo - usuń po zakończeniu migracji na produkcji)
+require_once get_stylesheet_directory() . '/migration/run-migration-admin.php';
+
 // Wrapper dla kompatybilności z Toolset (opcjonalne)
-// require_once get_template_directory() . '/migration/06-compatibility-wrapper.php';
+// require_once get_stylesheet_directory() . '/migration/06-compatibility-wrapper.php';

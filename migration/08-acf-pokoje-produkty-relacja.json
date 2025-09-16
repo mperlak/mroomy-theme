@@ -1,0 +1,56 @@
+[
+    {
+        "key": "group_pokoje_produkty",
+        "title": "Produkty z projektu",
+        "fields": [
+            {
+                "key": "field_produkty_z_projektu",
+                "label": "Produkty z projektu",
+                "name": "produkty_z_projektu",
+                "type": "relationship",
+                "instructions": "Wybierz produkty WooCommerce powiązane z tym pokojem",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "post_type": [
+                    "product"
+                ],
+                "filters": [
+                    "search",
+                    "post_type",
+                    "taxonomy"
+                ],
+                "elements": [
+                    "featured_image"
+                ],
+                "min": "",
+                "max": "",
+                "return_format": "object",
+                "bidirectional": 0,
+                "bidirectional_target": []
+            }
+        ],
+        "location": [
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "pokoje-dla-dzieci"
+                }
+            ]
+        ],
+        "menu_order": 0,
+        "position": "normal",
+        "style": "default",
+        "label_placement": "top",
+        "instruction_placement": "label",
+        "hide_on_screen": "",
+        "active": true,
+        "description": "Powiązanie pokoi z produktami WooCommerce",
+        "show_in_rest": 1
+    }
+]

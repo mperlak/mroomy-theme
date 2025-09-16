@@ -22,9 +22,26 @@ function toolset_acf_migration_page() {
     <div class="wrap">
         <h1>Migracja danych z Toolset do ACF</h1>
 
-        <?php if (isset($_GET['run']) && $_GET['run'] === 'true'): ?>
+        <?php if (isset($_GET['run'])): ?>
+            <?php
+            $step = $_GET['run'];
+            $title = '';
+            $file = '';
+
+            switch($step) {
+                case 'fields':
+                    $title = 'Migracja pól podstawowych';
+                    $file = '/migration/05-migrate-data.php';
+                    break;
+                case 'products':
+                    $title = 'Migracja relacji pokoje-produkty';
+                    $file = '/migration/10-migrate-products-relationships.php';
+                    break;
+            }
+            ?>
+
             <div class="notice notice-info">
-                <p>Uruchamianie migracji...</p>
+                <p>Uruchamianie: <?php echo esc_html($title); ?>...</p>
             </div>
 
             <pre style="background: #f1f1f1; padding: 20px; overflow: auto; max-height: 500px;">
@@ -32,8 +49,12 @@ function toolset_acf_migration_page() {
             // Włącz buforowanie
             ob_start();
 
-            // Uruchom migrację
-            require_once get_template_directory() . '/migration/05-migrate-data.php';
+            // Uruchom odpowiednią migrację
+            if ($file && file_exists(get_template_directory() . $file)) {
+                require_once get_template_directory() . $file;
+            } else {
+                echo "Błąd: Nie znaleziono pliku migracji.";
+            }
 
             // Wyświetl wynik
             $output = ob_get_clean();
@@ -60,17 +81,32 @@ function toolset_acf_migration_page() {
                     <li>Wszystkie pola z inspiracji (5 pól)</li>
                     <li>Galerie zdjęć (konwersja na ACF Gallery)</li>
                     <li>Relacje między pokojami a inspiracjami</li>
+                    <li>Relacje między pokojami a produktami WooCommerce</li>
                 </ul>
 
-                <p style="color: red;"><strong>UWAGA:</strong> Uruchom migrację tylko RAZ!</p>
+                <p style="color: red;"><strong>UWAGA:</strong> Uruchom każdą migrację tylko RAZ!</p>
 
-                <p>
-                    <a href="<?php echo admin_url('tools.php?page=toolset-acf-migration&run=true'); ?>"
-                       class="button button-primary"
-                       onclick="return confirm('Czy na pewno chcesz uruchomić migrację? Upewnij się, że masz backup!');">
-                        Uruchom migrację
-                    </a>
-                </p>
+                <h2>Kroki migracji:</h2>
+                <ol>
+                    <li>
+                        <strong>Krok 1: Migracja pól podstawowych</strong><br>
+                        <small>Migruje wszystkie pola tekstowe, obrazy i galerie</small><br>
+                        <a href="<?php echo admin_url('tools.php?page=toolset-acf-migration&run=fields'); ?>"
+                           class="button button-primary"
+                           onclick="return confirm('Czy na pewno chcesz uruchomić migrację pól? Upewnij się, że masz backup!');">
+                            Uruchom migrację pól
+                        </a>
+                    </li>
+                    <li style="margin-top: 20px;">
+                        <strong>Krok 2: Migracja relacji pokoje-produkty</strong><br>
+                        <small>Przypisuje produkty WooCommerce do pokoi</small><br>
+                        <a href="<?php echo admin_url('tools.php?page=toolset-acf-migration&run=products'); ?>"
+                           class="button button-primary"
+                           onclick="return confirm('Czy na pewno chcesz uruchomić migrację produktów? Upewnij się, że masz backup!');">
+                            Uruchom migrację produktów
+                        </a>
+                    </li>
+                </ol>
             </div>
 
         <?php endif; ?>
