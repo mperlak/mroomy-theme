@@ -106,12 +106,12 @@ function mroomy_rooms_list( $args = array() ) {
     ?>
     <section class="py-20 relative<?php echo esc_attr( $additional_classes ); ?>">
         <?php if ( $args['show_header'] ) : ?>
-            <div class="flex justify-between items-center mb-12 px-6">
-                <h2 class="font-nunito font-extrabold text-headline-small-2 text-neutral-text m-0">
+            <div class="flex justify-between items-center mb-8 px-[106px]">
+                <h2 class="font-nunito font-extrabold text-[40px] leading-[1.25] text-neutral-text m-0">
                     <?php echo esc_html( $args['title'] ); ?>
                 </h2>
 
-                <a href="<?php echo esc_url( $args['button_url'] ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-bold text-body-1 transition-all duration-200 group">
+                <a href="<?php echo esc_url( $args['button_url'] ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-extrabold text-body-2 transition-all duration-200 group">
                     <?php echo esc_html( $args['button_text'] ); ?>
                     <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -120,7 +120,7 @@ function mroomy_rooms_list( $args = array() ) {
             </div>
         <?php endif; ?>
 
-        <div class="relative px-6">
+        <div class="relative px-[106px]">
             <?php if ( $args['enable_carousel'] ) : ?>
                 <!-- Swiper container -->
                 <div class="swiper" id="<?php echo esc_attr( $carousel_id ); ?>">
@@ -139,13 +139,13 @@ function mroomy_rooms_list( $args = array() ) {
                 </div>
 
                 <!-- Navigation buttons -->
-                <div class="absolute top-1/2 -translate-y-1/2 w-full flex justify-between pointer-events-none z-10 -mx-6">
-                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-button hover:shadow-button-hover hover:bg-primary hover:border-primary group -translate-x-1/2" id="<?php echo esc_attr( $carousel_id ); ?>-prev" aria-label="Previous slide">
+                <div class="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none z-10">
+                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-button hover:shadow-button-hover hover:bg-primary hover:border-primary group ml-[82px]" id="<?php echo esc_attr( $carousel_id ); ?>-prev" aria-label="Previous slide">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-white transition-colors duration-200"/>
                         </svg>
                     </button>
-                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-button hover:shadow-button-hover hover:bg-primary hover:border-primary group translate-x-1/2" id="<?php echo esc_attr( $carousel_id ); ?>-next" aria-label="Next slide">
+                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-button hover:shadow-button-hover hover:bg-primary hover:border-primary group mr-[82px]" id="<?php echo esc_attr( $carousel_id ); ?>-next" aria-label="Next slide">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-white transition-colors duration-200"/>
                         </svg>
