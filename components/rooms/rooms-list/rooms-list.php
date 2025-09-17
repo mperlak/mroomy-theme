@@ -138,20 +138,6 @@ function mroomy_rooms_list( $args = array() ) {
                     </div>
                 </div>
 
-                <!-- Navigation buttons -->
-                <div class="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none z-10">
-                    <button class="w-10 h-10 rounded-full bg-white/95 border border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-sm hover:shadow-md hover:bg-white group -ml-5" id="<?php echo esc_attr( $carousel_id ); ?>-prev" aria-label="Previous slide">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-primary transition-colors duration-200"/>
-                        </svg>
-                    </button>
-                    <button class="w-10 h-10 rounded-full bg-white/95 border border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-sm hover:shadow-md hover:bg-white group -mr-5" id="<?php echo esc_attr( $carousel_id ); ?>-next" aria-label="Next slide">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-primary transition-colors duration-200"/>
-                        </svg>
-                    </button>
-                </div>
-
                 <!-- Initialize Swiper -->
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
@@ -161,10 +147,6 @@ function mroomy_rooms_list( $args = array() ) {
                         loop: false,
                         freeMode: true,  // Pozwala na swobodne przewijanie
                         watchOverflow: true,  // Ukrywa nawigację gdy wszystkie slajdy się mieszczą
-                        navigation: {
-                            nextEl: '#<?php echo esc_js( $carousel_id ); ?>-next',
-                            prevEl: '#<?php echo esc_js( $carousel_id ); ?>-prev',
-                        },
                         breakpoints: {
                             640: {
                                 slidesPerView: 'auto',
