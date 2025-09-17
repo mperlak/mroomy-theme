@@ -107,7 +107,7 @@ function mroomy_rooms_list( $args = array() ) {
     <section class="py-20 relative<?php echo esc_attr( $additional_classes ); ?>">
         <div class="max-w-[1440px] mx-auto">
             <?php if ( $args['show_header'] ) : ?>
-                <div class="px-[106px] flex justify-between items-center mb-8">
+                <div class="px-[107px] flex justify-between items-center mb-8">
                     <h2 class="font-nunito font-extrabold text-[40px] leading-[1.25] text-neutral-text m-0">
                         <?php echo esc_html( $args['title'] ); ?>
                     </h2>
