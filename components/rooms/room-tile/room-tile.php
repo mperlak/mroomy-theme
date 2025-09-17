@@ -73,6 +73,8 @@ function mroomy_room_tile( $args = array() ) {
 
     // Build CSS classes with Tailwind utilities
     $css_classes = array(
+        'room-tile',
+        'room-tile-' . $args['size'],  // Add size variant class
         'bg-white',
         'rounded-lg',  // 16px from design tokens
         'overflow-hidden',
@@ -82,8 +84,19 @@ function mroomy_room_tile( $args = array() ) {
         'duration-200',
         'flex',
         'flex-col',
-        'h-full'
+        'h-full',
+        'group'
     );
+
+    // Add size-specific max-width
+    $size_classes = array(
+        'large'  => 'max-w-[386px]',
+        'medium' => 'max-w-[216px]',
+        'small'  => 'max-w-[163px]'
+    );
+    if ( isset( $size_classes[ $args['size'] ] ) ) {
+        $css_classes[] = $size_classes[ $args['size'] ];
+    }
 
     if ( ! empty( $args['class'] ) ) {
         $css_classes[] = $args['class'];
@@ -112,7 +125,7 @@ function mroomy_room_tile( $args = array() ) {
     ?>
     <article class="<?php echo esc_attr( implode( ' ', array_filter( $css_classes ) ) ); ?>">
         <?php if ( $thumbnail_data ) : ?>
-            <div class="relative rounded-lg overflow-hidden">
+            <div class="relative rounded-lg overflow-hidden transition-transform duration-200 group-hover:scale-[1.03] will-change-transform">
                 <?php
                 mroomy_room_image( array(
                     'image_id'     => $thumbnail_data['id'],
@@ -136,7 +149,7 @@ function mroomy_room_tile( $args = array() ) {
 
         <div class="p-6 flex flex-col gap-3 flex-grow">
             <?php if ( $args['show_title'] ) : ?>
-                <h3 class="font-nunito font-extrabold text-[24px] leading-[30px] text-neutral-text">
+                <h3 class="font-nunito font-extrabold text-title-small-2 text-neutral-text">
                     <?php echo esc_html( $title_data['main'] ); ?>
                 </h3>
             <?php endif; ?>
@@ -148,14 +161,14 @@ function mroomy_room_tile( $args = array() ) {
             <?php endif; ?>
 
             <?php if ( $args['show_excerpt'] && $excerpt ) : ?>
-                <div class="font-nunito font-normal text-[14px] leading-[20px] text-neutral-text-subtle line-clamp-2">
+                <div class="font-nunito font-normal text-paragraph-14-1 text-neutral-text-subtle line-clamp-2">
                     <?php echo esc_html( $excerpt ); ?>
                 </div>
             <?php endif; ?>
 
             <?php if ( $args['show_actions'] ) : ?>
                 <div class="mt-auto pt-2">
-                    <a href="<?php echo esc_url( $button_url ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-bold text-[14px] leading-[18px] transition-all duration-200 group">
+                    <a href="<?php echo esc_url( $button_url ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito text-body-small-2 transition-all duration-200 group">
                         <?php echo esc_html( $args['button_text'] ); ?>
                         <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

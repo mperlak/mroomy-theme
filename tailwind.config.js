@@ -98,6 +98,10 @@ module.exports = {
     'p-18', 'p-22', 'p-26', 'p-30',
     'mt-18', 'mt-22', 'mt-26', 'mt-30',
     'mb-18', 'mb-22', 'mb-26', 'mb-30',
+    // Room tile specific classes
+    'room-tile', 'room-tile-large', 'room-tile-medium', 'room-tile-small',
+    'max-w-[386px]', 'max-w-[216px]', 'max-w-[163px]',
+    'group-hover:scale-[1.03]', 'will-change-transform',
     // Aspect ratios
     'aspect-square', 'aspect-video', 'aspect-[4/3]', 'aspect-[4/5]', 'aspect-[3/2]', 'aspect-[5/4]', 'aspect-[2/1]', 'aspect-[386/491]',
     // Position utilities for tags
@@ -290,5 +294,6 @@ module.exports = {
   plugins: [
     require('@tailwindcss/forms'),
     require('@tailwindcss/typography'),
+    // line-clamp is now built into Tailwind CSS 3.3+
   ],
 }

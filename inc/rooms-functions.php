@@ -27,8 +27,10 @@ function mroomy_load_room_component( $component_name ) {
 
 /**
  * Enqueue styles for room components
+ * TEMPORARILY DISABLED - Migrating to Tailwind-only approach
  */
 function mroomy_enqueue_room_styles() {
+    // DISABLED: Components are now using Tailwind classes only
     // Check if we should load room styles
     if ( is_singular( 'pokoje-dla-dzieci' ) || has_block( 'mroomy/rooms-showcase' ) || is_post_type_archive( 'pokoje-dla-dzieci' ) || is_page() ) {
 
@@ -43,7 +45,8 @@ function mroomy_enqueue_room_styles() {
             );
         } else {
             // Load individual CSS files if combined doesn't exist
-            $components = array( 'image', 'room-category-tag', 'room-tile', 'rooms-list' );
+            // Excluding 'room-tile' as it's now fully on Tailwind
+            $components = array( 'image', 'room-category-tag', 'rooms-list' );
             foreach ( $components as $component ) {
                 $css_file = get_template_directory() . '/components/rooms/' . $component . '/' . $component . '.css';
                 if ( file_exists( $css_file ) ) {
