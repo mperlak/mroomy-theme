@@ -104,8 +104,8 @@ function mroomy_rooms_list( $args = array() ) {
     $additional_classes = ! empty( $args['class'] ) ? ' ' . $args['class'] : '';
 
     ?>
-    <section class="py-20 relative<?php echo esc_attr( $additional_classes ); ?>">
-        <div class="max-w-[1440px] mx-auto overflow-x-visible">
+    <section class="py-20 overflow-hidden<?php echo esc_attr( $additional_classes ); ?>">
+        <div class="max-w-[1440px] mx-auto">
             <?php if ( $args['show_header'] ) : ?>
                 <div class="flex justify-between items-center mb-8">
                     <h2 class="font-nunito font-extrabold text-[40px] leading-[1.25] text-neutral-text m-0">
@@ -123,14 +123,6 @@ function mroomy_rooms_list( $args = array() ) {
 
             <?php if ( $args['enable_carousel'] ) : ?>
                 <!-- Swiper container -->
-                <style>
-                    #<?php echo esc_attr( $carousel_id ); ?> {
-                        overflow: visible !important;
-                    }
-                    #<?php echo esc_attr( $carousel_id ); ?> .swiper-wrapper {
-                        overflow: visible !important;
-                    }
-                </style>
                 <div class="swiper" id="<?php echo esc_attr( $carousel_id ); ?>">
                     <div class="swiper-wrapper">
                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
@@ -150,11 +142,16 @@ function mroomy_rooms_list( $args = array() ) {
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const swiper_<?php echo esc_js( str_replace( '-', '_', $carousel_id ) ); ?> = new Swiper('#<?php echo esc_js( $carousel_id ); ?>', {
-                        slidesPerView: 'auto',  // Automatyczna szerokość slajdów
+                        slidesPerView: 'auto',
                         spaceBetween: 32,
                         loop: false,
-                        freeMode: true,  // Pozwala na swobodne przewijanie
-                        watchOverflow: true,  // Ukrywa nawigację gdy wszystkie slajdy się mieszczą
+                        watchOverflow: true,
+                        freeMode: true,
+                        mousewheel: {
+                            forceToAxis: true,
+                            sensitivity: 1,
+                            releaseOnEdges: false
+                        },
                         breakpoints: {
                             640: {
                                 slidesPerView: 'auto',
