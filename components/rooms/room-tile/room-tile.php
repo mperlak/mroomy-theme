@@ -146,13 +146,25 @@ function mroomy_room_tile( $args = array() ) {
 
         <div class="pt-4 flex flex-col justify-center items-start gap-4 flex-grow">
             <?php if ( $args['show_title'] ) : ?>
-                <h3 class="font-nunito font-extrabold text-subtitle-2 text-neutral-text">
+                <?php
+                // Different text sizes for different tile sizes
+                $title_classes = $args['size'] === 'medium' || $args['size'] === 'small'
+                    ? 'font-nunito font-extrabold text-base leading-5 text-neutral-text' // 16px for medium/small
+                    : 'font-nunito font-extrabold text-subtitle-2 text-neutral-text'; // 20px for large
+                ?>
+                <h3 class="<?php echo esc_attr( $title_classes ); ?>">
                     <?php echo esc_html( $title_data['main'] ); ?>
                 </h3>
             <?php endif; ?>
 
             <?php if ( $args['show_beneficiary'] && ! empty( $title_data['beneficiary'] ) ) : ?>
-                <div class="font-nunito font-semibold text-body-1 text-neutral-text-subtlest">
+                <?php
+                // Different text sizes for different tile sizes
+                $beneficiary_classes = $args['size'] === 'medium' || $args['size'] === 'small'
+                    ? 'font-nunito font-semibold text-sm leading-[18px] text-neutral-text-subtlest' // 14px for medium/small
+                    : 'font-nunito font-semibold text-body-1 text-neutral-text-subtlest'; // 16px for large
+                ?>
+                <div class="<?php echo esc_attr( $beneficiary_classes ); ?>">
                     <?php echo esc_html( $title_data['beneficiary'] ); ?>
                 </div>
             <?php endif; ?>
