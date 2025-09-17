@@ -121,10 +121,9 @@ function mroomy_rooms_list( $args = array() ) {
                 </div>
             <?php endif; ?>
 
-            <div class="relative">
             <?php if ( $args['enable_carousel'] ) : ?>
-                <!-- Swiper container -->
-                <div class="swiper overflow-hidden pl-[107px]" id="<?php echo esc_attr( $carousel_id ); ?>">
+                <!-- Swiper container with overflow visible for partial slide -->
+                <div class="swiper pl-[107px] pr-[107px]" id="<?php echo esc_attr( $carousel_id ); ?>">
                     <div class="swiper-wrapper">
                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                             <div class="swiper-slide !w-auto">
@@ -179,7 +178,6 @@ function mroomy_rooms_list( $args = array() ) {
                     <?php endwhile; ?>
                 </div>
             <?php endif; ?>
-            </div>
         </div>
     </section>
     <?php
