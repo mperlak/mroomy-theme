@@ -11,6 +11,7 @@ mroomy_load_room_component( 'room-tile' );
 
 ?>
 
+<div class="bg-white min-h-screen">
 <div class="container mx-auto p-8">
     <h1 class="text-3xl font-bold mb-6">Test komponentu Room Tile</h1>
 
@@ -254,6 +255,7 @@ mroomy_load_room_component( 'room-tile' );
         </div>
     </section>
 
+</div>
 </div>
 
 <?php

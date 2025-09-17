@@ -76,7 +76,7 @@ function mroomy_room_tile( $args = array() ) {
         'room-tile',
         'room-tile-' . $args['size'],  // Add size variant class
         'bg-white',
-        'rounded-lg',  // 16px from design tokens
+        'rounded-t-lg',  // Zaokrąglenie tylko na górze
         'overflow-hidden',
         'shadow-card',
         'hover:shadow-card-hover',
@@ -125,13 +125,14 @@ function mroomy_room_tile( $args = array() ) {
     ?>
     <article class="<?php echo esc_attr( implode( ' ', array_filter( $css_classes ) ) ); ?>">
         <?php if ( $thumbnail_data ) : ?>
-            <div class="relative rounded-lg overflow-hidden transition-transform duration-200 group-hover:scale-[1.03] will-change-transform">
+            <div class="relative rounded-lg overflow-hidden">
                 <?php
                 mroomy_room_image( array(
                     'image_id'     => $thumbnail_data['id'],
                     'aspect_ratio' => $aspect_ratio,
                     'size'         => $image_size,
-                    'alt_text'     => $thumbnail_data['alt'] ? $thumbnail_data['alt'] : $title_data['main']
+                    'alt_text'     => $thumbnail_data['alt'] ? $thumbnail_data['alt'] : $title_data['main'],
+                    'img_class'    => 'transition-transform duration-200 group-hover:scale-[1.03] will-change-transform'
                 ) );
                 ?>
 
@@ -147,9 +148,9 @@ function mroomy_room_tile( $args = array() ) {
             </div>
         <?php endif; ?>
 
-        <div class="p-6 flex flex-col gap-3 flex-grow">
+        <div class="pt-4 flex flex-col justify-center items-start gap-4 flex-grow">
             <?php if ( $args['show_title'] ) : ?>
-                <h3 class="font-nunito font-extrabold text-title-small-2 text-neutral-text">
+                <h3 class="font-nunito font-extrabold text-subtitle-2 text-neutral-text">
                     <?php echo esc_html( $title_data['main'] ); ?>
                 </h3>
             <?php endif; ?>

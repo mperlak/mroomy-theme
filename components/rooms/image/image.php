@@ -33,7 +33,8 @@ function mroomy_room_image( $args = array() ) {
         'alt_text'     => '',
         'aspect_ratio' => '16:9', // domyślna proporcja z Figma
         'size'         => 'large', // large, medium, small
-        'class'        => ''
+        'class'        => '',
+        'img_class'    => ''
     );
 
     $args = wp_parse_args( $args, $defaults );
@@ -115,7 +116,7 @@ function mroomy_room_image( $args = array() ) {
                 $wp_size,
                 false,
                 array(
-                    'class' => 'absolute inset-0 w-full h-full object-cover',
+                    'class' => trim( 'absolute inset-0 w-full h-full object-cover ' . $args['img_class'] ),
                     'alt'   => esc_attr( $args['alt_text'] )
                 )
             );
@@ -123,7 +124,7 @@ function mroomy_room_image( $args = array() ) {
         <?php else : ?>
             <img src="<?php echo esc_url( $args['image_url'] ); ?>"
                  alt="<?php echo esc_attr( $args['alt_text'] ); ?>"
-                 class="absolute inset-0 w-full h-full object-cover"
+                 class="<?php echo esc_attr( trim( 'absolute inset-0 w-full h-full object-cover ' . $args['img_class'] ) ); ?>"
                  loading="lazy">
         <?php endif; ?>
     </div>

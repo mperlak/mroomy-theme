@@ -7,7 +7,8 @@
 get_header();
 ?>
 
-<div class="container mx-auto p-8">
+<div class="bg-white">
+    <div class="container mx-auto p-8">
     <h1 class="text-3xl font-bold mb-6">Debug - Diagnostyka komponentów</h1>
 
     <pre style="background: #f5f5f5; padding: 20px; overflow: auto;">
@@ -179,6 +180,7 @@ echo "\n=== END DEBUG ===\n";
         echo '<div class="bg-red-100 p-4 mb-4">❌ Funkcja mroomy_rooms_list() NIE istnieje!</div>';
     }
     ?>
+</div>
 </div>
 
 <?php

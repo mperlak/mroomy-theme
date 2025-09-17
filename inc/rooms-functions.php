@@ -30,6 +30,17 @@ function mroomy_load_room_component( $component_name ) {
  * TEMPORARILY DISABLED - Migrating to Tailwind-only approach
  */
 function mroomy_enqueue_room_styles() {
+    // Test switch: allow disabling component CSS via filter or URL param
+    $enqueue_enabled = true;
+    if ( isset( $_GET['rooms_css'] ) && $_GET['rooms_css'] === '0' ) {
+        $enqueue_enabled = false;
+    }
+    $enqueue_enabled = apply_filters( 'mroomy/enqueue_rooms_css', $enqueue_enabled );
+
+    if ( ! $enqueue_enabled ) {
+        return;
+    }
+
     // DISABLED: Components are now using Tailwind classes only
     // Check if we should load room styles
     if ( is_singular( 'pokoje-dla-dzieci' ) || has_block( 'mroomy/rooms-showcase' ) || is_post_type_archive( 'pokoje-dla-dzieci' ) || is_page() ) {
@@ -90,6 +101,12 @@ function mroomy_get_room_thumbnail_data( $post_id ) {
  * @return array Array with 'main' and 'beneficiary' keys
  */
 function mroomy_parse_room_title( $title ) {
+    // Include declension helper if not already loaded
+    $declension_file = get_template_directory() . '/inc/polish-names-declension.php';
+    if ( file_exists( $declension_file ) ) {
+        require_once $declension_file;
+    }
+
     $result = array(
         'main'        => $title,
         'beneficiary' => ''
@@ -98,17 +115,48 @@ function mroomy_parse_room_title( $title ) {
     // Remove project number from the end if exists
     $title = preg_replace( '/\s*\(#\d+\)\s*$/', '', $title );
 
-    // Pattern for "Projekt [description] dla [type], [name] ([age])"
-    if ( preg_match( '/^(Projekt\s+.+?)\s+dla\s+(.+?)$/', $title, $matches ) ) {
+    // Pattern 1: "Projekt [description] dla [type], [names] ([age])"
+    // Example: "Projekt biało-żółtego pokoju dla chłopca, Oliwier (8 lat)"
+    if ( preg_match( '/^(Projekt\s+.+?dla\s+(?:chłopca|dziewczynki|rodzeństwa|dzieci)),\s+([^()]+)\s*\(([^)]+)\)/', $title, $matches ) ) {
         $result['main'] = trim( $matches[1] );
-        // Usuń "dla" z beneficjenta jeśli zostało
-        $beneficiary = trim( $matches[2] );
-        $result['beneficiary'] = $beneficiary;
+        $names = trim( $matches[2] );
+        $age = trim( $matches[3] );
+
+        // Apply declension to names if function exists
+        if ( function_exists( 'mroomy_decline_multiple_names' ) ) {
+            $names_declined = mroomy_decline_multiple_names( $names );
+            $result['beneficiary'] = 'Projekt dla ' . $names_declined . ' (' . $age . ')';
+        } else {
+            $result['beneficiary'] = 'Projekt dla ' . $names . ' (' . $age . ')';
+        }
     }
-    // Pattern for "Projekt [description], [name] ([age])"
-    elseif ( preg_match( '/^(Projekt\s+.+?),\s+(.+?)$/', $title, $matches ) ) {
-        $result['main']        = trim( $matches[1] );
-        $result['beneficiary'] = trim( $matches[2] );
+    // Pattern 2: "Projekt [description], [names] ([age])" (without "dla [type]")
+    elseif ( preg_match( '/^(Projekt\s+[^,]+),\s+([^()]+)\s*\(([^)]+)\)/', $title, $matches ) ) {
+        $result['main'] = trim( $matches[1] );
+        $names = trim( $matches[2] );
+        $age = trim( $matches[3] );
+
+        // Apply declension to names if function exists
+        if ( function_exists( 'mroomy_decline_multiple_names' ) ) {
+            $names_declined = mroomy_decline_multiple_names( $names );
+            $result['beneficiary'] = 'Projekt dla ' . $names_declined . ' (' . $age . ')';
+        } else {
+            $result['beneficiary'] = 'Projekt dla ' . $names . ' (' . $age . ')';
+        }
+    }
+    // Pattern 3: Simple format without age
+    elseif ( preg_match( '/^(Projekt\s+.+?)\s+dla\s+(.+?)$/', $title, $matches ) ) {
+        $result['main'] = trim( $matches[1] );
+        $beneficiary = trim( $matches[2] );
+
+        // Check if beneficiary contains name(s) that can be declined
+        if ( function_exists( 'mroomy_decline_multiple_names' ) &&
+             !preg_match( '/^(chłopca|dziewczynki|rodzeństwa|dzieci)/', $beneficiary ) ) {
+            $beneficiary_declined = mroomy_decline_multiple_names( $beneficiary );
+            $result['beneficiary'] = 'Projekt dla ' . $beneficiary_declined;
+        } else {
+            $result['beneficiary'] = $beneficiary;
+        }
     }
 
     return $result;
