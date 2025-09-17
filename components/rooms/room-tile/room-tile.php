@@ -84,11 +84,11 @@ function mroomy_room_tile( $args = array() ) {
         'group'
     );
 
-    // Add size-specific max-width
+    // Add size-specific fixed width
     $size_classes = array(
-        'large'  => 'max-w-[386px]',
-        'medium' => 'max-w-[216px]',
-        'small'  => 'max-w-[163px]'
+        'large'  => 'w-[386px]',
+        'medium' => 'w-[216px]',
+        'small'  => 'w-[163px]'
     );
     if ( isset( $size_classes[ $args['size'] ] ) ) {
         $css_classes[] = $size_classes[ $args['size'] ];
