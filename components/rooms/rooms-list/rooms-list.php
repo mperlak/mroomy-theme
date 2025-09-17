@@ -104,10 +104,10 @@ function mroomy_rooms_list( $args = array() ) {
     $additional_classes = ! empty( $args['class'] ) ? ' ' . $args['class'] : '';
 
     ?>
-    <section class="py-20 relative<?php echo esc_attr( $additional_classes ); ?>">
+    <section class="py-20 relative overflow-x-clip<?php echo esc_attr( $additional_classes ); ?>">
         <div class="max-w-[1440px] mx-auto">
             <?php if ( $args['show_header'] ) : ?>
-                <div class="flex justify-between items-center mb-8">
+                <div class="flex justify-between items-center mb-8 px-[107px]">
                     <h2 class="font-nunito font-extrabold text-[40px] leading-[1.25] text-neutral-text m-0">
                         <?php echo esc_html( $args['title'] ); ?>
                     </h2>
@@ -121,10 +121,14 @@ function mroomy_rooms_list( $args = array() ) {
                 </div>
             <?php endif; ?>
 
-            <div class="relative">
             <?php if ( $args['enable_carousel'] ) : ?>
                 <!-- Swiper container -->
-                <div class="swiper overflow-hidden pl-[107px]" id="<?php echo esc_attr( $carousel_id ); ?>">
+                <style>
+                    #<?php echo esc_attr( $carousel_id ); ?> {
+                        overflow: visible !important;
+                    }
+                </style>
+                <div class="swiper pl-[107px]" id="<?php echo esc_attr( $carousel_id ); ?>">
                     <div class="swiper-wrapper">
                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                             <div class="swiper-slide !w-auto">
@@ -144,7 +148,7 @@ function mroomy_rooms_list( $args = array() ) {
                 document.addEventListener('DOMContentLoaded', function() {
                     const swiper_<?php echo esc_js( str_replace( '-', '_', $carousel_id ) ); ?> = new Swiper('#<?php echo esc_js( $carousel_id ); ?>', {
                         slidesPerView: 'auto',  // Automatyczna szerokość slajdów
-                        spaceBetween: 32,
+                        spaceBetween: 24,
                         loop: false,
                         freeMode: true,  // Pozwala na swobodne przewijanie
                         watchOverflow: true,  // Ukrywa nawigację gdy wszystkie slajdy się mieszczą
@@ -155,11 +159,11 @@ function mroomy_rooms_list( $args = array() ) {
                             },
                             768: {
                                 slidesPerView: 'auto',
-                                spaceBetween: 24
+                                spaceBetween: 20
                             },
                             1024: {
                                 slidesPerView: 'auto',
-                                spaceBetween: 32
+                                spaceBetween: 24
                             }
                         }
                     });
@@ -179,7 +183,6 @@ function mroomy_rooms_list( $args = array() ) {
                     <?php endwhile; ?>
                 </div>
             <?php endif; ?>
-            </div>
         </div>
     </section>
     <?php
