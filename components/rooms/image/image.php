@@ -38,17 +38,25 @@ function mroomy_room_image( $args = array() ) {
 
     $args = wp_parse_args( $args, $defaults );
 
+    // Debug - sprawdzamy co otrzymujemy
+    // echo "<!-- Debug: Received size: {$args['size']} -->";
+
+    // Określ rozmiar obrazka na podstawie size
+    // Jeśli już mamy room-tile-*, użyj tego bezpośrednio
+    if ( strpos( $args['size'], 'room-tile-' ) === 0 ) {
+        $wp_size = $args['size'];
+    } elseif ( $args['size'] === 'large' ) {
+        $wp_size = 'room-tile-large';
+    } elseif ( $args['size'] === 'medium' ) {
+        $wp_size = 'room-tile-medium';
+    } elseif ( $args['size'] === 'small' ) {
+        $wp_size = 'room-tile-small';
+    } else {
+        $wp_size = 'full';
+    }
+
     // Pobierz obrazek z WordPress jeśli podano ID
     if ( $args['image_id'] ) {
-        // Określ rozmiar obrazka na podstawie size
-        $wp_size = 'full';
-        if ( $args['size'] === 'large' ) {
-            $wp_size = 'room-tile-large';
-        } elseif ( $args['size'] === 'medium' ) {
-            $wp_size = 'room-tile-medium';
-        } elseif ( $args['size'] === 'small' ) {
-            $wp_size = 'room-tile-small';
-        }
 
         // Sprawdź czy rozmiar istnieje, jeśli nie - użyj full
         $registered_sizes = get_intermediate_image_sizes();
@@ -70,12 +78,14 @@ function mroomy_room_image( $args = array() ) {
 
     // Mapowanie proporcji na Tailwind classes
     $aspect_classes = array(
-        '1:1'   => 'aspect-square',
-        '5:4'   => 'aspect-[5/4]',
-        '4:3'   => 'aspect-[4/3]',
-        '3:2'   => 'aspect-[3/2]',
-        '16:9'  => 'aspect-video',
-        '2:1'   => 'aspect-[2/1]'
+        '1:1'     => 'aspect-square',
+        '5:4'     => 'aspect-[5/4]',
+        '4:5'     => 'aspect-[4/5]',
+        '386:491' => 'aspect-[386/491]',  // Dokładna proporcja z Figmy
+        '4:3'     => 'aspect-[4/3]',
+        '3:2'     => 'aspect-[3/2]',
+        '16:9'    => 'aspect-video',
+        '2:1'     => 'aspect-[2/1]'
     );
 
     $aspect_class = isset( $aspect_classes[ $args['aspect_ratio'] ] ) ? $aspect_classes[ $args['aspect_ratio'] ] : 'aspect-video';
@@ -98,6 +108,7 @@ function mroomy_room_image( $args = array() ) {
     <div class="<?php echo esc_attr( $class_string ); ?>">
         <?php if ( $args['image_id'] ) : ?>
             <?php
+            // echo "<!-- Debug: Using size: $wp_size for image ID: {$args['image_id']} -->";
             // Użyj wp_get_attachment_image dla lepszego wsparcia srcset
             echo wp_get_attachment_image(
                 $args['image_id'],

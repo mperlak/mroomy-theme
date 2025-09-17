@@ -62,27 +62,28 @@ function mroomy_room_category_tag( $args = array() ) {
         'inline-flex',
         'items-center',
         'px-3',
-        'py-1',
-        'rounded-full',
-        'text-label',
+        'py-1.5',
+        'rounded-md',  // More rounded like in Figma
         'font-nunito',
         'font-semibold',
+        'text-[14px]',
+        'leading-[18px]',
         'backdrop-blur-sm'
     );
 
-    // Add category-specific colors
+    // Add category-specific colors (from Figma: #9ecbeb for boy)
     if ( in_array( $slug, array( 'pokoje-dla-chlopcow' ) ) ) {
-        $base_classes[] = 'bg-blue-100/90';
-        $base_classes[] = 'text-blue-700';
+        $base_classes[] = 'bg-[#9ecbeb]/90';
+        $base_classes[] = 'text-black/75';  // rgba(0,0,0,0.75) from Figma
     } elseif ( in_array( $slug, array( 'pokoje-dla-dziewczynek' ) ) ) {
-        $base_classes[] = 'bg-pink-100/90';
-        $base_classes[] = 'text-pink-700';
+        $base_classes[] = 'bg-pink-200/90';
+        $base_classes[] = 'text-black/75';
     } elseif ( in_array( $slug, array( 'pokoje-dla-rodzenstwa' ) ) ) {
-        $base_classes[] = 'bg-purple-100/90';
-        $base_classes[] = 'text-purple-700';
+        $base_classes[] = 'bg-purple-200/90';
+        $base_classes[] = 'text-black/75';
     } else {
-        $base_classes[] = 'bg-gray-100/90';
-        $base_classes[] = 'text-gray-700';
+        $base_classes[] = 'bg-gray-200/90';
+        $base_classes[] = 'text-black/75';
     }
 
     $css_classes = $base_classes;

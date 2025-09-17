@@ -99,14 +99,12 @@ module.exports = {
     'mt-18', 'mt-22', 'mt-26', 'mt-30',
     'mb-18', 'mb-22', 'mb-26', 'mb-30',
     // Aspect ratios
-    'aspect-square', 'aspect-video', 'aspect-[4/3]', 'aspect-[3/2]', 'aspect-[5/4]', 'aspect-[2/1]',
+    'aspect-square', 'aspect-video', 'aspect-[4/3]', 'aspect-[4/5]', 'aspect-[3/2]', 'aspect-[5/4]', 'aspect-[2/1]', 'aspect-[386/491]',
     // Position utilities for tags
     'absolute', 'bottom-4', 'left-4', 'bottom-3', 'left-3',
     // Colors for category tags
-    'bg-blue-100/90', 'text-blue-700',
-    'bg-pink-100/90', 'text-pink-700',
-    'bg-purple-100/90', 'text-purple-700',
-    'bg-gray-100/90', 'text-gray-700',
+    'bg-[#9ecbeb]/90', 'bg-pink-200/90', 'bg-purple-200/90', 'bg-gray-200/90',
+    'text-black/75', 'py-2', 'px-3', 'rounded-sm',
     // Text colors
     'text-neutral-text-secondary', 'text-primary-hover',
     // Flex utilities

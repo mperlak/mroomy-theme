@@ -140,14 +140,14 @@ function mroomy_rooms_list( $args = array() ) {
 
                 <!-- Navigation buttons -->
                 <div class="absolute top-1/2 -translate-y-1/2 left-0 right-0 flex justify-between pointer-events-none z-10">
-                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-button hover:shadow-button-hover hover:bg-primary hover:border-primary group ml-[82px]" id="<?php echo esc_attr( $carousel_id ); ?>-prev" aria-label="Previous slide">
+                    <button class="w-10 h-10 rounded-full bg-white/95 border border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-sm hover:shadow-md hover:bg-white group -ml-5" id="<?php echo esc_attr( $carousel_id ); ?>-prev" aria-label="Previous slide">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-white transition-colors duration-200"/>
+                            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-primary transition-colors duration-200"/>
                         </svg>
                     </button>
-                    <button class="w-12 h-12 rounded-full bg-white border-2 border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-button hover:shadow-button-hover hover:bg-primary hover:border-primary group mr-[82px]" id="<?php echo esc_attr( $carousel_id ); ?>-next" aria-label="Next slide">
+                    <button class="w-10 h-10 rounded-full bg-white/95 border border-neutral-container-border flex items-center justify-center cursor-pointer pointer-events-auto transition-all duration-200 shadow-sm hover:shadow-md hover:bg-white group -mr-5" id="<?php echo esc_attr( $carousel_id ); ?>-next" aria-label="Next slide">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-white transition-colors duration-200"/>
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="stroke-neutral-text group-hover:stroke-primary transition-colors duration-200"/>
                         </svg>
                     </button>
                 </div>
@@ -157,7 +157,7 @@ function mroomy_rooms_list( $args = array() ) {
                 document.addEventListener('DOMContentLoaded', function() {
                     const swiper_<?php echo esc_js( str_replace( '-', '_', $carousel_id ) ); ?> = new Swiper('#<?php echo esc_js( $carousel_id ); ?>', {
                         slidesPerView: 1,
-                        spaceBetween: 24,
+                        spaceBetween: 32,
                         loop: false,
                         navigation: {
                             nextEl: '#<?php echo esc_js( $carousel_id ); ?>-next',
@@ -166,15 +166,15 @@ function mroomy_rooms_list( $args = array() ) {
                         breakpoints: {
                             640: {
                                 slidesPerView: 2,
-                                spaceBetween: 20
+                                spaceBetween: 24
                             },
                             768: {
                                 slidesPerView: 3,
-                                spaceBetween: 24
+                                spaceBetween: 32
                             },
                             1024: {
                                 slidesPerView: 4,
-                                spaceBetween: 24
+                                spaceBetween: 32
                             }
                         }
                     });
@@ -183,7 +183,7 @@ function mroomy_rooms_list( $args = array() ) {
 
             <?php else : ?>
                 <!-- Grid layout -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                     <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                         <?php
                         mroomy_room_tile( array(

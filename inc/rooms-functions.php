@@ -156,9 +156,9 @@ function mroomy_room_is_for( $category, $post_id = null ) {
  * Register custom image sizes for room tiles
  */
 function mroomy_register_room_image_sizes() {
-    add_image_size( 'room-tile-large', 386, 290, true );
-    add_image_size( 'room-tile-medium', 216, 162, true );
-    add_image_size( 'room-tile-small', 163, 122, true );
+    add_image_size( 'room-tile-large', 386, 491, true );  // szerokość x wysokość jak w Figmie
+    add_image_size( 'room-tile-medium', 216, 275, true );  // zachowując proporcje
+    add_image_size( 'room-tile-small', 163, 207, true );   // zachowując proporcje
 }
 add_action( 'after_setup_theme', 'mroomy_register_room_image_sizes' );
 

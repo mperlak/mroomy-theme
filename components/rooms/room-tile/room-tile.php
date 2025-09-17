@@ -91,19 +91,19 @@ function mroomy_room_tile( $args = array() ) {
 
     // Determine image size based on tile size
     $image_sizes = array(
-        'large'  => 'large',
-        'medium' => 'medium',
-        'small'  => 'small'
+        'large'  => 'room-tile-large',
+        'medium' => 'room-tile-medium',
+        'small'  => 'room-tile-small'
     );
-    $image_size = isset( $image_sizes[ $args['size'] ] ) ? $image_sizes[ $args['size'] ] : 'large';
+    $image_size = isset( $image_sizes[ $args['size'] ] ) ? $image_sizes[ $args['size'] ] : 'room-tile-large';
 
-    // Determine aspect ratio based on tile size
+    // Determine aspect ratio based on tile size (386:491 ≈ 4:5)
     $aspect_ratios = array(
-        'large'  => '4:3',
-        'medium' => '4:3',
-        'small'  => '4:3'
+        'large'  => '386:491',  // Exact Figma ratio (szerokość:wysokość)
+        'medium' => '386:491',
+        'small'  => '386:491'
     );
-    $aspect_ratio = isset( $aspect_ratios[ $args['size'] ] ) ? $aspect_ratios[ $args['size'] ] : '4:3';
+    $aspect_ratio = isset( $aspect_ratios[ $args['size'] ] ) ? $aspect_ratios[ $args['size'] ] : '386:491';
 
     // Load required components
     mroomy_load_room_component( 'image' );
@@ -112,7 +112,7 @@ function mroomy_room_tile( $args = array() ) {
     ?>
     <article class="<?php echo esc_attr( implode( ' ', array_filter( $css_classes ) ) ); ?>">
         <?php if ( $thumbnail_data ) : ?>
-            <div class="relative">
+            <div class="relative rounded-lg overflow-hidden">
                 <?php
                 mroomy_room_image( array(
                     'image_id'     => $thumbnail_data['id'],
@@ -123,7 +123,7 @@ function mroomy_room_tile( $args = array() ) {
                 ?>
 
                 <?php if ( $args['show_tags'] ) : ?>
-                    <div class="absolute bottom-4 left-4 flex gap-2 flex-wrap">
+                    <div class="absolute top-4 left-4 flex gap-3 flex-wrap">
                         <?php
                         mroomy_room_category_tags( array(
                             'post_id' => $post_id
@@ -134,32 +134,30 @@ function mroomy_room_tile( $args = array() ) {
             </div>
         <?php endif; ?>
 
-        <div class="p-6 flex flex-col flex-grow">
+        <div class="p-6 flex flex-col gap-3 flex-grow">
             <?php if ( $args['show_title'] ) : ?>
-                <h3 class="font-nunito font-bold text-headline-small text-neutral-text mb-2">
-                    <a href="<?php echo esc_url( $button_url ); ?>" class="hover:text-primary transition-colors duration-200">
-                        <?php echo esc_html( $title_data['main'] ); ?>
-                    </a>
+                <h3 class="font-nunito font-extrabold text-[24px] leading-[30px] text-neutral-text">
+                    <?php echo esc_html( $title_data['main'] ); ?>
                 </h3>
             <?php endif; ?>
 
-            <?php if ( $args['show_excerpt'] && $excerpt ) : ?>
-                <div class="text-body-2 text-neutral-text-secondary mb-3 line-clamp-2">
-                    <?php echo esc_html( $excerpt ); ?>
-                </div>
-            <?php endif; ?>
-
             <?php if ( $args['show_beneficiary'] && ! empty( $title_data['beneficiary'] ) ) : ?>
-                <div class="text-body-2 text-primary font-semibold mb-4">
+                <div class="font-nunito font-semibold text-body-1 text-neutral-text-subtlest">
                     <?php echo esc_html( $title_data['beneficiary'] ); ?>
                 </div>
             <?php endif; ?>
 
+            <?php if ( $args['show_excerpt'] && $excerpt ) : ?>
+                <div class="font-nunito font-normal text-[14px] leading-[20px] text-neutral-text-subtle line-clamp-2">
+                    <?php echo esc_html( $excerpt ); ?>
+                </div>
+            <?php endif; ?>
+
             <?php if ( $args['show_actions'] ) : ?>
-                <div class="mt-auto">
-                    <a href="<?php echo esc_url( $button_url ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-bold text-body-1 transition-all duration-200 group">
+                <div class="mt-auto pt-2">
+                    <a href="<?php echo esc_url( $button_url ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-bold text-[14px] leading-[18px] transition-all duration-200 group">
                         <?php echo esc_html( $args['button_text'] ); ?>
-                        <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
