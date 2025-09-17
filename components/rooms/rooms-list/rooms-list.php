@@ -123,10 +123,10 @@ function mroomy_rooms_list( $args = array() ) {
         <div class="container mx-auto max-w-[1440px] px-4 sm:px-8 lg:px-12 xl:px-16 relative">
             <?php if ( $args['enable_carousel'] ) : ?>
                 <!-- Swiper container -->
-                <div class="swiper" id="<?php echo esc_attr( $carousel_id ); ?>">
+                <div class="swiper overflow-hidden" id="<?php echo esc_attr( $carousel_id ); ?>">
                     <div class="swiper-wrapper">
                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                            <div class="swiper-slide w-auto">
+                            <div class="swiper-slide !w-auto">
                                 <?php
                                 mroomy_room_tile( array(
                                     'post_id' => get_the_ID(),
@@ -159,6 +159,7 @@ function mroomy_rooms_list( $args = array() ) {
                         slidesPerView: 'auto',  // Automatyczna szerokość slajdów
                         spaceBetween: 32,
                         loop: false,
+                        freeMode: true,  // Pozwala na swobodne przewijanie
                         watchOverflow: true,  // Ukrywa nawigację gdy wszystkie slajdy się mieszczą
                         navigation: {
                             nextEl: '#<?php echo esc_js( $carousel_id ); ?>-next',
