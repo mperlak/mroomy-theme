@@ -105,22 +105,23 @@ function mroomy_rooms_list( $args = array() ) {
 
     ?>
     <section class="py-20 relative<?php echo esc_attr( $additional_classes ); ?>">
-        <?php if ( $args['show_header'] ) : ?>
-            <div class="max-w-[1440px] mx-auto px-[106px] flex justify-between items-center mb-8">
-                <h2 class="font-nunito font-extrabold text-[40px] leading-[1.25] text-neutral-text m-0">
-                    <?php echo esc_html( $args['title'] ); ?>
-                </h2>
+        <div class="max-w-[1440px] mx-auto">
+            <?php if ( $args['show_header'] ) : ?>
+                <div class="px-[106px] flex justify-between items-center mb-8">
+                    <h2 class="font-nunito font-extrabold text-[40px] leading-[1.25] text-neutral-text m-0">
+                        <?php echo esc_html( $args['title'] ); ?>
+                    </h2>
 
-                <a href="<?php echo esc_url( $args['button_url'] ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-extrabold text-body-2 transition-all duration-200 group">
-                    <?php echo esc_html( $args['button_text'] ); ?>
-                    <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </a>
-            </div>
-        <?php endif; ?>
+                    <a href="<?php echo esc_url( $args['button_url'] ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-extrabold text-body-2 transition-all duration-200 group">
+                        <?php echo esc_html( $args['button_text'] ); ?>
+                        <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+                </div>
+            <?php endif; ?>
 
-        <div class="max-w-[1440px] mx-auto relative">
+            <div class="relative">
             <?php if ( $args['enable_carousel'] ) : ?>
                 <!-- Swiper container -->
                 <div class="swiper overflow-hidden pl-[107px]" id="<?php echo esc_attr( $carousel_id ); ?>">
@@ -178,6 +179,7 @@ function mroomy_rooms_list( $args = array() ) {
                     <?php endwhile; ?>
                 </div>
             <?php endif; ?>
+            </div>
         </div>
     </section>
     <?php
