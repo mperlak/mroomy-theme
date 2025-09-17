@@ -78,10 +78,6 @@ function mroomy_room_tile( $args = array() ) {
         'bg-white',
         'rounded-t-lg',  // Zaokrąglenie tylko na górze
         'overflow-hidden',
-        'shadow-card',
-        'hover:shadow-card-hover',
-        'transition-shadow',
-        'duration-200',
         'flex',
         'flex-col',
         'h-full',
