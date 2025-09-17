@@ -156,7 +156,7 @@ function mroomy_rooms_list( $args = array() ) {
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const swiper_<?php echo esc_js( str_replace( '-', '_', $carousel_id ) ); ?> = new Swiper('#<?php echo esc_js( $carousel_id ); ?>', {
-                        slidesPerView: 1,
+                        slidesPerView: 3.5,  // Dokładnie jak w Figmie - 3.5 karty
                         spaceBetween: 32,
                         loop: false,
                         navigation: {
@@ -165,15 +165,15 @@ function mroomy_rooms_list( $args = array() ) {
                         },
                         breakpoints: {
                             640: {
-                                slidesPerView: 2,
+                                slidesPerView: 1.5,
                                 spaceBetween: 24
                             },
                             768: {
-                                slidesPerView: 3,
+                                slidesPerView: 2.5,
                                 spaceBetween: 32
                             },
                             1024: {
-                                slidesPerView: 4,
+                                slidesPerView: 3.5,
                                 spaceBetween: 32
                             }
                         }
