@@ -11,7 +11,7 @@ mroomy_load_room_component( 'rooms-list' );
 
 ?>
 
-<div class="bg-white min-h-screen">
+<div class="bg-white min-h-screen overflow-x-hidden">
 <div class="container mx-auto">
     <div class="p-8">
         <h1 class="text-3xl font-bold mb-6">Test komponentu Rooms List</h1>

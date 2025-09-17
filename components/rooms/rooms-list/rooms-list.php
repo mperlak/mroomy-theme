@@ -105,7 +105,7 @@ function mroomy_rooms_list( $args = array() ) {
 
     ?>
     <section class="py-20 relative<?php echo esc_attr( $additional_classes ); ?>">
-        <div class="max-w-[1440px] mx-auto">
+        <div class="max-w-[1440px] mx-auto overflow-x-visible">
             <?php if ( $args['show_header'] ) : ?>
                 <div class="flex justify-between items-center mb-8">
                     <h2 class="font-nunito font-extrabold text-[40px] leading-[1.25] text-neutral-text m-0">
@@ -121,10 +121,17 @@ function mroomy_rooms_list( $args = array() ) {
                 </div>
             <?php endif; ?>
 
-            <div class="relative">
             <?php if ( $args['enable_carousel'] ) : ?>
                 <!-- Swiper container -->
-                <div class="swiper overflow-hidden pl-[107px]" id="<?php echo esc_attr( $carousel_id ); ?>">
+                <style>
+                    #<?php echo esc_attr( $carousel_id ); ?> {
+                        overflow: visible !important;
+                    }
+                    #<?php echo esc_attr( $carousel_id ); ?> .swiper-wrapper {
+                        overflow: visible !important;
+                    }
+                </style>
+                <div class="swiper" id="<?php echo esc_attr( $carousel_id ); ?>">
                     <div class="swiper-wrapper">
                         <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                             <div class="swiper-slide !w-auto">
@@ -179,7 +186,6 @@ function mroomy_rooms_list( $args = array() ) {
                     <?php endwhile; ?>
                 </div>
             <?php endif; ?>
-            </div>
         </div>
     </section>
     <?php
