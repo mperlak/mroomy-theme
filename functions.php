@@ -186,6 +186,16 @@ require get_template_directory() . '/inc/class-mroomy-mobile-walker.php';
 require_once get_template_directory() . '/inc/components/button.php';
 require_once get_template_directory() . '/inc/components/carousel.php';
 
+// Load rooms functions if exists
+if ( file_exists( get_template_directory() . '/inc/rooms-functions.php' ) ) {
+    require_once get_template_directory() . '/inc/rooms-functions.php';
+}
+
+// Load ACF Rooms Showcase block if ACF is active
+if ( function_exists( 'acf_register_block_type' ) ) {
+    require_once get_template_directory() . '/blocks/acf-rooms-showcase/register.php';
+}
+
 /**
  * Enqueue scripts and styles with Vite
  */
@@ -374,10 +384,7 @@ function mroomy_s_mobile_menu_fallback() {
 // Panel migracji (tymczasowo - usuń po zakończeniu migracji na produkcji)
 require_once get_stylesheet_directory() . '/migration/run-migration-admin.php';
 
-/**
- * Room components functionality
- */
-require get_template_directory() . '/inc/rooms-functions.php';
+// Room components functionality is already loaded above at line 191
 
 // Wrapper dla kompatybilności z Toolset (opcjonalne)
 // require_once get_stylesheet_directory() . '/migration/06-compatibility-wrapper.php';

@@ -45,6 +45,7 @@ function mroomy_rooms_list( $args = array() ) {
         'tile_size'       => 'large',
         'enable_carousel' => true,
         'show_header'     => true,
+        'show_actions'    => true,   // Add parameter for tile buttons
         'class'           => ''
     );
 
@@ -144,7 +145,8 @@ function mroomy_rooms_list( $args = array() ) {
                                         mroomy_room_tile( array(
                                             'post_id' => get_the_ID(),
                                             'size'    => 'mobile',
-                                            'is_mobile' => true
+                                            'is_mobile' => true,
+                                            'show_actions' => $args['show_actions']
                                         ) );
                                         ?>
                                     </div>
@@ -154,7 +156,8 @@ function mroomy_rooms_list( $args = array() ) {
                                         mroomy_room_tile( array(
                                             'post_id' => get_the_ID(),
                                             'size'    => $args['tile_size'],
-                                            'is_mobile' => false
+                                            'is_mobile' => false,
+                                            'show_actions' => $args['show_actions']
                                         ) );
                                         ?>
                                     </div>
@@ -209,7 +212,8 @@ function mroomy_rooms_list( $args = array() ) {
                         <?php
                         mroomy_room_tile( array(
                             'post_id' => get_the_ID(),
-                            'size'    => $args['tile_size']
+                            'size'    => $args['tile_size'],
+                            'show_actions' => $args['show_actions']
                         ) );
                         ?>
                     <?php endwhile; ?>

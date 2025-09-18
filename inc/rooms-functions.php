@@ -43,7 +43,7 @@ function mroomy_enqueue_room_styles() {
 
     // DISABLED: Components are now using Tailwind classes only
     // Check if we should load room styles
-    if ( is_singular( 'pokoje-dla-dzieci' ) || has_block( 'mroomy/rooms-showcase' ) || is_post_type_archive( 'pokoje-dla-dzieci' ) || is_page() ) {
+    if ( is_singular( 'pokoje-dla-dzieci' ) || has_block( 'acf/acf-rooms-showcase' ) || is_post_type_archive( 'pokoje-dla-dzieci' ) || is_page() ) {
 
         // Check if combined CSS file exists
         $combined_css = get_template_directory() . '/components/rooms/rooms-all.css';
@@ -213,17 +213,8 @@ function mroomy_register_room_image_sizes() {
 }
 add_action( 'after_setup_theme', 'mroomy_register_room_image_sizes' );
 
-/**
- * Register Rooms Showcase block
- */
-function mroomy_register_rooms_showcase_block() {
-    $block_path = get_template_directory() . '/blocks/rooms-showcase';
-
-    if ( file_exists( $block_path . '/block.json' ) ) {
-        register_block_type( $block_path );
-    }
-}
-add_action( 'init', 'mroomy_register_rooms_showcase_block' );
+// Rooms Showcase block is now registered as ACF Block
+// See: /blocks/acf-rooms-showcase/register.php
 
 /**
  * Load room components on init
@@ -246,7 +237,7 @@ function mroomy_enqueue_swiper_assets() {
 
     // Check for specific conditions
     if ( is_singular( 'pokoje-dla-dzieci' ) ||
-         has_block( 'mroomy/rooms-showcase' ) ||
+         has_block( 'acf/acf-rooms-showcase' ) ||
          is_post_type_archive( 'pokoje-dla-dzieci' ) ) {
         $needs_swiper = true;
     }
