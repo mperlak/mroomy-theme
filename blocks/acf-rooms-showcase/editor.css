@@ -77,10 +77,36 @@
     border: 1px solid #e0e0e0;
 }
 
+/* Editor carousel grid layout */
+.editor-carousel-grid {
+    overflow-x: visible !important;
+}
+
+.editor-carousel-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.editor-carousel-wrapper .swiper-slide {
+    width: 100% !important;
+    max-width: 386px;
+}
+
+/* Disable swiper specific styles in editor */
+.acf-rooms-showcase-preview .swiper-slide {
+    flex-shrink: 1 !important;
+    width: auto !important;
+}
+
 /* Make sure tiles are visible in narrow editor */
 @media (max-width: 600px) {
     .editor-styles-wrapper .room-tile-large {
         width: 100% !important;
         max-width: 386px;
+    }
+
+    .editor-carousel-wrapper {
+        grid-template-columns: 1fr;
     }
 }

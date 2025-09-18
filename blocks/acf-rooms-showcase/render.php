@@ -19,6 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 // Room components are loaded in functions.php
 
+// Set global variable for preview mode
+$GLOBALS['is_preview'] = $is_preview;
+
 // Get ACF field values
 $title              = get_field( 'title' ) ?: 'Najlepsze projekty';
 $button_text        = get_field( 'button_text' ) ?: 'Zobacz wszystkie Projekty';

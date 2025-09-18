@@ -133,10 +133,16 @@ function mroomy_rooms_list( $args = array() ) {
             <?php endif; ?>
 
             <?php if ( $args['enable_carousel'] ) : ?>
+                <?php
+                // Check if we're in the block editor
+                $is_editor = defined( 'REST_REQUEST' ) && REST_REQUEST && isset( $_GET['context'] ) && $_GET['context'] === 'edit';
+                $is_acf_preview = isset( $GLOBALS['is_preview'] ) && $GLOBALS['is_preview'];
+                $disable_swiper = $is_editor || $is_acf_preview;
+                ?>
                 <!-- Swiper container with mobile padding -->
                 <div class="px-4 sm:px-6 lg:px-0">
-                    <div class="swiper -mx-4 sm:-mx-6 lg:mx-0 px-4 sm:px-6 lg:px-0" id="<?php echo esc_attr( $carousel_id ); ?>">
-                        <div class="swiper-wrapper">
+                    <div class="<?php echo $disable_swiper ? 'editor-carousel-grid' : 'swiper'; ?> -mx-4 sm:-mx-6 lg:mx-0 px-4 sm:px-6 lg:px-0" id="<?php echo esc_attr( $carousel_id ); ?>">
+                        <div class="<?php echo $disable_swiper ? 'editor-carousel-wrapper' : 'swiper-wrapper'; ?>">
                             <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                                 <div class="swiper-slide !w-[216px] lg:!w-[386px]">
                                     <div class="block lg:hidden">
@@ -168,6 +174,7 @@ function mroomy_rooms_list( $args = array() ) {
                 </div>
 
                 <!-- Initialize Swiper -->
+                <?php if ( ! $disable_swiper ) : ?>
                 <script>
                 document.addEventListener('DOMContentLoaded', function() {
                     const swiper_<?php echo esc_js( str_replace( '-', '_', $carousel_id ) ); ?> = new Swiper('#<?php echo esc_js( $carousel_id ); ?>', {
@@ -204,6 +211,7 @@ function mroomy_rooms_list( $args = array() ) {
                     });
                 });
                 </script>
+                <?php endif; ?>
 
             <?php else : ?>
                 <!-- Grid layout -->
