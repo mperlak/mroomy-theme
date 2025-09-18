@@ -42,7 +42,5 @@
         }
     },
     "textdomain": "mroomy",
-    "editorScript": "file:./index.js",
-    "editorStyle": "file:./editor.scss",
     "render": "file:./render.php"
 }

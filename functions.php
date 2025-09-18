@@ -282,7 +282,19 @@ function mroomy_s_register_blocks() {
         if (defined('WP_DEBUG') && WP_DEBUG) {
             error_log('[mroomy/top-stats] registering block from ' . $top_stats);
         }
-        register_block_type($top_stats);
+
+        // Register the editor script first
+        wp_register_script(
+            'mroomy-top-stats-editor',
+            get_template_directory_uri() . '/dist/blocks/top-stats-editor.js',
+            array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n'),
+            filemtime(get_template_directory() . '/dist/blocks/top-stats-editor.js'),
+            true
+        );
+
+        register_block_type($top_stats, array(
+            'editor_script' => 'mroomy-top-stats-editor'
+        ));
     }
 }
 add_action('init', 'mroomy_s_register_blocks');

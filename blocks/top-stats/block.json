@@ -4,7 +4,7 @@
 	"name": "mroomy/top-stats",
 	"version": "0.1.0",
 	"title": "Top Stats",
-	"category": "design",
+	"category": "widgets",
 	"icon": "chart-bar",
 	"description": "Display statistics with numbers, descriptions, images and optional buttons.",
 	"example": {
@@ -79,6 +79,5 @@
 		}
 	},
 	"textdomain": "mroomy_s",
-	"editorScript": "file:./editor.js",
 	"render": "file:./render.php"
 }
