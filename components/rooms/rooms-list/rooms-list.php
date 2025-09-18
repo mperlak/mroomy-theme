@@ -104,37 +104,63 @@ function mroomy_rooms_list( $args = array() ) {
     $additional_classes = ! empty( $args['class'] ) ? ' ' . $args['class'] : '';
 
     ?>
-    <section class="py-20 overflow-hidden<?php echo esc_attr( $additional_classes ); ?>">
-        <div class="px-[104px]">
+    <section class="py-12 sm:py-16 lg:py-20 overflow-hidden<?php echo esc_attr( $additional_classes ); ?>">
+        <div class="lg:px-[104px]">
             <?php if ( $args['show_header'] ) : ?>
-                <div class="flex justify-between items-center mb-8">
-                    <h2 class="font-nunito font-extrabold text-[40px] leading-[1.25] text-neutral-text m-0">
+                <!-- Mobile header -->
+                <div class="flex justify-between items-center mb-6 lg:mb-8 px-4 sm:px-6 lg:px-0">
+                    <h2 class="font-nunito font-extrabold text-[24px] sm:text-[32px] lg:text-[40px] leading-[30px] sm:leading-[1.25] text-neutral-text m-0">
                         <?php echo esc_html( $args['title'] ); ?>
                     </h2>
 
-                    <a href="<?php echo esc_url( $args['button_url'] ); ?>" class="inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-extrabold text-body-2 transition-all duration-200 group">
+                    <!-- Desktop button -->
+                    <a href="<?php echo esc_url( $args['button_url'] ); ?>" class="hidden sm:inline-flex items-center gap-2 text-primary hover:text-primary-hover font-nunito font-extrabold text-body-2 transition-all duration-200 group">
                         <?php echo esc_html( $args['button_text'] ); ?>
                         <svg class="w-5 h-5 transition-transform duration-200 group-hover:translate-x-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M7.5 15L12.5 10L7.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </a>
+
+                    <!-- Mobile "Więcej" button -->
+                    <a href="<?php echo esc_url( $args['button_url'] ); ?>" class="sm:hidden inline-flex items-center gap-1 text-primary hover:text-primary-hover font-nunito font-extrabold text-[16px] leading-[20px] transition-all duration-200 group">
+                        <span class="px-1">Więcej</span>
+                        <svg class="w-6 h-6 transition-transform duration-200 group-hover:translate-x-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </a>
                 </div>
             <?php endif; ?>
 
             <?php if ( $args['enable_carousel'] ) : ?>
-                <!-- Swiper container -->
-                <div class="swiper" id="<?php echo esc_attr( $carousel_id ); ?>">
-                    <div class="swiper-wrapper">
-                        <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                            <div class="swiper-slide !w-auto">
-                                <?php
-                                mroomy_room_tile( array(
-                                    'post_id' => get_the_ID(),
-                                    'size'    => $args['tile_size']
-                                ) );
-                                ?>
-                            </div>
-                        <?php endwhile; ?>
+                <!-- Swiper container with mobile padding -->
+                <div class="px-4 sm:px-6 lg:px-0">
+                    <div class="swiper -mx-4 sm:-mx-6 lg:mx-0 px-4 sm:px-6 lg:px-0" id="<?php echo esc_attr( $carousel_id ); ?>">
+                        <div class="swiper-wrapper">
+                            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                                <div class="swiper-slide !w-[216px] lg:!w-[386px]">
+                                    <div class="block lg:hidden">
+                                        <?php
+                                        // Mobile version - always use mobile size
+                                        mroomy_room_tile( array(
+                                            'post_id' => get_the_ID(),
+                                            'size'    => 'mobile',
+                                            'is_mobile' => true
+                                        ) );
+                                        ?>
+                                    </div>
+                                    <div class="hidden lg:block">
+                                        <?php
+                                        // Desktop version
+                                        mroomy_room_tile( array(
+                                            'post_id' => get_the_ID(),
+                                            'size'    => $args['tile_size'],
+                                            'is_mobile' => false
+                                        ) );
+                                        ?>
+                                    </div>
+                                </div>
+                            <?php endwhile; ?>
+                        </div>
                     </div>
                 </div>
 
@@ -143,24 +169,30 @@ function mroomy_rooms_list( $args = array() ) {
                 document.addEventListener('DOMContentLoaded', function() {
                     const swiper_<?php echo esc_js( str_replace( '-', '_', $carousel_id ) ); ?> = new Swiper('#<?php echo esc_js( $carousel_id ); ?>', {
                         slidesPerView: 'auto',
-                        spaceBetween: 32,
+                        spaceBetween: 16, // Default mobile spacing
                         loop: false,
                         watchOverflow: true,
-                        freeMode: true,
+                        freeMode: {
+                            enabled: true,
+                            sticky: true
+                        },
                         mousewheel: {
                             forceToAxis: true,
                             sensitivity: 1,
                             releaseOnEdges: false
                         },
                         breakpoints: {
-                            640: {
+                            // Mobile
+                            0: {
                                 slidesPerView: 'auto',
                                 spaceBetween: 16
                             },
-                            768: {
+                            // Tablet
+                            640: {
                                 slidesPerView: 'auto',
                                 spaceBetween: 24
                             },
+                            // Desktop
                             1024: {
                                 slidesPerView: 'auto',
                                 spaceBetween: 32

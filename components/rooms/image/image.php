@@ -83,6 +83,7 @@ function mroomy_room_image( $args = array() ) {
         '5:4'     => 'aspect-[5/4]',
         '4:5'     => 'aspect-[4/5]',
         '386:491' => 'aspect-[386/491]',  // Dokładna proporcja z Figmy
+        '216:283' => 'aspect-[216/283]',  // Mobile proporcja z Figmy
         '4:3'     => 'aspect-[4/3]',
         '3:2'     => 'aspect-[3/2]',
         '16:9'    => 'aspect-video',
