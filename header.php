@@ -69,35 +69,38 @@
 		</div>
 
 		<!-- Desktop header -->
-		<div class="hidden lg:flex h-[88px] relative">
-			<div class="container max-w-[1440px] mx-auto px-8 lg:px-[106px] h-full">
-				<div class="flex items-center justify-between h-full">
-					<!-- Logo -->
-					<div class="shrink-0">
-						<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="block">
-							<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2025/09/mroomy_logo_2025_200px_wide_no_safespace.png' ) ); ?>"
-								 alt="<?php bloginfo( 'name' ); ?>"
-								 class="h-[27px] w-auto">
-						</a>
+		<div class="hidden lg:flex h-[88px] relative w-full">
+			<div class="px-8 lg:px-[104px] h-full w-full">
+				<div class="flex items-center justify-between h-full w-full">
+					<!-- Left side: Logo + Navigation -->
+					<div class="flex items-center">
+						<!-- Logo -->
+						<div class="shrink-0 w-[145px]">
+							<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home" class="block">
+								<img src="<?php echo esc_url( home_url( '/wp-content/uploads/2025/09/mroomy_logo_2025_200px_wide_no_safespace.png' ) ); ?>"
+									 alt="<?php bloginfo( 'name' ); ?>"
+									 class="h-[27px] w-auto">
+							</a>
+						</div>
+
+						<!-- Navigation -->
+						<nav class="flex items-center gap-10 ml-[64px]">
+							<?php
+							wp_nav_menu(
+								array(
+									'theme_location' => 'menu-1',
+									'container' => false,
+									'menu_class' => 'flex items-center gap-10 list-none',
+									'fallback_cb' => false,
+									'walker' => new Mroomy_Mega_Walker(),
+								)
+							);
+							?>
+						</nav>
 					</div>
 
-					<!-- Navigation -->
-					<nav class="flex flex-1 items-center justify-start gap-10 ml-16 static">
-						<?php
-						wp_nav_menu(
-							array(
-								'theme_location' => 'menu-1',
-								'container' => false,
-								'menu_class' => 'flex items-center gap-10 list-none',
-								'fallback_cb' => false,
-								'walker' => new Mroomy_Mega_Walker(),
-							)
-						);
-						?>
-					</nav>
-
 					<!-- Right side icons -->
-					<div class="flex items-center gap-6 lg:gap-[46px]">
+					<div class="flex items-center gap-[46px]">
 						<!-- Search -->
 						<button class="icon-link w-6 h-6 hover:opacity-70 transition-opacity" aria-label="Search">
 							<?php include get_template_directory() . '/assets/icons/search.svg'; ?>
