@@ -77,20 +77,37 @@
     border: 1px solid #e0e0e0;
 }
 
-/* Editor carousel grid layout */
+/* Editor carousel compact preview: single row, no scroll, max 4 tiles */
+.editor-carousel { position: relative; }
+
 .editor-carousel-grid {
-    overflow-x: visible !important;
+    overflow: hidden !important;
 }
 
 .editor-carousel-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 24px;
+    display: flex;
+    gap: 16px;
+    overflow: hidden;
+    align-items: stretch;
 }
 
-.editor-carousel-wrapper .swiper-slide {
-    width: 100% !important;
-    max-width: 386px;
+.editor-carousel-wrapper .swiper-slide { width: 216px !important; flex: 0 0 auto; }
+@media (min-width: 1024px) {
+    .editor-carousel-wrapper { gap: 32px; }
+    .editor-carousel-wrapper .swiper-slide { width: 386px !important; }
+}
+
+/* show only first 4 tiles in editor */
+.editor-carousel-wrapper .swiper-slide:nth-child(n+5) { display: none; }
+
+/* right fade for nicer cutoff */
+.editor-carousel::after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0; bottom: 0;
+    width: 64px;
+    pointer-events: none;
+    background: linear-gradient(to left, #fff, rgba(255,255,255,0));
 }
 
 /* Disable swiper specific styles in editor */

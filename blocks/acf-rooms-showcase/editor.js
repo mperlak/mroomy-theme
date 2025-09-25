@@ -61,6 +61,12 @@
                 acf.doAction('refresh');
             }
         });
+
+        acf.addAction('change_field/name=edge_right', function(field) {
+            if (window.acf && window.acf.doAction) {
+                acf.doAction('refresh');
+            }
+        });
     }
 
 })(jQuery);
