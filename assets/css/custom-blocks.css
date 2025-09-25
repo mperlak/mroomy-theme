@@ -83,3 +83,58 @@
    ======================================== */
 
 /* Tutaj dodawaj kolejne custom style dla swoich bloków */
+
+/* ========================================
+   ROOMS LIST: edge-right helper
+   - Align left edge to 1280px container
+   - Allow content to expand to the right
+   ======================================== */
+.rooms-edge-right {
+    --container-padding: max(1rem, calc((100vw - 1280px) / 2 + 2rem));
+}
+
+.rooms-edge-right__pl {
+    box-sizing: border-box;
+    padding-left: var(--container-padding);
+    padding-right: 1rem;
+}
+
+.rooms-edge-right__pl-pr {
+    box-sizing: border-box;
+    padding-left: var(--container-padding);
+    padding-right: 1rem;
+}
+
+.rooms-swiper-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.rooms-swiper-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: clamp(1rem, calc((100vw - 1280px) / 2 + 2rem), 10rem);
+    pointer-events: none;
+    background: linear-gradient(to left, #fff, rgba(255, 255, 255, 0));
+}
+
+.rooms-standard-container {
+    max-width: 80rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: clamp(1rem, calc((100vw - 1280px) / 2 + 1.5rem), 3.5rem);
+    padding-right: clamp(1rem, calc((100vw - 1280px) / 2 + 1.5rem), 3.5rem);
+}
+
+@media (min-width: 1024px) {
+    .rooms-edge-right__pl {
+        padding-right: 2rem;
+    }
+
+    .rooms-edge-right__pl-pr {
+        padding-right: 2rem;
+    }
+}

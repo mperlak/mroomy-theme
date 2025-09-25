@@ -160,7 +160,7 @@ function mroomy_s_scripts() {
 		'mroomy-custom-blocks',
 		get_template_directory_uri() . '/assets/css/custom-blocks.css',
 		array(),
-		_S_VERSION
+		filemtime( get_template_directory() . '/assets/css/custom-blocks.css' )
 	);
 
 	// Reusable button styles
@@ -390,7 +390,7 @@ add_action('wp_enqueue_scripts', 'moj_theme_scripts');
  * Add Tailwind classes to body
  */
 function add_body_classes($classes) {
-    $classes[] = 'bg-gray-50';
+    $classes[] = 'bg-white';
     return $classes;
 }
 add_filter('body_class', 'add_body_classes');

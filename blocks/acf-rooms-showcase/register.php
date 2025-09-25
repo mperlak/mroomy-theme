@@ -247,6 +247,16 @@ function mroomy_register_acf_rooms_showcase_fields() {
                     'width' => '50',
                 ),
             ),
+            array(
+                'key'           => 'field_rs_edge_right',
+                'label'         => 'Rozszerz w prawo (wyrównaj lewą krawędź do kontenera 1280px)',
+                'name'          => 'edge_right',
+                'type'          => 'true_false',
+                'default_value' => 0,
+                'ui'            => 1,
+                'ui_on_text'    => 'Tak',
+                'ui_off_text'   => 'Nie',
+            ),
         ),
         'location' => array(
             array(

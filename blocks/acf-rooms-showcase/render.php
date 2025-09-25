@@ -34,6 +34,7 @@ $tile_size          = get_field( 'tile_size' ) ?: 'large';
 $enable_carousel    = get_field( 'enable_carousel' );
 $show_header        = get_field( 'show_header' );
 $show_tile_buttons  = get_field( 'show_tile_buttons' );
+$edge_right         = get_field( 'edge_right' );
 
 // Build arguments array for mroomy_rooms_list
 $args = array(
@@ -44,6 +45,7 @@ $args = array(
     'enable_carousel' => $enable_carousel !== false, // Default true
     'show_header'     => $show_header !== false,    // Default true
     'class'           => ! empty( $block['className'] ) ? $block['className'] : '',
+    'edge_right'      => ! empty( $edge_right ),
 );
 
 // Pass show_actions parameter for tile buttons
