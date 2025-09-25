@@ -1,0 +1,95 @@
+/**
+ * Stackable Blocks Typography Overrides
+ * Ensures proper font families are applied
+ */
+
+/* Import Google Fonts if not already loaded */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Nunito+Sans:wght@400;600&display=swap');
+
+/* Global Stackable typography */
+.stk-block {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+/* Stackable Headings */
+.stk-block-heading h1,
+.stk-block-heading h2,
+.stk-block-heading h3,
+.stk-block-heading h4,
+.stk-block-heading h5,
+.stk-block-heading h6 {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+/* Specific heading sizes */
+.stk-block-heading h2 {
+    font-size: 40px !important;
+    font-weight: 800 !important;
+    line-height: 1.25 !important;
+    color: #222222;
+}
+
+.stk-block-heading h3 {
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    line-height: 30px !important;
+    color: #3c3c3b;
+}
+
+/* Stackable Text/Paragraph blocks */
+.stk-block-text,
+.stk-block-text p,
+.wp-block-stackable-text p {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    color: #3c3c3b;
+}
+
+/* Feature Grid specific styles */
+.stk-block-feature-grid .stk-block-feature__title {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 800 !important;
+    line-height: 30px !important;
+    color: #3c3c3b !important;
+}
+
+.stk-block-feature-grid .stk-block-feature__description {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    line-height: 22px !important;
+    color: #3c3c3b !important;
+}
+
+/* Sekcja "Jak to działa" - subtitle */
+.section-subtitle {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    line-height: 30px !important;
+    color: #3c3c3b !important;
+}
+
+/* Stackable Button */
+.stk-block-button .stk-button {
+    font-family: 'Nunito', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 800 !important;
+}
+
+/* Override dla edytora bloków */
+.editor-styles-wrapper .stk-block-heading h2,
+.editor-styles-wrapper .stk-block-heading h3,
+.block-editor-block-list__layout .stk-block-heading h2,
+.block-editor-block-list__layout .stk-block-heading h3 {
+    font-family: 'Nunito', sans-serif !important;
+}
+
+.editor-styles-wrapper .stk-block-text p,
+.block-editor-block-list__layout .stk-block-text p {
+    font-family: 'Nunito Sans', sans-serif !important;
+}
+

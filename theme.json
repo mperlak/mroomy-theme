@@ -1,0 +1,179 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "color": {
+      "palette": [
+        {
+          "name": "Primary",
+          "slug": "primary",
+          "color": "#E20C7B"
+        },
+        {
+          "name": "Primary Hover",
+          "slug": "primary-hover",
+          "color": "#830747"
+        },
+        {
+          "name": "Dark Text",
+          "slug": "dark-text",
+          "color": "#222222"
+        },
+        {
+          "name": "Body Text",
+          "slug": "body-text",
+          "color": "#3c3c3b"
+        },
+        {
+          "name": "Subtle Text",
+          "slug": "subtle-text",
+          "color": "#3D3D3D"
+        },
+        {
+          "name": "White",
+          "slug": "white",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "Light Background",
+          "slug": "light-bg",
+          "color": "#F0F0F0"
+        },
+        {
+          "name": "Border Gray",
+          "slug": "border-gray",
+          "color": "#E0E0E0"
+        },
+        {
+          "name": "Medium Gray",
+          "slug": "medium-gray",
+          "color": "#C4C4C4"
+        },
+        {
+          "name": "Dark Gray",
+          "slug": "dark-gray",
+          "color": "#888888"
+        },
+        {
+          "name": "Info Blue",
+          "slug": "info",
+          "color": "#5AA0D3"
+        },
+        {
+          "name": "Pink Container",
+          "slug": "pink-light",
+          "color": "#FEF0F8"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "'Nunito', sans-serif",
+          "name": "Nunito",
+          "slug": "nunito",
+          "fontFace": [
+            {
+              "fontFamily": "Nunito",
+              "fontWeight": "400 800",
+              "fontStyle": "normal",
+              "src": ["https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&display=swap"]
+            }
+          ]
+        },
+        {
+          "fontFamily": "'Nunito Sans', sans-serif",
+          "name": "Nunito Sans",
+          "slug": "nunito-sans"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--nunito-sans)",
+      "fontSize": "16px",
+      "lineHeight": "1.5"
+    },
+    "elements": {
+      "h1": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito)",
+          "fontSize": "48px",
+          "fontWeight": "800",
+          "lineHeight": "1.25"
+        },
+        "color": {
+          "text": "#222222"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito)",
+          "fontSize": "40px",
+          "fontWeight": "800",
+          "lineHeight": "1.25"
+        },
+        "color": {
+          "text": "#222222"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito)",
+          "fontSize": "24px",
+          "fontWeight": "800",
+          "lineHeight": "30px"
+        },
+        "color": {
+          "text": "#3c3c3b"
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito)",
+          "fontSize": "20px",
+          "fontWeight": "600"
+        }
+      },
+      "h5": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito)",
+          "fontSize": "18px",
+          "fontWeight": "600"
+        }
+      },
+      "h6": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito)",
+          "fontSize": "16px",
+          "fontWeight": "600"
+        }
+      },
+      "button": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito)",
+          "fontSize": "16px",
+          "fontWeight": "800"
+        }
+      }
+    },
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito-sans)",
+          "fontSize": "16px",
+          "lineHeight": "22px"
+        },
+        "color": {
+          "text": "#3c3c3b"
+        }
+      },
+      "stackable/heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--nunito)"
+        }
+      }
+    }
+  }
+}

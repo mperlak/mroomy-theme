@@ -47,6 +47,11 @@ function mroomy_s_setup() {
 		*/
 	add_theme_support( 'post-thumbnails' );
 
+	// Wsparcie dla theme.json i block styles
+	add_theme_support( 'wp-block-styles' );
+	add_theme_support( 'editor-styles' );
+	add_theme_support( 'appearance-tools' );
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -142,6 +147,30 @@ function mroomy_s_scripts() {
 	wp_enqueue_style( 'mroomy_s-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'mroomy_s-style', 'rtl', 'replace' );
 
+	// Stackable typography overrides
+	wp_enqueue_style(
+		'mroomy-stackable-overrides',
+		get_template_directory_uri() . '/assets/css/stackable-overrides.css',
+		array(),
+		_S_VERSION
+	);
+
+	// Custom blocks and components styles
+	wp_enqueue_style(
+		'mroomy-custom-blocks',
+		get_template_directory_uri() . '/assets/css/custom-blocks.css',
+		array(),
+		_S_VERSION
+	);
+
+	// Reusable button styles
+	wp_enqueue_style(
+		'mroomy-button-styles',
+		get_template_directory_uri() . '/assets/css/button-styles.css',
+		array(),
+		_S_VERSION
+	);
+
 	wp_enqueue_script( 'mroomy_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -149,6 +178,127 @@ function mroomy_s_scripts() {
 	}
 }
 add_action( 'wp_enqueue_scripts', 'mroomy_s_scripts' );
+
+/**
+ * Enqueue Google Fonts for the theme.
+ */
+function mroomy_s_google_fonts() {
+	wp_enqueue_style(
+		'mroomy-google-fonts',
+		'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800&family=Nunito+Sans:wght@400;600&display=swap',
+		array(),
+		null
+	);
+}
+add_action( 'wp_enqueue_scripts', 'mroomy_s_google_fonts' );
+add_action( 'enqueue_block_editor_assets', 'mroomy_s_google_fonts' );
+
+/**
+ * Override Stackable color palette with our brand colors
+ */
+function mroomy_s_stackable_color_palette( $colors ) {
+	return array(
+		// Primary colors
+		array(
+			'name'  => __( 'Primary', 'mroomy_s' ),
+			'slug'  => 'primary',
+			'color' => '#E20C7B',
+		),
+		array(
+			'name'  => __( 'Primary Hover', 'mroomy_s' ),
+			'slug'  => 'primary-hover',
+			'color' => '#830747',
+		),
+		// Text colors
+		array(
+			'name'  => __( 'Dark Text', 'mroomy_s' ),
+			'slug'  => 'dark-text',
+			'color' => '#222222',
+		),
+		array(
+			'name'  => __( 'Body Text', 'mroomy_s' ),
+			'slug'  => 'body-text',
+			'color' => '#3c3c3b',
+		),
+		array(
+			'name'  => __( 'Subtle Text', 'mroomy_s' ),
+			'slug'  => 'subtle-text',
+			'color' => '#3D3D3D',
+		),
+		// Neutral colors
+		array(
+			'name'  => __( 'White', 'mroomy_s' ),
+			'slug'  => 'white',
+			'color' => '#FFFFFF',
+		),
+		array(
+			'name'  => __( 'Light Background', 'mroomy_s' ),
+			'slug'  => 'light-bg',
+			'color' => '#F0F0F0',
+		),
+		array(
+			'name'  => __( 'Border Gray', 'mroomy_s' ),
+			'slug'  => 'border-gray',
+			'color' => '#E0E0E0',
+		),
+		array(
+			'name'  => __( 'Medium Gray', 'mroomy_s' ),
+			'slug'  => 'medium-gray',
+			'color' => '#C4C4C4',
+		),
+		array(
+			'name'  => __( 'Dark Gray', 'mroomy_s' ),
+			'slug'  => 'dark-gray',
+			'color' => '#888888',
+		),
+		// Accent colors
+		array(
+			'name'  => __( 'Info Blue', 'mroomy_s' ),
+			'slug'  => 'info',
+			'color' => '#5AA0D3',
+		),
+		array(
+			'name'  => __( 'Pink Container', 'mroomy_s' ),
+			'slug'  => 'pink-light',
+			'color' => '#FEF0F8',
+		),
+	);
+}
+add_filter( 'stackable_color_palette', 'mroomy_s_stackable_color_palette' );
+add_filter( 'block_editor_settings_all', function( $settings ) {
+	$settings['__experimentalFeatures']['color']['palette']['theme'] = mroomy_s_stackable_color_palette( array() );
+	return $settings;
+});
+
+/**
+ * Enqueue editor styles for blocks.
+ */
+function mroomy_s_editor_styles() {
+	// Stackable overrides
+	wp_enqueue_style(
+		'mroomy-stackable-overrides-editor',
+		get_template_directory_uri() . '/assets/css/stackable-overrides.css',
+		array(),
+		_S_VERSION
+	);
+
+	// Custom blocks styles
+	wp_enqueue_style(
+		'mroomy-custom-blocks-editor',
+		get_template_directory_uri() . '/assets/css/custom-blocks.css',
+		array(),
+		_S_VERSION
+	);
+
+	// Button styles in editor
+	wp_enqueue_style(
+		'mroomy-button-styles-editor',
+		get_template_directory_uri() . '/assets/css/button-styles.css',
+		array(),
+		_S_VERSION
+	);
+}
+add_action( 'enqueue_block_editor_assets', 'mroomy_s_editor_styles' );
 
 /**
  * Implement the Custom Header feature.
@@ -388,3 +538,4 @@ require_once get_stylesheet_directory() . '/migration/run-migration-admin.php';
 
 // Wrapper dla kompatybilności z Toolset (opcjonalne)
 // require_once get_stylesheet_directory() . '/migration/06-compatibility-wrapper.php';
+

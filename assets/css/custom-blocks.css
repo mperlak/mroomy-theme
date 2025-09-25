@@ -1,0 +1,85 @@
+/**
+ * Custom Blocks and Components Styles
+ *
+ * This file contains styles for custom design elements
+ * that are NOT part of Stackable or other plugins
+ */
+
+/* ========================================
+   SEKCJA "JAK TO DZIAŁA" - Numerki kroków
+   ======================================== */
+
+/* Zastosuj numerki bezpośrednio do figure w image block */
+.steps-feature-grid .stk-block-image figure {
+    position: relative !important;
+}
+
+/* Wspólne style dla wszystkich numerków */
+.steps-feature-grid .stk-block-image figure::after {
+    position: absolute;
+    bottom: 20px;  /* 20px od dołu obrazka */
+    left: 40px;   /* wysunięcie poza lewy brzeg obrazka */
+    width: 80px;
+    height: 80px;
+    background: #e20c7b !important;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: white;
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* Numerek 1 */
+.steps-feature-grid .stk-block:nth-child(1) .stk-block-image figure::after {
+    content: "1";
+}
+
+/* Numerek 2 */
+.steps-feature-grid .stk-block:nth-child(2) .stk-block-image figure::after {
+    content: "2";
+}
+
+/* Numerek 3 */
+.steps-feature-grid .stk-block:nth-child(3) .stk-block-image figure::after {
+    content: "3";
+}
+
+/* Upewnij się że overflow jest widoczny */
+.steps-feature-grid .stk-block-image,
+.steps-feature-grid .stk-block-image figure {
+    overflow: visible !important;
+}
+
+/* Ograniczenie szerokości tekstu w krokach */
+.steps-feature-grid .stk-block-feature__content {
+    max-width: 385px;
+    margin: 0 auto;
+}
+
+/* Responsywność numerków */
+@media (max-width: 768px) {
+    .steps-feature-grid .stk-block-image figure::after {
+        width: 60px;
+        height: 60px;
+        font-size: 30px;
+        bottom: 15px;
+        left: 1px;  /* minimalnie od lewej krawędzi jak w Figmie */
+    }
+
+    /* Zmniejszenie obrazków na mobile */
+    .steps-feature-grid .stk-block-image img {
+        max-width: 225px !important;
+        max-height: 225px !important;
+    }
+}
+
+/* ========================================
+   INNE CUSTOM KOMPONENTY
+   ======================================== */
+
+/* Tutaj dodawaj kolejne custom style dla swoich bloków */
