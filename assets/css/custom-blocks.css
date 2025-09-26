@@ -67,14 +67,43 @@
         width: 60px;
         height: 60px;
         font-size: 30px;
-        bottom: 15px;
-        left: 1px;  /* minimalnie od lewej krawędzi jak w Figmie */
+        bottom: 22px;  /* 22px od dołu jak w Figmie */
+        left: 0;  /* wyrównane do lewej krawędzi obrazka */
     }
 
-    /* Zmniejszenie obrazków na mobile */
+    /* Obrazki na mobile - responsywne ale z zachowaniem proporcji */
+    .steps-feature-grid .stk-block-image {
+        width: 100%;
+        max-width: 100%;  /* Nie ograniczaj */
+        margin: 0 auto;
+        text-align: center;  /* Centruj zawartość */
+    }
+
     .steps-feature-grid .stk-block-image img {
-        max-width: 225px !important;
-        max-height: 225px !important;
+        width: 100% !important;
+        height: auto !important;
+        max-width: none !important;  /* Usuń ograniczenia */
+        aspect-ratio: 1/1;  /* Zachowaj kwadratowe proporcje */
+        object-fit: cover;
+    }
+
+    /* Dla okrągłych obrazków */
+    .steps-feature-grid .stk-block-image.stk--shape-circle img,
+    .steps-feature-grid .stk-block-image .stk--shape-circle img {
+        border-radius: 50%;
+    }
+
+    /* Figure powinien być dokładnie taki sam jak img */
+    .steps-feature-grid .stk-block-image figure {
+        width: auto !important;  /* Dopasuj do zawartości (img) */
+        max-width: 100% !important;
+        margin: 0 auto;  /* Wycentruj */
+        display: inline-block;  /* Zmniejsz do rozmiaru img */
+    }
+
+    /* Kontener obrazka też musi być wycentrowany */
+    .steps-feature-grid .stk-block-image {
+        text-align: center;  /* Centruj figure */
     }
 }
 
