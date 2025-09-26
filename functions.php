@@ -436,6 +436,20 @@ function mroomy_s_register_blocks() {
         }
     }
 
+    // Register banner-cta block
+    $banner_cta = $blocks_base . '/banner-cta/block.json';
+    if (file_exists($banner_cta)) {
+        $render_file = $blocks_base . '/banner-cta/render.php';
+        $render_cb = file_exists($render_file) ? include $render_file : null;
+        if (is_callable($render_cb)) {
+            register_block_type($banner_cta, array(
+                'render_callback' => $render_cb,
+            ));
+        } else {
+            register_block_type($banner_cta);
+        }
+    }
+
     // Register top-stats block if present
     $top_stats = $blocks_base . '/top-stats/block.json';
     if (file_exists($top_stats)) {

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "mroomy/banner-cta",
+  "title": "Banner CTA",
+  "description": "Baner z grafiką i przyciskiem CTA w dwóch wariantach wysokości.",
+  "category": "design",
+  "icon": "megaphone",
+  "textdomain": "mroomy_s",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "align": ["wide", "full"],
+    "spacing": {
+      "margin": ["top", "bottom"],
+      "padding": false
+    }
+  },
+  "attributes": {
+    "variant": {
+      "type": "string",
+      "default": "normal"
+    },
+    "title": {
+      "type": "string"
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "buttonText": {
+      "type": "string"
+    },
+    "buttonUrl": {
+      "type": "string"
+    },
+    "buttonTarget": {
+      "type": "string",
+      "default": "_self"
+    },
+    "desktopImageId": {
+      "type": "number"
+    },
+    "desktopImageUrl": {
+      "type": "string"
+    },
+    "desktopImageAlt": {
+      "type": "string"
+    },
+    "mobileImageId": {
+      "type": "number"
+    },
+    "mobileImageUrl": {
+      "type": "string"
+    },
+    "mobileImageAlt": {
+      "type": "string"
+    }
+  },
+  "editorScript": "file:./editor.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}
+
+
