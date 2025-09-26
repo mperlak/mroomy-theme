@@ -115,25 +115,34 @@
 @media (max-width: 1023px) {
     .banner-cta {
         min-height: auto;
+        padding-bottom: 0 !important;
     }
 
     .banner-cta__inner {
         grid-template-columns: 1fr;
         text-align: center;
         height: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem; /* Zmniejszenie przerwy między elementami */
+    }
+
+    /* Zmiana kolejności - body (tytuł i przycisk) najpierw, potem obrazek */
+    .banner-cta__body {
+        align-items: center;
+        text-align: center;
+        order: 1;
     }
 
     .banner-cta__media {
         height: auto;
+        order: 2;
+        margin-bottom: -1rem; /* Przyciągnięcie obrazka bliżej dolnej krawędzi */
     }
 
     .banner-cta__media-img {
         height: auto;
-    }
-
-    .banner-cta__body {
-        align-items: center;
-        text-align: center;
+        display: block;
     }
 }
 

@@ -238,7 +238,9 @@ function mroomy_enqueue_swiper_assets() {
     // Check for specific conditions
     if ( is_singular( 'pokoje-dla-dzieci' ) ||
          has_block( 'acf/acf-rooms-showcase' ) ||
-         is_post_type_archive( 'pokoje-dla-dzieci' ) ) {
+         has_block( 'acf/acf-inspirations-showcase' ) ||
+         is_post_type_archive( 'pokoje-dla-dzieci' ) ||
+         is_post_type_archive( 'inspiracja' ) ) {
         $needs_swiper = true;
     }
 
@@ -250,7 +252,9 @@ function mroomy_enqueue_swiper_assets() {
     // Check if current page uses rooms list shortcode or function
     global $post;
     if ( $post && ( strpos( $post->post_content, 'mroomy_rooms_list' ) !== false ||
-                    strpos( $post->post_content, '[rooms_list' ) !== false ) ) {
+                    strpos( $post->post_content, '[rooms_list' ) !== false ||
+                    strpos( $post->post_content, 'mroomy_inspirations_list' ) !== false ||
+                    strpos( $post->post_content, '[inspirations_list' ) !== false ) ) {
         $needs_swiper = true;
     }
 
