@@ -341,9 +341,19 @@ if ( file_exists( get_template_directory() . '/inc/rooms-functions.php' ) ) {
     require_once get_template_directory() . '/inc/rooms-functions.php';
 }
 
+// Load inspirations functions if exists
+if ( file_exists( get_template_directory() . '/inc/inspirations-functions.php' ) ) {
+    require_once get_template_directory() . '/inc/inspirations-functions.php';
+}
+
 // Load ACF Rooms Showcase block if ACF is active
 if ( function_exists( 'acf_register_block_type' ) ) {
     require_once get_template_directory() . '/blocks/acf-rooms-showcase/register.php';
+}
+
+// Load ACF Inspirations Showcase block if ACF is active
+if ( function_exists( 'acf_register_block_type' ) ) {
+    require_once get_template_directory() . '/blocks/acf-inspirations-showcase/register.php';
 }
 
 /**
