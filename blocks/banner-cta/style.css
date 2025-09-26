@@ -5,7 +5,6 @@
     --banner-cta-padding-x: clamp(1.75rem, 5vw, 4rem);
     position: relative;
     overflow: hidden;
-    border-radius: 0;
     display: flex;
     justify-content: center;
     padding: clamp(1.25rem, 4vw, 2rem) var(--banner-cta-padding-x);
@@ -89,21 +88,11 @@
     justify-content: center;
 }
 
-.banner-cta.alignfull,
-.banner-cta.alignwide,
-.banner-cta:not(.alignfull) {
-    border-radius: 0;
-}
 
 @media (min-width: 1024px) {
     .banner-cta {
         padding: 0;
         min-height: var(--banner-cta-height-desktop);
-    }
-
-    .banner-cta.alignwide,
-    .banner-cta:not(.alignfull) {
-        border-radius: 16px;
     }
 
     .banner-cta__inner {
@@ -125,7 +114,6 @@
 
 @media (max-width: 1023px) {
     .banner-cta {
-        border-radius: 12px;
         min-height: auto;
     }
 

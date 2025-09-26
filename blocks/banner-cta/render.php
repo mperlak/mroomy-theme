@@ -65,7 +65,7 @@ return static function( $attributes, $content, $block ) {
 			);
 	}
 
-	op_start();
+	ob_start();
 	?>
 	<section class="<?php echo esc_attr( implode( ' ', $wrapper_classes ) ); ?>" role="region" aria-labelledby="<?php echo esc_attr( $heading_id ); ?>">
 		<div class="banner-cta__inner">

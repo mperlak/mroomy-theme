@@ -12,8 +12,8 @@
   }
 
   /* Ensure links don't get browser default styles */
-  :where(a:link),
-  :where(a:visited) {
+  :where(:not(nav):not(.menu) a:link),
+  :where(:not(nav):not(.menu) a:visited) {
     color: inherit;
   }
 }

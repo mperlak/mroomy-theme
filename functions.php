@@ -352,6 +352,7 @@ if ( function_exists( 'acf_register_block_type' ) ) {
 function moj_theme_scripts() {
     // Remove default styles
     wp_dequeue_style('wp-block-library');
+    wp_dequeue_style('mroomy_s-style');
 
     // Enqueue our built assets
     if (file_exists(get_template_directory() . '/dist/main.css')) {
