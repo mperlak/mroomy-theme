@@ -346,6 +346,11 @@ if ( file_exists( get_template_directory() . '/inc/inspirations-functions.php' )
     require_once get_template_directory() . '/inc/inspirations-functions.php';
 }
 
+// Load categories functions if exists
+if ( file_exists( get_template_directory() . '/inc/categories-functions.php' ) ) {
+    require_once get_template_directory() . '/inc/categories-functions.php';
+}
+
 // Load ACF Rooms Showcase block if ACF is active
 if ( function_exists( 'acf_register_block_type' ) ) {
     require_once get_template_directory() . '/blocks/acf-rooms-showcase/register.php';
@@ -479,6 +484,27 @@ function mroomy_s_register_blocks() {
 
         register_block_type($top_stats, array(
             'editor_script' => 'mroomy-top-stats-editor'
+        ));
+    }
+
+    // Register Categories Showcase block
+    $categories_showcase = $blocks_base . '/categories-showcase/block.json';
+    if (file_exists($categories_showcase)) {
+        if (defined('WP_DEBUG') && WP_DEBUG) {
+            error_log('[mroomy/categories-showcase] registering block from ' . $categories_showcase);
+        }
+
+        // Register the editor script
+        wp_register_script(
+            'mroomy-categories-showcase-editor',
+            get_template_directory_uri() . '/dist/blocks/categories-showcase-editor.js',
+            array('wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n', 'wp-data'),
+            filemtime(get_template_directory() . '/dist/blocks/categories-showcase-editor.js'),
+            true
+        );
+
+        register_block_type($categories_showcase, array(
+            'editor_script' => 'mroomy-categories-showcase-editor'
         ));
     }
 }

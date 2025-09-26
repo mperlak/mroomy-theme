@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "mroomy/categories-showcase",
+    "title": "Categories Showcase",
+    "description": "Wyświetla okrągłe kategorie produktów w karuzeli lub siatce",
+    "category": "mroomy",
+    "icon": "category",
+    "textdomain": "mroomy_s",
+    "supports": {
+        "html": false,
+        "anchor": true,
+        "align": ["wide", "full"],
+        "spacing": {
+            "margin": ["top", "bottom"],
+            "padding": false
+        }
+    },
+    "attributes": {
+        "title": {
+            "type": "string",
+            "default": "Poszperaj w naszym sklepie"
+        },
+        "showTitle": {
+            "type": "boolean",
+            "default": true
+        },
+        "selectedCategories": {
+            "type": "array",
+            "default": []
+        },
+        "customLabels": {
+            "type": "object",
+            "default": {}
+        },
+        "enableCarousel": {
+            "type": "boolean",
+            "default": true
+        },
+        "showNavigation": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "editorScript": "file:./editor.js",
+    "render": "file:./render.php"
+}

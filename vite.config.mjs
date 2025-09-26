@@ -23,7 +23,8 @@ export default defineConfig({
       input: {
         main: 'assets/css/main.css',
         app: 'assets/js/app.js',
-        'top-stats-editor': resolve(__dirname, 'blocks/top-stats/editor.js')
+        'top-stats-editor': resolve(__dirname, 'blocks/top-stats/editor.js'),
+        'categories-showcase-editor': resolve(__dirname, 'blocks/categories-showcase/editor.js')
       },
       output: {
         entryFileNames: (chunkInfo) => {
