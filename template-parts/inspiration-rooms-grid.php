@@ -17,7 +17,8 @@ if ( ! $rooms_query || ! $rooms_query->have_posts() ) {
 }
 ?>
 
-<section class="inspiration-rooms-grid mt-[88px] px-[107px]">
+<section class="inspiration-rooms-grid mt-[88px]">
+	<div class="container mx-auto px-4">
 	<?php if ( $rooms_query->have_posts() ) : ?>
 		<div class="inspiration-rooms-grid__notification mb-10">
 			<p class="font-nunito font-semibold text-[14px] text-[#3c3c3b]">
@@ -73,4 +74,5 @@ if ( ! $rooms_query || ! $rooms_query->have_posts() ) {
 			</p>
 		</div>
 	<?php endif; ?>
+	</div>
 </section>

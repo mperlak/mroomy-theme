@@ -22,8 +22,19 @@ get_header();
 		// Intro text section
 		get_template_part( 'template-parts/inspiration', 'intro-text' );
 
-		// Rooms filters (mockup)
-		// Will be integrated in task #14
+		// Rooms filters
+		if ( function_exists( 'mroomy_rooms_filters' ) ) {
+			echo '<div class="mt-[64px]">';
+			echo '<div class="container mx-auto px-4">';
+			echo mroomy_rooms_filters(
+				array(
+					'context'     => 'inspiration',
+					'category_id' => get_the_ID(),
+				)
+			);
+			echo '</div>';
+			echo '</div>';
+		}
 
 		// Rooms grid with pagination
 		get_template_part( 'template-parts/inspiration', 'rooms-grid' );

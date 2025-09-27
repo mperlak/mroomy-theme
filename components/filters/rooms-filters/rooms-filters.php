@@ -35,19 +35,30 @@ function mroomy_rooms_filters( $args = array() ) {
 	<div class="rooms-filters" data-context="<?php echo esc_attr( $args['context'] ); ?>">
 		<form class="rooms-filters__form flex items-center gap-4 flex-wrap" method="get" action="<?php echo esc_url( $action_url ); ?>">
 			<select
-				name="pokoj"
-				class="rooms-filters__select w-[113px] h-[48px] px-4 py-3 border border-[#E0E0E0] rounded-lg font-nunito text-[14px] text-[#3c3c3b] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors"
+				name="sortuj"
+				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
+				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
 			>
-				<option value="">Pokój</option>
-				<option value="pokoj-dziewczynki">Pokój dziewczynki</option>
-				<option value="pokoj-chlopca">Pokój chłopca</option>
-				<option value="pokoj-rodzenstwa">Pokój rodzeństwa</option>
-				<option value="pokoj-niemowlaka">Pokój niemowlaka</option>
+				<option value="">Sortuj</option>
+				<option value="najnowsze">Najnowsze</option>
+				<option value="najpopularniejsze">Najpopularniejsze</option>
+			</select>
+
+			<select
+				name="dla-kogo"
+				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
+				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
+			>
+				<option value="">Dla kogo</option>
+				<option value="dla-dziewczynki">Dla dziewczynki</option>
+				<option value="dla-chlopca">Dla chłopca</option>
+				<option value="dla-rodzenstwa">Dla rodzeństwa</option>
 			</select>
 
 			<select
 				name="wiek"
-				class="rooms-filters__select w-[134px] h-[48px] px-4 py-3 border border-[#E0E0E0] rounded-lg font-nunito text-[14px] text-[#3c3c3b] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors"
+				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
+				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
 			>
 				<option value="">Wiek dziecka</option>
 				<option value="0-1">0-1 lat</option>
@@ -58,10 +69,11 @@ function mroomy_rooms_filters( $args = array() ) {
 			</select>
 
 			<select
-				name="powierzchnia"
-				class="rooms-filters__select w-[165px] h-[48px] px-4 py-3 border border-[#E0E0E0] rounded-lg font-nunito text-[14px] text-[#3c3c3b] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors"
+				name="metraz"
+				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
+				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
 			>
-				<option value="">Powierzchnia</option>
+				<option value="">Metraż pokoju</option>
 				<option value="maly">Mały (do 10m²)</option>
 				<option value="sredni">Średni (10-15m²)</option>
 				<option value="duzy">Duży (15-20m²)</option>
@@ -70,9 +82,10 @@ function mroomy_rooms_filters( $args = array() ) {
 
 			<select
 				name="kolor"
-				class="rooms-filters__select w-[172px] h-[48px] px-4 py-3 border border-[#E0E0E0] rounded-lg font-nunito text-[14px] text-[#3c3c3b] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors"
+				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
+				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
 			>
-				<option value="">Kolor wiodący</option>
+				<option value="">Kolor</option>
 				<option value="bialy">Biały</option>
 				<option value="szary">Szary</option>
 				<option value="niebieski">Niebieski</option>
@@ -82,23 +95,14 @@ function mroomy_rooms_filters( $args = array() ) {
 				<option value="czarny">Czarny</option>
 			</select>
 
-			<select
-				name="styl"
-				class="rooms-filters__select w-[107px] h-[48px] px-4 py-3 border border-[#E0E0E0] rounded-lg font-nunito text-[14px] text-[#3c3c3b] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors"
-			>
-				<option value="">Styl</option>
-				<option value="skandynawski">Skandynawski</option>
-				<option value="nowoczesny">Nowoczesny</option>
-				<option value="klasyczny">Klasyczny</option>
-				<option value="minimalistyczny">Minimalistyczny</option>
-				<option value="boho">Boho</option>
-			</select>
-
 			<button
-				type="submit"
-				class="rooms-filters__button w-[183px] h-[48px] px-6 py-3 bg-[#E20C7B] hover:bg-[#830747] text-white font-nunito font-bold text-[14px] rounded-lg transition-colors"
+				type="button"
+				class="rooms-filters__all-filters flex items-center justify-center gap-2 h-[48px] px-3 py-3 border-2 border-[#ede2dc] rounded-lg bg-white font-nunito font-extrabold text-[16px] leading-[20px] text-primary hover:bg-gray-50 transition-colors cursor-pointer"
 			>
-				<?php echo esc_html( $args['button_text'] ); ?>
+				<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M3 6h18M8 12h8M11 18h2" stroke="#e20c7b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+				</svg>
+				<span>Wszystkie filtry</span>
 			</button>
 		</form>
 	</div>
