@@ -48,51 +48,64 @@ function mroomy_dropdown_select( $args = array() ) {
 	// Generate ID if not provided
 	$field_id = ! empty( $args['id'] ) ? $args['id'] : 'dropdown-' . sanitize_title( $args['name'] );
 
-	// Size-specific classes
+	// Size-specific height from Figma
 	$size_classes = array(
-		'medium' => 'h-[48px] px-4 py-3 text-[16px] leading-[20px]',
-		'small'  => 'h-[40px] px-3 py-2 text-[16px] leading-[20px]',
+		'medium' => 'h-[48px]',
+		'small'  => 'h-[40px]',
 	);
 
 	$size_class = isset( $size_classes[ $args['size'] ] ) ? $size_classes[ $args['size'] ] : $size_classes['medium'];
 
-	// Build CSS classes
+	// Build CSS classes matching Figma design
 	$css_classes = array(
 		'dropdown-select',
 		$size_class,
 		'bg-white',
 		'border',
-		'border-[#c4c4c4]',
-		'rounded-lg',
+		'rounded-[8px]',
 		'font-nunito',
 		'font-semibold',
-		'text-[#222222]',
+		'text-[16px]',
+		'leading-[20px]',
 		'cursor-pointer',
 		'appearance-none',
 		'focus:outline-none',
-		'focus:border-primary',
+		'focus:border-[#e20c7b]',
 		'transition-colors',
+		'overflow-hidden',
+		'text-ellipsis',
+		'whitespace-nowrap',
 	);
 
-	// Placeholder style (gray text)
+	// Text color - placeholder (#888888) vs selected (#3d3d3d)
 	$has_selection = ! empty( $args['selected'] );
 	if ( ! $has_selection ) {
 		$css_classes[] = 'text-[#888888]';
+	} else {
+		$css_classes[] = 'text-[#3d3d3d]';
 	}
 
 	if ( ! empty( $args['class'] ) ) {
 		$css_classes[] = $args['class'];
 	}
 
-	// Chevron down icon as background
+	// Chevron down icon from Figma (using #3d3d3d color)
 	$chevron_svg = "data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M6 9L12 15L18 9' stroke='%233d3d3d' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E";
 
+	// Padding and icon position from Figma - gap is 12px between text and icon
+	if ( $args['size'] === 'small' ) {
+		$padding = 'padding: 8px 44px 8px 12px';
+		$icon_position = 'right 12px center';
+	} else {
+		$padding = 'padding: 12px 52px 12px 16px';
+		$icon_position = 'right 16px center';
+	}
 	?>
 	<select
 		name="<?php echo esc_attr( $args['name'] ); ?>"
 		id="<?php echo esc_attr( $field_id ); ?>"
 		class="<?php echo esc_attr( implode( ' ', array_filter( $css_classes ) ) ); ?>"
-		style="border-color: #c4c4c4; background-image: url('<?php echo $chevron_svg; ?>'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
+		style="border-color: #c4c4c4; <?php echo $padding; ?>; background-image: url('<?php echo $chevron_svg; ?>'); background-repeat: no-repeat; background-position: <?php echo $icon_position; ?>;"
 		<?php echo $args['required'] ? 'required' : ''; ?>
 	>
 		<?php if ( ! empty( $args['placeholder'] ) ) : ?>
