@@ -1,0 +1,25 @@
+.inspiration-intro-text strong,
+.inspiration-intro-text b {
+    font-weight: 800;
+}
+
+@media (max-width: 1023px) {
+    .inspiration-intro-text {
+        margin-top: 2rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .inspiration-intro-text__inner > div {
+        font-size: clamp(16px, 4vw, 20px);
+        line-height: 1.4;
+    }
+}
+
+@media (max-width: 640px) {
+    .inspiration-intro-text {
+        margin-top: 1.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

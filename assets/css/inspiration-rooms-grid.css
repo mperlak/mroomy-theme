@@ -1,0 +1,101 @@
+.inspiration-rooms-grid__grid {
+    margin-right: 4px;
+}
+
+.inspiration-rooms-grid__pagination {
+    display: flex;
+    justify-content: center;
+}
+
+.inspiration-rooms-grid__pagination .page-numbers {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+    align-items: center;
+}
+
+.inspiration-rooms-grid__pagination .page-numbers li {
+    margin: 0;
+}
+
+.inspiration-rooms-grid__pagination a,
+.inspiration-rooms-grid__pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 16px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 1;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: #3c3c3b;
+    background: #f0f0f0;
+    border: 1px solid transparent;
+}
+
+.inspiration-rooms-grid__pagination a:hover {
+    background: #e20c7b;
+    color: white;
+}
+
+.inspiration-rooms-grid__pagination .current {
+    background: #e20c7b;
+    color: white;
+    border-color: #e20c7b;
+}
+
+.inspiration-rooms-grid__pagination .dots {
+    background: transparent;
+    color: #888888;
+    pointer-events: none;
+}
+
+@media (max-width: 1279px) {
+    .inspiration-rooms-grid {
+        margin-top: 3rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .inspiration-rooms-grid__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-right: 0;
+    }
+}
+
+@media (max-width: 767px) {
+    .inspiration-rooms-grid {
+        margin-top: 2rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    .inspiration-rooms-grid__grid {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+    }
+
+    .inspiration-rooms-grid__notification {
+        margin-bottom: 1.5rem;
+    }
+
+    .inspiration-rooms-grid__pagination {
+        margin-top: 2rem;
+    }
+
+    .inspiration-rooms-grid__pagination a,
+    .inspiration-rooms-grid__pagination span {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+
+    .inspiration-rooms-grid__pagination .page-numbers {
+        gap: 6px;
+    }
+}

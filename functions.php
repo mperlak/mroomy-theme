@@ -171,6 +171,36 @@ function mroomy_s_scripts() {
 		_S_VERSION
 	);
 
+	// Inspiration hero styles
+	if ( is_singular( 'inspiracja' ) && file_exists( get_template_directory() . '/assets/css/inspiration-hero.css' ) ) {
+		wp_enqueue_style(
+			'mroomy-inspiration-hero',
+			get_template_directory_uri() . '/assets/css/inspiration-hero.css',
+			array(),
+			filemtime( get_template_directory() . '/assets/css/inspiration-hero.css' )
+		);
+	}
+
+	// Inspiration intro text styles
+	if ( is_singular( 'inspiracja' ) && file_exists( get_template_directory() . '/assets/css/inspiration-intro-text.css' ) ) {
+		wp_enqueue_style(
+			'mroomy-inspiration-intro-text',
+			get_template_directory_uri() . '/assets/css/inspiration-intro-text.css',
+			array(),
+			filemtime( get_template_directory() . '/assets/css/inspiration-intro-text.css' )
+		);
+	}
+
+	// Inspiration rooms grid styles
+	if ( is_singular( 'inspiracja' ) && file_exists( get_template_directory() . '/assets/css/inspiration-rooms-grid.css' ) ) {
+		wp_enqueue_style(
+			'mroomy-inspiration-rooms-grid',
+			get_template_directory_uri() . '/assets/css/inspiration-rooms-grid.css',
+			array(),
+			filemtime( get_template_directory() . '/assets/css/inspiration-rooms-grid.css' )
+		);
+	}
+
 	wp_enqueue_script( 'mroomy_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
@@ -336,6 +366,16 @@ require get_template_directory() . '/inc/class-mroomy-mobile-walker.php';
 require_once get_template_directory() . '/inc/components/button.php';
 require_once get_template_directory() . '/inc/components/carousel.php';
 
+// Load filters components if exists
+if ( file_exists( get_template_directory() . '/components/filters/rooms-filters/rooms-filters.php' ) ) {
+    require_once get_template_directory() . '/components/filters/rooms-filters/rooms-filters.php';
+}
+
+// Load related styles component if exists
+if ( file_exists( get_template_directory() . '/components/inspirations/related-styles/related-styles.php' ) ) {
+    require_once get_template_directory() . '/components/inspirations/related-styles/related-styles.php';
+}
+
 // Load rooms functions if exists
 if ( file_exists( get_template_directory() . '/inc/rooms-functions.php' ) ) {
     require_once get_template_directory() . '/inc/rooms-functions.php';
@@ -344,6 +384,11 @@ if ( file_exists( get_template_directory() . '/inc/rooms-functions.php' ) ) {
 // Load inspirations functions if exists
 if ( file_exists( get_template_directory() . '/inc/inspirations-functions.php' ) ) {
     require_once get_template_directory() . '/inc/inspirations-functions.php';
+}
+
+// Load inspirations template functions if exists
+if ( file_exists( get_template_directory() . '/inc/inspirations-template-functions.php' ) ) {
+    require_once get_template_directory() . '/inc/inspirations-template-functions.php';
 }
 
 // Load categories functions if exists

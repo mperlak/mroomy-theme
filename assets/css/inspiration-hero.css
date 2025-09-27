@@ -1,0 +1,30 @@
+@media (max-width: 1023px) {
+    .inspiration-hero {
+        height: 240px;
+    }
+
+    .inspiration-hero > div:last-child {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    .inspiration-hero__breadcrumbs ol {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    .inspiration-hero__title {
+        font-size: 32px;
+        padding-bottom: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .inspiration-hero {
+        height: 200px;
+    }
+
+    .inspiration-hero__title {
+        font-size: 24px;
+    }
+}
