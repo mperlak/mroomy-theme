@@ -24,7 +24,7 @@ get_header();
 
 		// Rooms filters
 		if ( function_exists( 'mroomy_rooms_filters' ) ) {
-			echo '<div class="mt-[64px]">';
+			echo '<div class="mt-12">';
 			echo '<div class="container mx-auto px-4">';
 			echo mroomy_rooms_filters(
 				array(
