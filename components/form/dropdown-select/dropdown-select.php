@@ -60,7 +60,6 @@ function mroomy_dropdown_select( $args = array() ) {
 	$css_classes = array(
 		'dropdown-select',
 		$size_class,
-		'w-full',
 		'bg-white',
 		'border',
 		'border-[#c4c4c4]',
