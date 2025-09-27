@@ -131,7 +131,7 @@ function mroomy_room_tile( $args = array() ) {
                 ? 'rounded-[16px]'
                 : 'rounded-lg';
             ?>
-            <div class="<?php echo esc_attr( $image_rounded_class ); ?> overflow-hidden">
+            <div class="<?php echo esc_attr( $image_rounded_class ); ?> overflow-hidden relative">
                 <?php if ( $args['size'] === 'mobile' || $args['is_mobile'] ) : ?>
                     <!-- Mobile: Fixed height image -->
                     <div class="relative w-full h-[283px]">

@@ -7,10 +7,12 @@
  * @package mroomy_s
  */
 
+global $post;
+$inspiration_id = $post->ID;
 $paged = get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1;
-$rooms_query = mroomy_get_inspiration_rooms_query( get_the_ID(), array( 'paged' => $paged ) );
+$rooms_query = mroomy_get_inspiration_rooms_query( $inspiration_id, array( 'paged' => $paged ) );
 
-if ( ! $rooms_query ) {
+if ( ! $rooms_query || ! $rooms_query->have_posts() ) {
 	return;
 }
 ?>
@@ -29,7 +31,7 @@ if ( ! $rooms_query ) {
 				$rooms_query->the_post();
 
 				if ( function_exists( 'mroomy_room_tile' ) ) {
-					echo mroomy_room_tile(
+					mroomy_room_tile(
 						array(
 							'post_id'      => get_the_ID(),
 							'size'         => 'large',
@@ -38,11 +40,13 @@ if ( ! $rooms_query ) {
 					);
 				}
 			endwhile;
-
-			mroomy_save_viewed_rooms( $rooms_query, get_the_ID() );
-			wp_reset_postdata();
 			?>
 		</div>
+
+		<?php
+		mroomy_save_viewed_rooms( $rooms_query, $inspiration_id );
+		wp_reset_postdata();
+		?>
 
 		<?php if ( $rooms_query->max_num_pages > 1 ) : ?>
 			<div class="inspiration-rooms-grid__pagination mt-16">
