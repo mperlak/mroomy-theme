@@ -366,6 +366,11 @@ require get_template_directory() . '/inc/class-mroomy-mobile-walker.php';
 require_once get_template_directory() . '/inc/components/button.php';
 require_once get_template_directory() . '/inc/components/carousel.php';
 
+// Load form components
+if ( file_exists( get_template_directory() . '/components/form/dropdown-select/dropdown-select.php' ) ) {
+	require_once get_template_directory() . '/components/form/dropdown-select/dropdown-select.php';
+}
+
 // Load filters components if exists
 if ( file_exists( get_template_directory() . '/components/filters/rooms-filters/rooms-filters.php' ) ) {
     require_once get_template_directory() . '/components/filters/rooms-filters/rooms-filters.php';

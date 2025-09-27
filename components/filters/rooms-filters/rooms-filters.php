@@ -34,66 +34,73 @@ function mroomy_rooms_filters( $args = array() ) {
 	?>
 	<div class="rooms-filters" data-context="<?php echo esc_attr( $args['context'] ); ?>">
 		<form class="rooms-filters__form flex items-center gap-4 flex-wrap" method="get" action="<?php echo esc_url( $action_url ); ?>">
-			<select
-				name="sortuj"
-				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
-				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
-			>
-				<option value="">Sortuj</option>
-				<option value="najnowsze">Najnowsze</option>
-				<option value="najpopularniejsze">Najpopularniejsze</option>
-			</select>
+			<?php
+			mroomy_dropdown_select(
+				array(
+					'name'        => 'sortuj',
+					'placeholder' => 'Sortuj',
+					'options'     => array(
+						'najnowsze'          => 'Najnowsze',
+						'najpopularniejsze'  => 'Najpopularniejsze',
+					),
+				)
+			);
 
-			<select
-				name="dla-kogo"
-				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
-				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
-			>
-				<option value="">Dla kogo</option>
-				<option value="dla-dziewczynki">Dla dziewczynki</option>
-				<option value="dla-chlopca">Dla chłopca</option>
-				<option value="dla-rodzenstwa">Dla rodzeństwa</option>
-			</select>
+			mroomy_dropdown_select(
+				array(
+					'name'        => 'dla-kogo',
+					'placeholder' => 'Dla kogo',
+					'options'     => array(
+						'dla-dziewczynki' => 'Dla dziewczynki',
+						'dla-chlopca'     => 'Dla chłopca',
+						'dla-rodzenstwa'  => 'Dla rodzeństwa',
+					),
+				)
+			);
 
-			<select
-				name="wiek"
-				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
-				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
-			>
-				<option value="">Wiek dziecka</option>
-				<option value="0-1">0-1 lat</option>
-				<option value="2-3">2-3 lata</option>
-				<option value="4-6">4-6 lat</option>
-				<option value="7-12">7-12 lat</option>
-				<option value="13+">13+ lat</option>
-			</select>
+			mroomy_dropdown_select(
+				array(
+					'name'        => 'wiek',
+					'placeholder' => 'Wiek dziecka',
+					'options'     => array(
+						'0-1'  => '0-1 lat',
+						'2-3'  => '2-3 lata',
+						'4-6'  => '4-6 lat',
+						'7-12' => '7-12 lat',
+						'13+'  => '13+ lat',
+					),
+				)
+			);
 
-			<select
-				name="metraz"
-				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
-				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
-			>
-				<option value="">Metraż pokoju</option>
-				<option value="maly">Mały (do 10m²)</option>
-				<option value="sredni">Średni (10-15m²)</option>
-				<option value="duzy">Duży (15-20m²)</option>
-				<option value="bardzo-duzy">Bardzo duży (20m²+)</option>
-			</select>
+			mroomy_dropdown_select(
+				array(
+					'name'        => 'metraz',
+					'placeholder' => 'Metraż pokoju',
+					'options'     => array(
+						'maly'        => 'Mały (do 10m²)',
+						'sredni'      => 'Średni (10-15m²)',
+						'duzy'        => 'Duży (15-20m²)',
+						'bardzo-duzy' => 'Bardzo duży (20m²+)',
+					),
+				)
+			);
 
-			<select
-				name="kolor"
-				class="rooms-filters__select h-[48px] px-4 py-3 border border-[#c4c4c4] rounded-lg font-nunito font-semibold text-[16px] leading-[20px] text-[#3d3d3d] bg-white focus:outline-none focus:border-[#E20C7B] transition-colors appearance-none cursor-pointer"
-				style="background-image: url('data:image/svg+xml,%3Csvg width=%2724%27 height=%2724%27 viewBox=%270 0 24 24%27 fill=%27none%27 xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath d=%27M6 9L12 15L18 9%27 stroke=%27%233d3d3d%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
-			>
-				<option value="">Kolor</option>
-				<option value="bialy">Biały</option>
-				<option value="szary">Szary</option>
-				<option value="niebieski">Niebieski</option>
-				<option value="rozowy">Różowy</option>
-				<option value="zielony">Zielony</option>
-				<option value="brazowy">Brązowy</option>
-				<option value="czarny">Czarny</option>
-			</select>
+			mroomy_dropdown_select(
+				array(
+					'name'        => 'kolor',
+					'placeholder' => 'Kolor',
+					'options'     => array(
+						'bialy'      => 'Biały',
+						'szary'      => 'Szary',
+						'niebieski'  => 'Niebieski',
+						'rozowy'     => 'Różowy',
+						'zielony'    => 'Zielony',
+						'brazowy'    => 'Brązowy',
+						'czarny'     => 'Czarny',
+					),
+				)
+			);
+			?>
 
 			<button
 				type="button"
