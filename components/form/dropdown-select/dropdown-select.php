@@ -93,7 +93,7 @@ function mroomy_dropdown_select( $args = array() ) {
 		name="<?php echo esc_attr( $args['name'] ); ?>"
 		id="<?php echo esc_attr( $field_id ); ?>"
 		class="<?php echo esc_attr( implode( ' ', array_filter( $css_classes ) ) ); ?>"
-		style="background-image: url('<?php echo esc_url( $chevron_svg ); ?>'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
+		style="border-color: #c4c4c4; background-image: url('<?php echo $chevron_svg; ?>'); background-repeat: no-repeat; background-position: right 12px center; padding-right: 44px;"
 		<?php echo $args['required'] ? 'required' : ''; ?>
 	>
 		<?php if ( ! empty( $args['placeholder'] ) ) : ?>
