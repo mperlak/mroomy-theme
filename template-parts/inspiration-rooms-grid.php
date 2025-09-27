@@ -35,7 +35,7 @@ if ( ! $rooms_query || ! $rooms_query->have_posts() ) {
 						array(
 							'post_id'      => get_the_ID(),
 							'size'         => 'large',
-							'show_actions' => true,
+							'show_actions' => false,
 						)
 					);
 				}

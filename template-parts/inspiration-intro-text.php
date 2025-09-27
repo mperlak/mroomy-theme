@@ -6,12 +6,17 @@
  *
  * @package mroomy_s
  */
+$header_text = get_field( 'header_text' );
+
+if ( empty( $header_text ) ) {
+	return;
+}
 ?>
 
 <section class="inspiration-intro-text mt-12 px-[106px]">
 	<div class="inspiration-intro-text__inner max-w-[1228px] mx-auto">
 		<div class="font-nunito font-semibold text-[20px] leading-[26px] text-[#333333]">
-			<?php the_content(); ?>
+			<?php echo wp_kses_post( $header_text ); ?>
 		</div>
 	</div>
 </section>
