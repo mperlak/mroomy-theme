@@ -123,6 +123,7 @@ function mroomy_categories_list( $args = array() ) {
                         spaceBetween: 16, // Default mobile spacing
                         loop: false,
                         watchOverflow: true,
+                        enabled: true, // Enable by default, will be disabled on large screens if content fits
                         freeMode: {
                             enabled: true,
                             sticky: true
@@ -142,17 +143,27 @@ function mroomy_categories_list( $args = array() ) {
                             // Mobile
                             0: {
                                 slidesPerView: 'auto',
-                                spaceBetween: 16
+                                spaceBetween: 16,
+                                enabled: true
                             },
                             // Tablet
                             640: {
                                 slidesPerView: 'auto',
-                                spaceBetween: 32
+                                spaceBetween: 32,
+                                enabled: true
                             },
                             // Desktop
                             1024: {
                                 slidesPerView: 'auto',
-                                spaceBetween: 64
+                                spaceBetween: 64,
+                                enabled: true
+                            },
+                            // Large desktop - disable if all items fit
+                            1440: {
+                                slidesPerView: 'auto',
+                                spaceBetween: 64,
+                                enabled: false, // Disable slider when all items fit in viewport
+                                allowTouchMove: false
                             }
                         }
                     });
